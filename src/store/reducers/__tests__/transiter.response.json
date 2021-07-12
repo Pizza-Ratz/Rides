@@ -1,0 +1,752 @@
+{
+  "id": "A02",
+  "name": "Inwood-207 St",
+  "longitude": "-73.919899",
+  "latitude": "40.868072",
+  "url": "",
+  "service_maps": [
+    {
+      "group_id": "weekday_day",
+      "routes": [
+        {
+          "id": "A",
+          "color": "2850AD",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A"
+        }
+      ]
+    },
+    {
+      "group_id": "realtime",
+      "routes": [
+        {
+          "id": "A",
+          "color": "2850AD",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A"
+        }
+      ]
+    }
+  ],
+  "parent_stop": null,
+  "child_stops": [],
+  "directions": ["(Terminating trains)", "Downtown and Brooklyn"],
+  "alerts": [],
+  "transfers": [],
+  "stop_times": [
+    {
+      "arrival": {
+        "time": 1625925476.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "departure": {
+        "time": 1625925476.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "track": "A4",
+      "future": true,
+      "stop_sequence": 25,
+      "direction": "(Terminating trains)",
+      "trip": {
+        "id": "052200_A..N",
+        "direction_id": false,
+        "started_at": 1625906520.0,
+        "updated_at": null,
+        "delay": null,
+        "vehicle": {
+          "id": "1A 0842+ LEF/207"
+        },
+        "route": {
+          "id": "A",
+          "color": "2850AD",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A"
+        },
+        "last_stop": {
+          "id": "A02N",
+          "name": "Inwood-207 St",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/stops/A02N"
+        },
+        "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A/trips/052200_A..N"
+      }
+    },
+    {
+      "arrival": {
+        "time": 1625925570.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "departure": {
+        "time": 1625925570.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "track": "A3",
+      "future": true,
+      "stop_sequence": 1,
+      "direction": "Downtown and Brooklyn",
+      "trip": {
+        "id": "059950_A..S",
+        "direction_id": true,
+        "started_at": 1625911170.0,
+        "updated_at": null,
+        "delay": null,
+        "vehicle": null,
+        "route": {
+          "id": "A",
+          "color": "2850AD",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A"
+        },
+        "last_stop": {
+          "id": "A65S",
+          "name": "Ozone Park-Lefferts Blvd",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/stops/A65S"
+        },
+        "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A/trips/059950_A..S"
+      }
+    },
+    {
+      "arrival": {
+        "time": 1625926170.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "departure": {
+        "time": 1625926170.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "track": "A3",
+      "future": true,
+      "stop_sequence": 1,
+      "direction": "Downtown and Brooklyn",
+      "trip": {
+        "id": "060950_A..S",
+        "direction_id": true,
+        "started_at": 1625911770.0,
+        "updated_at": null,
+        "delay": null,
+        "vehicle": null,
+        "route": {
+          "id": "A",
+          "color": "2850AD",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A"
+        },
+        "last_stop": {
+          "id": "H11S",
+          "name": "Far Rockaway-Mott Av",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/stops/H11S"
+        },
+        "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A/trips/060950_A..S"
+      }
+    },
+    {
+      "arrival": {
+        "time": 1625926770.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "departure": {
+        "time": 1625926770.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "track": "A3",
+      "future": true,
+      "stop_sequence": 1,
+      "direction": "Downtown and Brooklyn",
+      "trip": {
+        "id": "061950_A..S",
+        "direction_id": true,
+        "started_at": 1625912370.0,
+        "updated_at": null,
+        "delay": null,
+        "vehicle": null,
+        "route": {
+          "id": "A",
+          "color": "2850AD",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A"
+        },
+        "last_stop": {
+          "id": "A65S",
+          "name": "Ozone Park-Lefferts Blvd",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/stops/A65S"
+        },
+        "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A/trips/061950_A..S"
+      }
+    },
+    {
+      "arrival": {
+        "time": 1625926881.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "departure": {
+        "time": 1625926881.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "track": "A4",
+      "future": true,
+      "stop_sequence": 30,
+      "direction": "(Terminating trains)",
+      "trip": {
+        "id": "052150_A..N",
+        "direction_id": false,
+        "started_at": 1625906490.0,
+        "updated_at": null,
+        "delay": null,
+        "vehicle": {
+          "id": "1A 0841+ FAR/207"
+        },
+        "route": {
+          "id": "A",
+          "color": "2850AD",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A"
+        },
+        "last_stop": {
+          "id": "A02N",
+          "name": "Inwood-207 St",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/stops/A02N"
+        },
+        "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A/trips/052150_A..N"
+      }
+    },
+    {
+      "arrival": {
+        "time": 1625927370.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "departure": {
+        "time": 1625927370.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "track": "A3",
+      "future": true,
+      "stop_sequence": 1,
+      "direction": "Downtown and Brooklyn",
+      "trip": {
+        "id": "062950_A..S",
+        "direction_id": true,
+        "started_at": 1625912970.0,
+        "updated_at": null,
+        "delay": null,
+        "vehicle": null,
+        "route": {
+          "id": "A",
+          "color": "2850AD",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A"
+        },
+        "last_stop": {
+          "id": "H11S",
+          "name": "Far Rockaway-Mott Av",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/stops/H11S"
+        },
+        "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A/trips/062950_A..S"
+      }
+    },
+    {
+      "arrival": {
+        "time": 1625927799.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "departure": {
+        "time": 1625927799.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "track": "A4",
+      "future": true,
+      "stop_sequence": 30,
+      "direction": "(Terminating trains)",
+      "trip": {
+        "id": "054200_A..N",
+        "direction_id": false,
+        "started_at": 1625907720.0,
+        "updated_at": null,
+        "delay": null,
+        "vehicle": {
+          "id": "1A 0902+ LEF/207"
+        },
+        "route": {
+          "id": "A",
+          "color": "2850AD",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A"
+        },
+        "last_stop": {
+          "id": "A02N",
+          "name": "Inwood-207 St",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/stops/A02N"
+        },
+        "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A/trips/054200_A..N"
+      }
+    },
+    {
+      "arrival": {
+        "time": 1625927970.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "departure": {
+        "time": 1625927970.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "track": "A3",
+      "future": true,
+      "stop_sequence": 1,
+      "direction": "Downtown and Brooklyn",
+      "trip": {
+        "id": "063950_A..S",
+        "direction_id": true,
+        "started_at": 1625913570.0,
+        "updated_at": null,
+        "delay": null,
+        "vehicle": null,
+        "route": {
+          "id": "A",
+          "color": "2850AD",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A"
+        },
+        "last_stop": {
+          "id": "A65S",
+          "name": "Ozone Park-Lefferts Blvd",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/stops/A65S"
+        },
+        "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A/trips/063950_A..S"
+      }
+    },
+    {
+      "arrival": {
+        "time": 1625928279.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "departure": {
+        "time": 1625928279.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "track": "A4",
+      "future": true,
+      "stop_sequence": 30,
+      "direction": "(Terminating trains)",
+      "trip": {
+        "id": "056313_A..N",
+        "direction_id": false,
+        "started_at": 1625908988.0,
+        "updated_at": null,
+        "delay": null,
+        "vehicle": {
+          "id": "1A 0922+ LEF/207"
+        },
+        "route": {
+          "id": "A",
+          "color": "2850AD",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A"
+        },
+        "last_stop": {
+          "id": "A02N",
+          "name": "Inwood-207 St",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/stops/A02N"
+        },
+        "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A/trips/056313_A..N"
+      }
+    },
+    {
+      "arrival": {
+        "time": 1625928570.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "departure": {
+        "time": 1625928570.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "track": "A3",
+      "future": true,
+      "stop_sequence": 1,
+      "direction": "Downtown and Brooklyn",
+      "trip": {
+        "id": "064950_A..S",
+        "direction_id": true,
+        "started_at": 1625914170.0,
+        "updated_at": null,
+        "delay": null,
+        "vehicle": null,
+        "route": {
+          "id": "A",
+          "color": "2850AD",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A"
+        },
+        "last_stop": {
+          "id": "H11S",
+          "name": "Far Rockaway-Mott Av",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/stops/H11S"
+        },
+        "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A/trips/064950_A..S"
+      }
+    },
+    {
+      "arrival": {
+        "time": 1625929059.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "departure": {
+        "time": 1625929059.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "track": "A4",
+      "future": true,
+      "stop_sequence": 30,
+      "direction": "(Terminating trains)",
+      "trip": {
+        "id": "057153_A..N",
+        "direction_id": false,
+        "started_at": 1625909492.0,
+        "updated_at": null,
+        "delay": null,
+        "vehicle": {
+          "id": "1A 0911+ FAR/207"
+        },
+        "route": {
+          "id": "A",
+          "color": "2850AD",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A"
+        },
+        "last_stop": {
+          "id": "A02N",
+          "name": "Inwood-207 St",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/stops/A02N"
+        },
+        "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A/trips/057153_A..N"
+      }
+    },
+    {
+      "arrival": {
+        "time": 1625929419.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "departure": {
+        "time": 1625929419.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "track": "A4",
+      "future": true,
+      "stop_sequence": 30,
+      "direction": "(Terminating trains)",
+      "trip": {
+        "id": "058360_A..N",
+        "direction_id": false,
+        "started_at": 1625910216.0,
+        "updated_at": null,
+        "delay": null,
+        "vehicle": {
+          "id": "1A 0942+ LEF/207"
+        },
+        "route": {
+          "id": "A",
+          "color": "2850AD",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A"
+        },
+        "last_stop": {
+          "id": "A02N",
+          "name": "Inwood-207 St",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/stops/A02N"
+        },
+        "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A/trips/058360_A..N"
+      }
+    },
+    {
+      "arrival": {
+        "time": 1625930019.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "departure": {
+        "time": 1625930019.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "track": "A4",
+      "future": true,
+      "stop_sequence": 40,
+      "direction": "(Terminating trains)",
+      "trip": {
+        "id": "057150_A..N",
+        "direction_id": false,
+        "started_at": 1625909490.0,
+        "updated_at": null,
+        "delay": null,
+        "vehicle": {
+          "id": "1A 0931+ FAR/207"
+        },
+        "route": {
+          "id": "A",
+          "color": "2850AD",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A"
+        },
+        "last_stop": {
+          "id": "A02N",
+          "name": "Inwood-207 St",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/stops/A02N"
+        },
+        "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A/trips/057150_A..N"
+      }
+    },
+    {
+      "arrival": {
+        "time": 1625930610.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "departure": {
+        "time": 1625930610.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "track": "A4",
+      "future": true,
+      "stop_sequence": 33,
+      "direction": "(Terminating trains)",
+      "trip": {
+        "id": "060250_A..N",
+        "direction_id": false,
+        "started_at": 1625911350.0,
+        "updated_at": null,
+        "delay": null,
+        "vehicle": null,
+        "route": {
+          "id": "A",
+          "color": "2850AD",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A"
+        },
+        "last_stop": {
+          "id": "A02N",
+          "name": "Inwood-207 St",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/stops/A02N"
+        },
+        "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A/trips/060250_A..N"
+      }
+    },
+    {
+      "arrival": {
+        "time": 1625931189.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "departure": {
+        "time": 1625931189.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "track": "A4",
+      "future": true,
+      "stop_sequence": 36,
+      "direction": "(Terminating trains)",
+      "trip": {
+        "id": "059100_A..N",
+        "direction_id": false,
+        "started_at": 1625910660.0,
+        "updated_at": null,
+        "delay": null,
+        "vehicle": {
+          "id": "1A 0951+ FAR/207"
+        },
+        "route": {
+          "id": "A",
+          "color": "2850AD",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A"
+        },
+        "last_stop": {
+          "id": "A02N",
+          "name": "Inwood-207 St",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/stops/A02N"
+        },
+        "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A/trips/059100_A..N"
+      }
+    },
+    {
+      "arrival": {
+        "time": 1625931810.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "departure": {
+        "time": 1625931810.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "track": "A4",
+      "future": true,
+      "stop_sequence": 33,
+      "direction": "(Terminating trains)",
+      "trip": {
+        "id": "062250_A..N",
+        "direction_id": false,
+        "started_at": 1625912550.0,
+        "updated_at": null,
+        "delay": null,
+        "vehicle": null,
+        "route": {
+          "id": "A",
+          "color": "2850AD",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A"
+        },
+        "last_stop": {
+          "id": "A02N",
+          "name": "Inwood-207 St",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/stops/A02N"
+        },
+        "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A/trips/062250_A..N"
+      }
+    },
+    {
+      "arrival": {
+        "time": 1625932530.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "departure": {
+        "time": 1625932530.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "track": "A4",
+      "future": true,
+      "stop_sequence": 40,
+      "direction": "(Terminating trains)",
+      "trip": {
+        "id": "061150_A..N",
+        "direction_id": false,
+        "started_at": 1625911890.0,
+        "updated_at": null,
+        "delay": null,
+        "vehicle": null,
+        "route": {
+          "id": "A",
+          "color": "2850AD",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A"
+        },
+        "last_stop": {
+          "id": "A02N",
+          "name": "Inwood-207 St",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/stops/A02N"
+        },
+        "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A/trips/061150_A..N"
+      }
+    },
+    {
+      "arrival": {
+        "time": 1625933010.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "departure": {
+        "time": 1625933010.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "track": "A4",
+      "future": true,
+      "stop_sequence": 33,
+      "direction": "(Terminating trains)",
+      "trip": {
+        "id": "064250_A..N",
+        "direction_id": false,
+        "started_at": 1625913750.0,
+        "updated_at": null,
+        "delay": null,
+        "vehicle": null,
+        "route": {
+          "id": "A",
+          "color": "2850AD",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A"
+        },
+        "last_stop": {
+          "id": "A02N",
+          "name": "Inwood-207 St",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/stops/A02N"
+        },
+        "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A/trips/064250_A..N"
+      }
+    },
+    {
+      "arrival": {
+        "time": 1625933610.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "departure": {
+        "time": 1625933610.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "track": "A4",
+      "future": true,
+      "stop_sequence": 40,
+      "direction": "(Terminating trains)",
+      "trip": {
+        "id": "063150_A..N",
+        "direction_id": false,
+        "started_at": 1625913090.0,
+        "updated_at": null,
+        "delay": null,
+        "vehicle": null,
+        "route": {
+          "id": "A",
+          "color": "2850AD",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A"
+        },
+        "last_stop": {
+          "id": "A02N",
+          "name": "Inwood-207 St",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/stops/A02N"
+        },
+        "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A/trips/063150_A..N"
+      }
+    },
+    {
+      "arrival": {
+        "time": 1625934810.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "departure": {
+        "time": 1625934810.0,
+        "delay": null,
+        "uncertainty": null
+      },
+      "track": "A4",
+      "future": true,
+      "stop_sequence": 40,
+      "direction": "(Terminating trains)",
+      "trip": {
+        "id": "065150_A..N",
+        "direction_id": false,
+        "started_at": 1625914290.0,
+        "updated_at": null,
+        "delay": null,
+        "vehicle": null,
+        "route": {
+          "id": "A",
+          "color": "2850AD",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A"
+        },
+        "last_stop": {
+          "id": "A02N",
+          "name": "Inwood-207 St",
+          "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/stops/A02N"
+        },
+        "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A/trips/065150_A..N"
+      }
+    }
+  ]
+}

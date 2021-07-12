@@ -9,8 +9,10 @@ import Layout from "components/Layout";
 import Container from "components/Container";
 import Map from "components/Map";
 import Snippet from "components/Snippet";
+import SubwayStationsLayer from "../components/SubwayStationsLayer";
 
 import gatsby_astronaut from "assets/images/gatsby-astronaut.jpg";
+
 
 const LOCATION = {
   lat: 38.9072,
@@ -36,6 +38,7 @@ const popupContentGatsby = `
     </div>
   </div>
 `;
+
 
 /**
  * MapEffect
@@ -84,6 +87,8 @@ const MapEffect = ({ markerRef }) => {
 const IndexPage = () => {
   const markerRef = useRef();
 
+  // L.geoJSON(subwayLines)
+
   const mapSettings = {
     center: CENTER,
     defaultBaseMap: "OpenStreetMap",
@@ -96,12 +101,16 @@ const IndexPage = () => {
         <title>Home Page</title>
       </Helmet>
 
+      <div className="stars"></div>
+      <div className="twinkling"></div>
+
       <Map {...mapSettings}>
-        <MapEffect markerRef={markerRef} />
-        <Marker ref={markerRef} position={CENTER} />
+        {/* <SubwayStationsLayer /> */}
+        {/* <MapEffect markerRef={markerRef} />
+        <Marker ref={markerRef} position={CENTER} /> */}
       </Map>
 
-      <Container type="content" className="text-center home-start">
+      {/* <Container type="content" className="text-center home-start">
         <h2>Still Getting Started?</h2>
         <p>Run the following in your terminal!</p>
         <Snippet>
@@ -111,7 +120,7 @@ const IndexPage = () => {
         <p className="note">
           Note: Gatsby CLI required globally for the above command
         </p>
-      </Container>
+      </Container> */}
     </Layout>
   );
 };

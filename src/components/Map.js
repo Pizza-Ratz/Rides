@@ -20,7 +20,7 @@ const Map = (props) => {
   const services = useMapServices({
     names: [...new Set([defaultBaseMap, DEFAULT_MAP_SERVICE])],
   });
-  const basemap = services.find((service) => service.name === defaultBaseMap);
+  const basemap = null //services.find((service) => service.name === defaultBaseMap);
 
   let mapClassName = `map`;
 

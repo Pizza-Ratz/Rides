@@ -29,6 +29,20 @@ module.exports = {
         path: `${__dirname}/src/assets/images`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `data`,
+        path: `${__dirname}/src/data`,
+      },
+    },
+    {
+      resolve: `gatsby-transformer-json`,
+      options: {
+        name: 'data',
+        path: `${__dirname}/src/data`
+      }
+    },
     "gatsby-plugin-react-leaflet",
     {
       resolve: "gatsby-plugin-manifest",
