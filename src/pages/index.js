@@ -1,26 +1,31 @@
-import React, { useRef, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import L from "leaflet";
-import { Marker, useMap } from "react-leaflet";
+import { useMap } from "react-leaflet";
 
 import { promiseToFlyTo, getCurrentLocation } from "lib/map";
 
 import Layout from "components/Layout";
-import Container from "components/Container";
+// import Container from "components/Container";
 import Map from "components/Map";
-import Snippet from "components/Snippet";
+// import Snippet from "components/Snippet";
 import SubwayStationsLayer from "../components/SubwayStationsLayer";
+import SubwayLinesLayer from "../components/SubwayLinesLayer";
 
 import gatsby_astronaut from "assets/images/gatsby-astronaut.jpg";
 
 
 const LOCATION = {
-  lat: 38.9072,
-  lng: -77.0369,
+  lat: 40.7481878,
+  lng: -73.9040184
 };
 const CENTER = [LOCATION.lat, LOCATION.lng];
-const DEFAULT_ZOOM = 2;
-const ZOOM = 10;
+const DEFAULT_ZOOM = 10.5;
+const MIN_ZOOM = 10;
+const bound1 = L.latLng(40.93164311770619, -74.0281309739946)
+const bound2 = L.latLng(40.535795875332695, -73.65917370133859)
+const MAX_BOUNDS = L.latLngBounds(bound1, bound2)
+// const MAX_BOUNDS = [[40.93164311770619, -74.0281309739946], [40.535795875332695, -73.65917370133859]]
 
 const timeToZoom = 2000;
 const timeToOpenPopupAfterZoom = 4000;
@@ -66,7 +71,7 @@ const MapEffect = ({ markerRef }) => {
 
       setTimeout(async () => {
         await promiseToFlyTo(map, {
-          zoom: ZOOM,
+          zoom: DEFAULT_ZOOM,
           center: location,
         });
 
@@ -84,15 +89,26 @@ const MapEffect = ({ markerRef }) => {
   return null;
 };
 
-const IndexPage = () => {
-  const markerRef = useRef();
+const ConfigureMap = () => {
+  const L = useMap()
 
-  // L.geoJSON(subwayLines)
+  React.useEffect(() => {
+    L.setMaxBounds(L.getBounds())
+    console.log(L.getBounds())
+  }, [L])
+
+  return null
+}
+
+const IndexPage = () => {
+  // const markerRef = useRef();
 
   const mapSettings = {
     center: CENTER,
-    defaultBaseMap: "OpenStreetMap",
     zoom: DEFAULT_ZOOM,
+    maxBounds: MAX_BOUNDS, // this ought to limit ability to zoom out
+    bounds: MAX_BOUNDS,
+    minZoom: MIN_ZOOM
   };
 
   return (
@@ -105,7 +121,9 @@ const IndexPage = () => {
       <div className="twinkling"></div>
 
       <Map {...mapSettings}>
-        {/* <SubwayStationsLayer /> */}
+        <ConfigureMap />
+        <SubwayStationsLayer />
+        <SubwayLinesLayer />
         {/* <MapEffect markerRef={markerRef} />
         <Marker ref={markerRef} position={CENTER} /> */}
       </Map>
