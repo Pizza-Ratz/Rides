@@ -1,0 +1,217 @@
+[
+  {
+    "id": "1",
+    "color": "EE352E",
+    "alerts": [
+      {
+        "id": "lmm:alert:83947",
+        "cause": "UNKNOWN_CAUSE",
+        "effect": "MODIFIED_SERVICE"
+      }
+    ],
+    "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/1"
+  },
+  {
+    "id": "2",
+    "color": "EE352E",
+    "alerts": [],
+    "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/2"
+  },
+  {
+    "id": "3",
+    "color": "EE352E",
+    "alerts": [],
+    "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/3"
+  },
+  {
+    "id": "4",
+    "color": "00933C",
+    "alerts": [
+      {
+        "id": "MTA NYCT_279694",
+        "cause": "UNKNOWN_CAUSE",
+        "effect": "MODIFIED_SERVICE"
+      }
+    ],
+    "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/4"
+  },
+  {
+    "id": "5",
+    "color": "00933C",
+    "alerts": [],
+    "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/5"
+  },
+  {
+    "id": "5X",
+    "color": "00933C",
+    "alerts": [],
+    "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/5X"
+  },
+  {
+    "id": "6",
+    "color": "00933C",
+    "alerts": [
+      {
+        "id": "MTA NYCT_276325",
+        "cause": "UNKNOWN_CAUSE",
+        "effect": "MODIFIED_SERVICE"
+      },
+      {
+        "id": "MTA NYCT_276322",
+        "cause": "UNKNOWN_CAUSE",
+        "effect": "MODIFIED_SERVICE"
+      }
+    ],
+    "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/6"
+  },
+  {
+    "id": "6X",
+    "color": "00A65C",
+    "alerts": [],
+    "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/6X"
+  },
+  {
+    "id": "7",
+    "color": "B933AD",
+    "alerts": [],
+    "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/7"
+  },
+  {
+    "id": "7X",
+    "color": "B933AD",
+    "alerts": [],
+    "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/7X"
+  },
+  {
+    "id": "A",
+    "color": "2850AD",
+    "alerts": [],
+    "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/A"
+  },
+  {
+    "id": "B",
+    "color": "FF6319",
+    "alerts": [],
+    "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/B"
+  },
+  {
+    "id": "C",
+    "color": "2850AD",
+    "alerts": [],
+    "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/C"
+  },
+  {
+    "id": "D",
+    "color": "FF6319",
+    "alerts": [],
+    "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/D"
+  },
+  {
+    "id": "E",
+    "color": "2850AD",
+    "alerts": [],
+    "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/E"
+  },
+  {
+    "id": "F",
+    "color": "FF6319",
+    "alerts": [],
+    "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/F"
+  },
+  {
+    "id": "FS",
+    "color": "",
+    "alerts": [
+      {
+        "id": "MTA NYCT_279563",
+        "cause": "UNKNOWN_CAUSE",
+        "effect": "MODIFIED_SERVICE"
+      }
+    ],
+    "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/FS"
+  },
+  {
+    "id": "FX",
+    "color": "FF6319",
+    "alerts": [],
+    "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/FX"
+  },
+  {
+    "id": "G",
+    "color": "6CBE45",
+    "alerts": [],
+    "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/G"
+  },
+  {
+    "id": "GS",
+    "color": "6D6E71",
+    "alerts": [],
+    "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/GS"
+  },
+  {
+    "id": "H",
+    "color": "",
+    "alerts": [],
+    "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/H"
+  },
+  {
+    "id": "J",
+    "color": "996633",
+    "alerts": [],
+    "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/J"
+  },
+  {
+    "id": "L",
+    "color": "A7A9AC",
+    "alerts": [],
+    "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/L"
+  },
+  {
+    "id": "M",
+    "color": "FF6319",
+    "alerts": [],
+    "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/M"
+  },
+  {
+    "id": "N",
+    "color": "FCCC0A",
+    "alerts": [],
+    "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/N"
+  },
+  {
+    "id": "Q",
+    "color": "FCCC0A",
+    "alerts": [],
+    "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/Q"
+  },
+  {
+    "id": "R",
+    "color": "FCCC0A",
+    "alerts": [],
+    "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/R"
+  },
+  {
+    "id": "SI",
+    "color": "",
+    "alerts": [
+      {
+        "id": "MTA NYCT_280794",
+        "cause": "UNKNOWN_CAUSE",
+        "effect": "MODIFIED_SERVICE"
+      }
+    ],
+    "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/SI"
+  },
+  {
+    "id": "W",
+    "color": "FCCC0A",
+    "alerts": [],
+    "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/W"
+  },
+  {
+    "id": "Z",
+    "color": "996633",
+    "alerts": [],
+    "href": "https://transiter.mta-music.nyc/systems/us-ny-subway/routes/Z"
+  }
+]
