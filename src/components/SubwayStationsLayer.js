@@ -11,7 +11,7 @@ const stationFromName = SubwayStops.reduce((accum, stop) => {
   if (!stop.id.match(/\d+$/)) return accum
   let stopName = stop.name
   // put st/nd/rd/th after street numbers
-  for (const match of stopName.matchAll(/(\d+) /)) {
+  for (const match of stopName.matchAll(/(\d+) /g)) {
     let [orig, number] = match
     const lastDigit = number % 10
     if (lastDigit == 1) {
@@ -23,18 +23,18 @@ const stationFromName = SubwayStops.reduce((accum, stop) => {
     } else {
       number = number + 'th'
     }
-    stopName.replaceAll(orig, `${number} `)
+    stopName = stopName.replaceAll(orig, `${number} `)
   }
-  // convert Av -> Ave
-  stopName.replaceAll(' Av', ' Ave')
-  stopName.replaceAll('-')
+  // convert Av -> Ave, Ft -> Fort
+  stopName = stopName
+    .replaceAll(' Av', ' Ave')
+    .replaceAll('-', ' - ')
+    .replaceAll('Ft ', 'Fort ')
 
-  stop.name.replace(/Ft $/, 'Fort ')
-  stop.name.replace(/\d{th|rd|st|nd}/, '')
-  accum[stop.name] = stop
+  accum[stopName] = stop
+  console.log(`${stop.name} -> ${stopName}`)
   return accum
 }, {})
-console.log(stationFromName)
 
 // injects MTA station ID into each station feature
 const stationsWithId = { ...SubwayStations };
@@ -51,7 +51,6 @@ stationsWithId.features = SubwayStations.features.map(f => {
     geometry: { ...f.geometry, coordinates: [...f.geometry.coordinates] }
   }
 }).filter(s => s.properties && s.properties.id)
-console.log(stationsWithId)
 
 function stationToMarker(station, latlng) {
   const markerStyle = {

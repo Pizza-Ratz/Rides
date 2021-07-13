@@ -94,7 +94,6 @@ const ConfigureMap = () => {
 
   React.useEffect(() => {
     L.setMaxBounds(L.getBounds())
-    console.log(L.getBounds())
   }, [L])
 
   return null
