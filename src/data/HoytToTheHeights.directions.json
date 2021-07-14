@@ -1,0 +1,291 @@
+{
+   "geocoded_waypoints" : [
+      {
+         "geocoder_status" : "OK",
+         "place_id" : "ChIJIwtUHE1awokRTAqZATg9BEs",
+         "types" : [
+            "establishment",
+            "point_of_interest",
+            "subway_station",
+            "transit_station"
+         ]
+      },
+      {
+         "geocoder_status" : "OK",
+         "place_id" : "ChIJBUUjhKD2wokRdpRldM2gxpk",
+         "types" : [ "route" ]
+      }
+   ],
+   "routes" : [
+      {
+         "bounds" : {
+            "northeast" : {
+               "lat" : 40.851696,
+               "lng" : -73.93618069999999
+            },
+            "southwest" : {
+               "lat" : 40.688484,
+               "lng" : -74.0101853
+            }
+         },
+         "copyrights" : "Map data ©2021 Google",
+         "legs" : [
+            {
+               "arrival_time" : {
+                  "text" : "1:27pm",
+                  "time_zone" : "America/New_York",
+                  "value" : 1626283653
+               },
+               "departure_time" : {
+                  "text" : "12:41pm",
+                  "time_zone" : "America/New_York",
+                  "value" : 1626280901
+               },
+               "distance" : {
+                  "text" : "13.3 mi",
+                  "value" : 21349
+               },
+               "duration" : {
+                  "text" : "46 mins",
+                  "value" : 2752
+               },
+               "end_address" : "W 181st St, New York, NY 10033, USA",
+               "end_location" : {
+                  "lat" : 40.85022670000001,
+                  "lng" : -73.93618069999999
+               },
+               "start_address" : "Hoyt - Schermerhorn Sts, Brooklyn, NY 11201, USA",
+               "start_location" : {
+                  "lat" : 40.688683,
+                  "lng" : -73.98517919999999
+               },
+               "steps" : [
+                  {
+                     "distance" : {
+                        "text" : "174 ft",
+                        "value" : 53
+                     },
+                     "duration" : {
+                        "text" : "1 min",
+                        "value" : 49
+                     },
+                     "end_location" : {
+                        "lat" : 40.688484,
+                        "lng" : -73.985001
+                     },
+                     "html_instructions" : "Walk to Hoyt - Schermerhorn Sts",
+                     "polyline" : {
+                        "points" : "g_jwFjfqbMUN|@s@"
+                     },
+                     "start_location" : {
+                        "lat" : 40.688683,
+                        "lng" : -73.98517919999999
+                     },
+                     "steps" : [
+                        {
+                           "distance" : {
+                              "text" : "43 ft",
+                              "value" : 13
+                           },
+                           "duration" : {
+                              "text" : "1 min",
+                              "value" : 8
+                           },
+                           "end_location" : {
+                              "lat" : 40.6887927,
+                              "lng" : -73.98525909999999
+                           },
+                           "polyline" : {
+                              "points" : "g_jwFjfqbMUN"
+                           },
+                           "start_location" : {
+                              "lat" : 40.688683,
+                              "lng" : -73.98517919999999
+                           },
+                           "travel_mode" : "WALKING"
+                        },
+                        {
+                           "distance" : {
+                              "text" : "131 ft",
+                              "value" : 40
+                           },
+                           "duration" : {
+                              "text" : "1 min",
+                              "value" : 41
+                           },
+                           "end_location" : {
+                              "lat" : 40.688484,
+                              "lng" : -73.985001
+                           },
+                           "html_instructions" : "Take entrance \u003cspan class=\"location\"\u003eHoyt St & Schermerhorn St at NE corner\u003c/span\u003e",
+                           "polyline" : {
+                              "points" : "}_jwFzfqbM|@s@"
+                           },
+                           "start_location" : {
+                              "lat" : 40.6887927,
+                              "lng" : -73.98525909999999
+                           },
+                           "travel_mode" : "WALKING"
+                        }
+                     ],
+                     "travel_mode" : "WALKING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "13.1 mi",
+                        "value" : 21016
+                     },
+                     "duration" : {
+                        "text" : "42 mins",
+                        "value" : 2490
+                     },
+                     "end_location" : {
+                        "lat" : 40.851696,
+                        "lng" : -73.93796499999999
+                     },
+                     "html_instructions" : "Subway towards Inwood-207 St",
+                     "polyline" : {
+                        "points" : "_~iwFfeqbMyDxMKVMRMNONMJOHODQDQ@Q?SASESGSIUKo@_@ICIEICICICGCICK?ICIAI?IAIAI?K?}BGA?kGME?G?E?G?E?GAE?EAG?E?GAG?E?GAE?YCE?E?EAEAG?E?EAE?G?EAG?E?G?E?G?aOYm@@k@Fg@He@Na@P_@V[XY^U^Sf@Of@Ml@In@Et@Cx@GrFExCAV?VATAVATCTATCTCTCRCRETCRETEPuDnS[pA[pA_@lA_@jAa@fAc@dAe@`Ae@~@i@z@i@x@k@t@m@r@o@n@o@l@q@j@e^dWMHKHKJKJKJKLKLILKLINILIPINGPIPuDdJmExKKPMRMLMJMHMFODO@O?OAQEQEOKQKSMsImGqWiRMGKIMGMEMGMEMCMCMCMAMAOAM?M?O?oIJI?yDJK@M?K?M?K?K?KAK?KAKCI?KCKAKCICiUaHuMkEGAGCGCGCIAGCGEIAIEICIEICIEKCIEsHiDEACAECCAECECCAECCAECEACCECECECyE}CECCC_EkCMIMEMEMCMCK?OAM?M@M@MBODMDMDOFsZnOMHOFOBOBODO?O?M?OAOCOEMEOGOGOKuDeCk^yU{f@a\\k^yUc_@oVwDcCaIkFwS_Nql@i`@oc@sYwZeSac@kYyZgSe[sS_[oSuL}HKIKIKGMGKGMCKEMCKEMAMAKAM?M?M?uGPK?K?I?K?K?IAKAIAICICICGCICIEGEiCaBKIIGKIKIIGIKKGIIKIIIIKKIIKIKIKcEaEGGEGEEGGEEGGEEGEGGGEGEGEGEGEGEwFuDGEGCGEECGEGEGCGCGEGAGCGEGAGCICeOqFic@{OGEGCGAGEGCGCGEGCEEGCGEECGEECEEgBkASKkEsCGEEEGAGEGCGCECGCGCGCGAGCGAGCGAgXaI}M_DEAEAEAEAGAEAEAEAGCEAGAECGAECEAwGyBGCGCIAGCGAIAIAG?IAG?IAI?G@I?I@iBNuDXE@G?E@G?E?E@E?G?E?E?G?E?E?GAE?mJa@KAK?I?KAKAIAKAK?ICIAKAIAKAICIA_Cc@gCa@IAKCKAKAICK?KAMAKAK?KAKAK?MAK?qAKKAK?IAKAKAK?KCMAKAMCKAMCMAMEMAyBYM?M?M@MBM@MDMFMDKHMHKHKJMJKLKNg@r@IJKJMLKFKFMFMDMBMBO?O@O?OAOAOCkDgA}YyI?A"
+                     },
+                     "start_location" : {
+                        "lat" : 40.688484,
+                        "lng" : -73.985001
+                     },
+                     "transit_details" : {
+                        "arrival_stop" : {
+                           "location" : {
+                              "lat" : 40.851696,
+                              "lng" : -73.93796499999999
+                           },
+                           "name" : "181 St"
+                        },
+                        "arrival_time" : {
+                           "text" : "1:24pm",
+                           "time_zone" : "America/New_York",
+                           "value" : 1626283440
+                        },
+                        "departure_stop" : {
+                           "location" : {
+                              "lat" : 40.688484,
+                              "lng" : -73.985001
+                           },
+                           "name" : "Hoyt - Schermerhorn Sts"
+                        },
+                        "departure_time" : {
+                           "text" : "12:42pm",
+                           "time_zone" : "America/New_York",
+                           "value" : 1626280950
+                        },
+                        "headsign" : "Inwood-207 St",
+                        "line" : {
+                           "agencies" : [
+                              {
+                                 "name" : "MTA New York City Transit",
+                                 "phone" : "1 (718) 330-1234",
+                                 "url" : "http://www.mta.info/"
+                              }
+                           ],
+                           "color" : "#0039a6",
+                           "icon" : "//maps.gstatic.com/mapfiles/transit/iw2/6/us-ny-mta/A.png",
+                           "name" : "A Line",
+                           "short_name" : "A",
+                           "text_color" : "#ffffff",
+                           "url" : "http://web.mta.info/nyct/service/pdf/tacur.pdf",
+                           "vehicle" : {
+                              "icon" : "//maps.gstatic.com/mapfiles/transit/iw2/6/subway2.png",
+                              "name" : "Subway",
+                              "type" : "SUBWAY"
+                           }
+                        },
+                        "num_stops" : 15
+                     },
+                     "travel_mode" : "TRANSIT"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "0.2 mi",
+                        "value" : 280
+                     },
+                     "duration" : {
+                        "text" : "4 mins",
+                        "value" : 213
+                     },
+                     "end_location" : {
+                        "lat" : 40.85022670000001,
+                        "lng" : -73.93618069999999
+                     },
+                     "html_instructions" : "Walk to W 181st St, New York, NY 10033, USA",
+                     "polyline" : {
+                        "points" : "czixFf_hbM|D`@ECd@_CDY^oBDUDSTmA"
+                     },
+                     "start_location" : {
+                        "lat" : 40.851696,
+                        "lng" : -73.93796499999999
+                     },
+                     "steps" : [
+                        {
+                           "distance" : {
+                              "text" : "348 ft",
+                              "value" : 106
+                           },
+                           "duration" : {
+                              "text" : "2 mins",
+                              "value" : 107
+                           },
+                           "end_location" : {
+                              "lat" : 40.8507493,
+                              "lng" : -73.9381281
+                           },
+                           "html_instructions" : "Take exit \u003cspan class=\"location\"\u003eFort Washington Ave & 181st St at SE corner\u003c/span\u003e",
+                           "polyline" : {
+                              "points" : "czixFf_hbM|D`@"
+                           },
+                           "start_location" : {
+                              "lat" : 40.851696,
+                              "lng" : -73.93796499999999
+                           },
+                           "travel_mode" : "WALKING"
+                        },
+                        {
+                           "distance" : {
+                              "text" : "0.1 mi",
+                              "value" : 174
+                           },
+                           "duration" : {
+                              "text" : "2 mins",
+                              "value" : 106
+                           },
+                           "end_location" : {
+                              "lat" : 40.85022670000001,
+                              "lng" : -73.93618069999999
+                           },
+                           "html_instructions" : "Head \u003cb\u003eeast\u003c/b\u003e on \u003cb\u003eW 181st St\u003c/b\u003e toward \u003cb\u003eMagaw Pl\u003c/b\u003e",
+                           "polyline" : {
+                              "points" : "ktixFd`hbMd@_CDY^oBDUDSTmA"
+                           },
+                           "start_location" : {
+                              "lat" : 40.8507758,
+                              "lng" : -73.93811479999999
+                           },
+                           "travel_mode" : "WALKING"
+                        }
+                     ],
+                     "travel_mode" : "WALKING"
+                  }
+               ],
+               "traffic_speed_entry" : [],
+               "via_waypoint" : []
+            }
+         ],
+         "overview_polyline" : {
+            "points" : "g_jwFjfqbMUN|@s@yDxMYj@]^]Ta@Jc@@g@Gg@QeAk@g@Qg@Kg@GqLWw@CiAGs@E[AM?aOYm@@sAPgA`@{@p@o@~@c@nAW|AInBMlKE|AKvAQrAeEjUw@bD_AxCeAlCkA`CsAtByAhB_B|Aq@j@e^dWYRWVm@t@i@|@qExKyEjL[`@[T]L_@@a@Ga@Qe@Y_c@i[w@[w@My@C_JJcEJs@@o@Am@IWEsUeHmNuEiAa@i@ScIqDi@WyLaI[O[Iw@E[B]H[Jc[vO]P_@F_@D]?_@E]K_@OeEqCweCeaBcqAyz@c_Cm|AgeAkr@q@a@s@Su@E}HPm@?i@Ie@OgDwBwAkAiGmGw@w@oH_F}@g@au@cX_Ac@wCoBmFkD_@O}@[oXcIcNaDYGu@SkHcCa@Ke@Ec@?oIn@s@@oLg@wAOiIuA_BMq@CsBOcBQw@MgCY[@[D[Ls@b@q@t@q@~@YXs@\\[F_@@_AGi_@aL|D^ECd@_Cd@iC`@wB"
+         },
+         "summary" : "",
+         "warnings" : [
+            "Walking directions are in beta. Use caution – This route may be missing sidewalks or pedestrian paths."
+         ],
+         "waypoint_order" : []
+      }
+   ],
+   "status" : "OK"
+}

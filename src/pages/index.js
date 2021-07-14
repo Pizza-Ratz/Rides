@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import L from "leaflet";
 import { useMap } from "react-leaflet";
+import { Provider } from "react-redux";
 
 import { promiseToFlyTo, getCurrentLocation } from "lib/map";
 
@@ -13,6 +14,8 @@ import SubwayStationsLayer from "../components/SubwayStationsLayer";
 import SubwayLinesLayer from "../components/SubwayLinesLayer";
 
 import gatsby_astronaut from "assets/images/gatsby-astronaut.jpg";
+import store from "../store"
+
 
 
 const LOCATION = {
@@ -25,7 +28,6 @@ const MIN_ZOOM = 9;
 const bound1 = L.latLng(40.93164311770619, -74.0281309739946)
 const bound2 = L.latLng(40.535795875332695, -73.65917370133859)
 const MAX_BOUNDS = L.latLngBounds(bound1, bound2)
-// const MAX_BOUNDS = [[40.93164311770619, -74.0281309739946], [40.535795875332695, -73.65917370133859]]
 
 const timeToZoom = 2000;
 const timeToOpenPopupAfterZoom = 4000;
@@ -91,11 +93,6 @@ const MapEffect = ({ markerRef }) => {
 
 const ConfigureMap = () => {
   const L = useMap()
-
-  // React.useEffect(() => {
-  //   L.setMaxBounds(L.getBounds())
-  // }, [L])
-
   return null
 }
 
@@ -111,6 +108,7 @@ const IndexPage = () => {
   };
 
   return (
+    <Provider store={store}>
     <Layout pageName="home">
       <Helmet>
         <title>Home Page</title>
@@ -119,7 +117,7 @@ const IndexPage = () => {
       <div className="stars"></div>
       <div className="twinkling"></div>
 
-      <Map {...mapSettings}>
+      <Map {...mapSettings} >
         <ConfigureMap />
         <SubwayLinesLayer />
         <SubwayStationsLayer />
@@ -139,6 +137,7 @@ const IndexPage = () => {
         </p>
       </Container> */}
     </Layout>
+  </Provider>
   );
 };
 
