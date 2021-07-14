@@ -21,7 +21,7 @@ const LOCATION = {
 };
 const CENTER = [LOCATION.lat, LOCATION.lng];
 const DEFAULT_ZOOM = 10.5;
-const MIN_ZOOM = 10;
+const MIN_ZOOM = 9;
 const bound1 = L.latLng(40.93164311770619, -74.0281309739946)
 const bound2 = L.latLng(40.535795875332695, -73.65917370133859)
 const MAX_BOUNDS = L.latLngBounds(bound1, bound2)
@@ -92,9 +92,9 @@ const MapEffect = ({ markerRef }) => {
 const ConfigureMap = () => {
   const L = useMap()
 
-  React.useEffect(() => {
-    L.setMaxBounds(L.getBounds())
-  }, [L])
+  // React.useEffect(() => {
+  //   L.setMaxBounds(L.getBounds())
+  // }, [L])
 
   return null
 }
@@ -121,8 +121,8 @@ const IndexPage = () => {
 
       <Map {...mapSettings}>
         <ConfigureMap />
-        <SubwayStationsLayer />
         <SubwayLinesLayer />
+        <SubwayStationsLayer />
         {/* <MapEffect markerRef={markerRef} />
         <Marker ref={markerRef} position={CENTER} /> */}
       </Map>

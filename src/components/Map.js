@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { MapContainer, ZoomControl } from "react-leaflet";
 
-import { useConfigureLeaflet } from "hooks";
+import { useConfigureLeaflet } from "../hooks";
 import { isDomAvailable } from "lib/util";
 
 const Map = ({ children, className, ...rest }) => {
@@ -23,7 +23,7 @@ const Map = ({ children, className, ...rest }) => {
   }
 
   const mapSettings = {
-    className: "map-base",
+    className: mapClassName,
     zoomControl: false,
     ...rest,
   };
