@@ -1,5 +1,5 @@
 import React from "react";
-import { GeoJSON } from 'react-leaflet'
+import { GeoJSON, useMap } from 'react-leaflet'
 import SubwayStations from '../data/SubwayStations.geojson.json'
 import SubwayStops from '../data/SubwayStops.json'
 import SubwayRoutes from '../data/SubwayRoutes.json'
@@ -32,7 +32,6 @@ const stationFromName = SubwayStops.reduce((accum, stop) => {
     .replaceAll('Ft ', 'Fort ')
 
   accum[stopName] = stop
-  console.log(`${stop.name} -> ${stopName}`)
   return accum
 }, {})
 
@@ -54,13 +53,35 @@ stationsWithId.features = SubwayStations.features.map(f => {
 
 function stationToMarker(station, latlng) {
   const markerStyle = {
+    className: 'station',
     fillColor: 'white',
     radius: 10,
-    className: 'station',
+    riseOnHover: true,
+    bubblingMouseEvents: true,
   }
   return new L.CircleMarker(latlng, markerStyle)
 }
 
-const SubwayStationsLayer = () => (<GeoJSON data={stationsWithId} pointToLayer={stationToMarker} />)
+const SubwayStationsLayer = () => {
+  const map = useMap()
 
-export default SubwayStationsLayer
+  const clickHandler = (evt) => {
+    // if it's a station that got clicked
+    if (evt.originalEvent.target.classList.contains('station') && evt.latlng) {
+      console.log('event', evt)
+      map.openPopup('<div>Hello, I am a pop-up</div>', evt.latlng)      
+    }
+  }  
+
+  React.useEffect(() => {
+    if (map) {
+      map.addEventListener('click', clickHandler);
+    }
+  }, [map])
+
+  return (
+    <GeoJSON data={stationsWithId} pointToLayer={stationToMarker}/>
+  )
+}
+
+export default SubwayStationsLayer;
