@@ -11,6 +11,6 @@ export default class ThreeSpace {
       accum[src.name] = new Panner3D(src.lat, src.lon, 0)
       return accum
     })
-    this.listener = Listener(listener.lat, listener.lon, 0)
+    this.listener = new Listener(listener.lat, listener.lon, 0)
   }
 }
