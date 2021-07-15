@@ -7,9 +7,28 @@ export const actionTypes = {
   LOAD_END: "STATION_LOAD_END",
 };
 
-export const initialState = []
 
-const stationReducer = async (state = initialState, action) => {
+const _loadStations = (data) => ({
+  type: actionTypes.LOAD_STATIONS,
+  data
+});
+
+
+export const initialState = [];
+
+export const loadStations = () => {
+  return async (dispatch) => {
+  try {
+    const response = await fetch(`${transiterNYCSubway}/stops/`);
+    const stationData = await response.json();
+    dispatch(_loadStations(stationData))
+  } catch (err) {
+    throw err;
+  } 
+ }
+};
+
+const stationReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.LOAD_STATIONS:
       const response = await fetch(`${transiterNYCSubway}/stops`);
