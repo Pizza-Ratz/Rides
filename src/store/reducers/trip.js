@@ -10,11 +10,11 @@ const _sendData = (data) => ({
   data
 });
 
-export const tripInitialState = {};
+export const initialState = { results: HoytToTheHeights };
 
-export default function tripReducer(state = tripInitialState, action) {
+export default function tripReducer(state = initialState, action) {
   if (action.type === actionTypes.SEND_DATA) {
-    return HoytToTheHeights;
+    return action.results;
   }
   return state;
 }

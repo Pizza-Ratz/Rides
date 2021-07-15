@@ -42,13 +42,13 @@ export const loadStation = (id) => async (dispatch) => {
   dispatch(_setStation(stationData));
 };
 
-export const transiterInitialState = {
+export const initialState = {
   loading: false,
   _activeRequests: 0,
   stops: {},
 };
 
-export default function transiterReducer(state = transiterInitialState, action) {
+export default function transiterReducer(state = initialState, action) {
   switch (action.type) {
     case actionTypes.SET_STATION:
       return {

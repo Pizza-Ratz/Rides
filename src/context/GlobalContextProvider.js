@@ -1,7 +1,7 @@
 import React from "react"
-import transiterReducer, {transiterInitialState} from '../store/reducers/transiter'
-import stationReducer, {stationInitialState} from '../store/reducers/station'
-import tripReducer, {tripInitialState} from '../store/reducers/trip'
+import transiterReducer, { initialState as transiterInitialState } from '../store/reducers/transiter'
+import stationReducer, { initialState as stationInitialState } from '../store/reducers/station'
+import tripReducer, { initialState as tripInitialState } from '../store/reducers/trip'
 
 export const GlobalTransiterContext = React.createContext()
 export const GlobalTripContext = React.createContext()

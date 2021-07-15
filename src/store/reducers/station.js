@@ -7,9 +7,9 @@ export const actionTypes = {
   LOAD_END: "STATION_LOAD_END",
 };
 
-export const stationInitialState = []
+export const initialState = []
 
-const stationReducer = async (state = stationInitialState, action) => {
+const stationReducer = async (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.LOAD_STATIONS:
       const response = await fetch(`${transiterNYCSubway}/stops`);
