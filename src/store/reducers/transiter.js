@@ -27,7 +27,7 @@ export const loadStation = (id) => async (dispatch) => {
   dispatch(_startLoad());
   try {
     const response = await fetch(`${transiterNYCSubway}/stops/${id}`);
-    stationData = await response.json();
+    const stationData = await response.json();
   } catch (err) {
     throw err;
   } finally {
@@ -42,13 +42,13 @@ export const loadStation = (id) => async (dispatch) => {
   dispatch(_setStation(stationData));
 };
 
-export const initialState = {
+export const transiterInitialState = {
   loading: false,
   _activeRequests: 0,
   stops: {},
 };
 
-export default function transiterReducer(state = initialState, action) {
+export default function transiterReducer(state = transiterInitialState, action) {
   switch (action.type) {
     case actionTypes.SET_STATION:
       return {

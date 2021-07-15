@@ -15,7 +15,7 @@ import SubwayLinesLayer from "../components/SubwayLinesLayer";
 
 import gatsby_astronaut from "assets/images/gatsby-astronaut.jpg";
 import store from "../store"
-
+import polyline from "polyline-encoded";
 
 
 const LOCATION = {
@@ -106,6 +106,9 @@ const IndexPage = () => {
     bounds: MAX_BOUNDS,
     minZoom: MIN_ZOOM
   };
+
+  console.log(polyline.decode("g_jwFjfqbMUN|@s@yDxMYj@]^]Ta@Jc@@g@Gg@QeAk@g@Qg@Kg@GqLWw@CiAGs@E[AM?aOYm@@sAPgA`@{@p@o@~@c@nAW|AInBMlKE|AKvAQrAeEjUw@bD_AxCeAlCkA`CsAtByAhB_B|Aq@j@e^dWYRWVm@t@i@|@qExKyEjL[`@[T]L_@@a@Ga@Qe@Y_c@i[w@[w@My@C_JJcEJs@@o@Am@IWEsUeHmNuEiAa@i@ScIqDi@WyLaI[O[Iw@E[B]H[Jc[vO]P_@F_@D]?_@E]K_@OeEqCweCeaBcqAyz@c_Cm|AgeAkr@q@a@s@Su@E}HPm@?i@Ie@OgDwBwAkAiGmGw@w@oH_F}@g@au@cX_Ac@wCoBmFkD_@O}@[oXcIcNaDYGu@SkHcCa@Ke@Ec@?oIn@s@@oLg@wAOiIuA_BMq@CsBOcBQw@MgCY[@[D[Ls@b@q@t@q@~@YXs@\\[F_@@_AGi_@aL|D^ECd@_Cd@iC`@wB"))
+
 
   return (
     <Provider store={store}>
