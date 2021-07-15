@@ -31,9 +31,7 @@ export const loadStations = () => {
 const stationReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.LOAD_STATIONS:
-      const response = await fetch(`${transiterNYCSubway}/stops`);
-      const stationData = await response.json();
-      return stationData;
+      return action.stationData;
     case actionTypes.LOAD_START:
       return state.map(station => {
         if (station.id === action.stationId) return {...station, start: true}
