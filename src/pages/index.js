@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import L from "leaflet";
 import { useMap } from "react-leaflet";
+import { Provider } from "react-redux";
 
 import { promiseToFlyTo, getCurrentLocation } from "lib/map";
 
@@ -13,6 +14,8 @@ import SubwayStationsLayer from "../components/SubwayStationsLayer";
 import SubwayLinesLayer from "../components/SubwayLinesLayer";
 
 import gatsby_astronaut from "assets/images/gatsby-astronaut.jpg";
+import store from "../store"
+import polyline from "polyline-encoded";
 
 
 const LOCATION = {
@@ -25,7 +28,6 @@ const MIN_ZOOM = 9;
 const bound1 = L.latLng(40.93164311770619, -74.0281309739946)
 const bound2 = L.latLng(40.535795875332695, -73.65917370133859)
 const MAX_BOUNDS = L.latLngBounds(bound1, bound2)
-// const MAX_BOUNDS = [[40.93164311770619, -74.0281309739946], [40.535795875332695, -73.65917370133859]]
 
 const timeToZoom = 2000;
 const timeToOpenPopupAfterZoom = 4000;
@@ -91,11 +93,6 @@ const MapEffect = ({ markerRef }) => {
 
 const ConfigureMap = () => {
   const L = useMap()
-
-  // React.useEffect(() => {
-  //   L.setMaxBounds(L.getBounds())
-  // }, [L])
-
   return null
 }
 
@@ -110,7 +107,11 @@ const IndexPage = () => {
     minZoom: MIN_ZOOM
   };
 
+  console.log(polyline.decode("g_jwFjfqbMUN|@s@yDxMYj@]^]Ta@Jc@@g@Gg@QeAk@g@Qg@Kg@GqLWw@CiAGs@E[AM?aOYm@@sAPgA`@{@p@o@~@c@nAW|AInBMlKE|AKvAQrAeEjUw@bD_AxCeAlCkA`CsAtByAhB_B|Aq@j@e^dWYRWVm@t@i@|@qExKyEjL[`@[T]L_@@a@Ga@Qe@Y_c@i[w@[w@My@C_JJcEJs@@o@Am@IWEsUeHmNuEiAa@i@ScIqDi@WyLaI[O[Iw@E[B]H[Jc[vO]P_@F_@D]?_@E]K_@OeEqCweCeaBcqAyz@c_Cm|AgeAkr@q@a@s@Su@E}HPm@?i@Ie@OgDwBwAkAiGmGw@w@oH_F}@g@au@cX_Ac@wCoBmFkD_@O}@[oXcIcNaDYGu@SkHcCa@Ke@Ec@?oIn@s@@oLg@wAOiIuA_BMq@CsBOcBQw@MgCY[@[D[Ls@b@q@t@q@~@YXs@\\[F_@@_AGi_@aL|D^ECd@_Cd@iC`@wB"))
+
+
   return (
+    <Provider store={store}>
     <Layout pageName="home">
       <Helmet>
         <title>Home Page</title>
@@ -119,7 +120,7 @@ const IndexPage = () => {
       <div className="stars"></div>
       <div className="twinkling"></div>
 
-      <Map {...mapSettings}>
+      <Map {...mapSettings} >
         <ConfigureMap />
         <SubwayLinesLayer />
         <SubwayStationsLayer />
@@ -139,6 +140,7 @@ const IndexPage = () => {
         </p>
       </Container> */}
     </Layout>
+  </Provider>
   );
 };
 
