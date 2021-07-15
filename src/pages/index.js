@@ -14,7 +14,6 @@ import SubwayStationsLayer from "../components/SubwayStationsLayer";
 import SubwayLinesLayer from "../components/SubwayLinesLayer";
 
 import gatsby_astronaut from "assets/images/gatsby-astronaut.jpg";
-import store from "../store"
 import polyline from "polyline-encoded";
 
 
@@ -32,20 +31,6 @@ const MAX_BOUNDS = L.latLngBounds(bound1, bound2)
 const timeToZoom = 2000;
 const timeToOpenPopupAfterZoom = 4000;
 const timeToUpdatePopupAfterZoom = timeToOpenPopupAfterZoom + 3000;
-
-const popupContentHello = `<p>Hello 👋</p>`;
-const popupContentGatsby = `
-  <div class="popup-gatsby">
-    <div class="popup-gatsby-image">
-      <img class="gatsby-astronaut" src=${gatsby_astronaut} />
-    </div>
-    <div class="popup-gatsby-content">
-      <h1>Gatsby Leaflet Starter</h1>
-      <p>Welcome to your new Gatsby site. Now go build something great!</p>
-    </div>
-  </div>
-`;
-
 
 /**
  * MapEffect
@@ -69,7 +54,6 @@ const MapEffect = ({ markerRef }) => {
 
       marker.setLatLng(location);
       popup.setLatLng(location);
-      popup.setContent(popupContentHello);
 
       setTimeout(async () => {
         await promiseToFlyTo(map, {
@@ -80,10 +64,6 @@ const MapEffect = ({ markerRef }) => {
         marker.bindPopup(popup);
 
         setTimeout(() => marker.openPopup(), timeToOpenPopupAfterZoom);
-        setTimeout(
-          () => marker.setPopupContent(popupContentGatsby),
-          timeToUpdatePopupAfterZoom
-        );
       }, timeToZoom);
     })();
   }, [map, markerRef]);
@@ -111,7 +91,6 @@ const IndexPage = () => {
 
 
   return (
-    <Provider store={store}>
     <Layout pageName="home">
       <Helmet>
         <title>Home Page</title>
@@ -140,7 +119,6 @@ const IndexPage = () => {
         </p>
       </Container> */}
     </Layout>
-  </Provider>
   );
 };
 

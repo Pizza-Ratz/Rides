@@ -16,14 +16,10 @@ const _loadStations = (data) => ({
 
 export const initialState = [];
 
-export const loadStations = async () => {
-  try {
+export const loadStations = async (dispatch) => {
     const response = await fetch(`${transiterNYCSubway}/stops/`);
     const stationData = await response.json();
     dispatch(_loadStations(stationData))
-  } catch (err) {
-    throw err;
-  } 
 };
 
 const stationReducer = (state = initialState, action) => {
