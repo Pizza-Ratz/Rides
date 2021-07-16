@@ -11,9 +11,9 @@ const Header = () => {
 
   return (
     <header>
-      <Container type="content">
+      <Container type="content" className="header">
         <p>
-          <Link to="/">{companyName}</Link>
+          <Link to="/">{companyName} : A sonic journey through the NYC subway</Link>
         </p>
         <ul>
           <li>

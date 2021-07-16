@@ -3,7 +3,9 @@ import { GeoJSON, useMap } from 'react-leaflet'
 import SubwayStations from '../data/SubwayStations.geojson.json'
 import SubwayStops from '../data/SubwayStops.json'
 import SubwayRoutes from '../data/SubwayRoutes.json'
+import logo from '../assets/images/ratwlogo2.png'
 import L from 'leaflet'
+
 
 
 // mapping from station name to station data
@@ -68,15 +70,15 @@ const SubwayStationsLayer = () => {
   const map = useMap()
 
   const popUpStyle = {
-    maxWidth: '400',
-    width: '200',
     className : 'popupCustom',
+    
   }
+
 
   const clickHandler = (evt) => {
     // if it's a station that got clicked
     if (evt.originalEvent.target.classList.contains('station') && evt.latlng) {
-      map.openPopup('<div>START</div>', '<img src="images/ratwlogo2.png"/>', evt.latlng, popUpStyle)      
+      map.openPopup(`<img src=${logo} alt="logo" width="100%" height="100%" /><div>➤START</div>`, evt.latlng, popUpStyle)   
     }
   }  
 
@@ -91,4 +93,4 @@ const SubwayStationsLayer = () => {
   )
 }
 
-export default SubwayStationsLayer;
+export default SubwayStationsLayer

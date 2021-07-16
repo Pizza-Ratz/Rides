@@ -2,7 +2,9 @@ header {
 
   width: 100%;
   color: $white;
-  background-color: $gatsby-purple;
+  background-color: $deep-purple-A400;
+  
+}
 
   .container {
     display: flex;
@@ -26,7 +28,7 @@ header {
   }
 
   a {
-    color: lighten($gatsby-purple, 50);
+    color: lighten($deep-purple-A100, 50%);
     text-decoration: none;
     padding: 0 .5em;
   }
@@ -37,4 +39,3 @@ header {
     margin: 0;
   }
 
-}

@@ -109,6 +109,7 @@ const IndexPage = () => {
     <Layout pageName="home">
       <Helmet>
         <title>Home Page</title>
+        <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@290;400&display=swap" rel="stylesheet"></link>
       </Helmet>
 
       <div className="stars"></div>
