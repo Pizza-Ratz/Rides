@@ -59,6 +59,9 @@ function stationToMarker(station, latlng) {
     riseOnHover: true,
     bubblingMouseEvents: true,
   }
+  if (typeof window === 'undefined') {
+    return null
+  }
   return new L.CircleMarker(latlng, markerStyle)
 }
 

@@ -1,6 +1,5 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import L from "leaflet";
 import Layout from "components/Layout";
 import Map from "components/Map";
 import SubwayStationsLayer from "../components/SubwayStationsLayer";
@@ -13,9 +12,9 @@ const LOCATION = {
 const CENTER = [LOCATION.lat, LOCATION.lng];
 const DEFAULT_ZOOM = 10.5;
 const MIN_ZOOM = 9;
-const bound1 = L.latLng(40.93164311770619, -74.0281309739946)
-const bound2 = L.latLng(40.535795875332695, -73.65917370133859)
-const MAX_BOUNDS = L.latLngBounds(bound1, bound2)
+const bound1 = [40.93164311770619, -74.0281309739946]
+const bound2 = [40.535795875332695, -73.65917370133859]
+const MAX_BOUNDS = [bound1, bound2]
 
 const IndexPage = () => {
 
@@ -27,6 +26,8 @@ const IndexPage = () => {
     minZoom: MIN_ZOOM
   };
 
+  if (typeof window === 'undefined') return null
+  
   return (
     <Layout pageName="home">
       <Helmet>
