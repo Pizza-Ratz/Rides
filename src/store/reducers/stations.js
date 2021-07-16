@@ -1,3 +1,5 @@
+import subwayStops from '../../data/SubwayStops.json'
+
 export const transiterNYCSubway =
   "https://transiter.mta-music.nyc/systems/us-ny-subway";
 
@@ -24,13 +26,9 @@ export const _markEnd = (endId) => ({
 
 export const initialState = [];
 
-export const loadStations = async (dispatch) => {
-  return new Promise(() =>
-    fetch(`${transiterNYCSubway}/stops/`)
-      .then(response => response.json())
-      .then(stationData => dispatch(_loadStations(stationData)))
-  )
-};
+export const loadStations = () => {
+  return {data: subwayStops}
+}
 
 const stationReducer = (state = initialState, action) => {
   switch (action.type) {

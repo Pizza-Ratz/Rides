@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { MapContainer, ZoomControl } from "react-leaflet";
-
 import { useConfigureLeaflet } from "../hooks";
 import { isDomAvailable } from "lib/util";
 

@@ -21,13 +21,14 @@ const IndexPage = () => {
   const mapSettings = {
     center: CENTER,
     zoom: DEFAULT_ZOOM,
-    maxBounds: MAX_BOUNDS, // this ought to limit ability to zoom out
+    // Getting a webpack error when including L.latLngBounds, so including these as a 2d array
+    maxBounds: MAX_BOUNDS,
     bounds: MAX_BOUNDS,
     minZoom: MIN_ZOOM
   };
 
   if (typeof window === 'undefined') return null
-  
+
   return (
     <Layout pageName="home">
       <Helmet>
