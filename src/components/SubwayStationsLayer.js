@@ -33,7 +33,7 @@ const SubwayStationsLayer = () => {
   React.useEffect(() => {
     stationDispatch(markStart(startingStationId))
     stationDispatch(markEnd(endingStationId))
-  }, [stationList])
+  }, [])
 
   const clickHandler = (evt) => {
     // if it's a station that got clicked
