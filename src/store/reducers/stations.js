@@ -9,26 +9,26 @@ export const actionTypes = {
   MARK_END: "STATION_MARK_END",
 };
 
-const _loadStations = (data) => ({
+export const loadStationsAction = (data) => ({
   type: actionTypes.LOAD_STATIONS,
   data
 });
 
-export const _markStart = (startId) => ({
+export const markStart = (startId) => ({
   type: actionTypes.MARK_START,
   startId
 })
 
-export const _markEnd = (endId) => ({
+export const markEnd = (endId) => ({
   type: actionTypes.MARK_END,
   endId
 })
 
-export const initialState = [];
-
 export const loadStations = () => {
   return {data: subwayStops}
 }
+
+export const initialState = [];
 
 const stationReducer = (state = initialState, action) => {
   switch (action.type) {

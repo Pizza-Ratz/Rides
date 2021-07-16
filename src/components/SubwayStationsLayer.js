@@ -4,7 +4,7 @@ import SubwayStops from '../data/SubwayStops.json'
 import L from 'leaflet'
 import { GeoJSON, useMap } from 'react-leaflet'
 import { GlobalStationDispatchContext, GlobalStationStateContext } from "../context/GlobalContextProvider";
-import { loadStations, _markStart, _markEnd } from '../store/reducers/stations'
+import { loadStations, markStart, markEnd } from '../store/reducers/stations'
 
 // mapping from station name to station data
 const stationFromName = SubwayStops.reduce((accum, stop) => {
@@ -76,8 +76,8 @@ const SubwayStationsLayer = () => {
   React.useEffect(() => loadStations(), [])
   React.useEffect(() => {
     if (stationList.length) {
-      stationDispatch(_markStart(startingStationId))
-      stationDispatch(_markEnd(endingStationId))
+      stationDispatch(markStart(startingStationId))
+      stationDispatch(markEnd(endingStationId))
     }
   }, [stationList])
 
