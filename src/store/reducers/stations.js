@@ -16,7 +16,7 @@ const _loadStations = (data) => ({
 
 export const initialState = [];
 
-export const loadStations = async () => {
+export const loadStations = async (dispatch) => {
   try {
     const response = await fetch(`${transiterNYCSubway}/stops/`);
     const stationData = await response.json();

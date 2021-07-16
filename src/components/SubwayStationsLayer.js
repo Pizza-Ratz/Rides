@@ -54,9 +54,11 @@ stationsWithId.features = SubwayStations.features.map(f => {
 function stationToMarker(station, latlng) {
   const markerStyle = {
     className: 'station',
-    fillColor: 'white',
-    radius: 10,
+    radius: 8,
+    color: "#BEC2CB8C",
+    border: "white",
     riseOnHover: true,
+    weight: 1,
     bubblingMouseEvents: true,
   }
   return new L.CircleMarker(latlng, markerStyle)
@@ -65,11 +67,16 @@ function stationToMarker(station, latlng) {
 const SubwayStationsLayer = () => {
   const map = useMap()
 
+  const popUpStyle = {
+    maxWidth: '400',
+    width: '200',
+    className : 'popupCustom',
+  }
+
   const clickHandler = (evt) => {
     // if it's a station that got clicked
     if (evt.originalEvent.target.classList.contains('station') && evt.latlng) {
-      console.log('event', evt)
-      map.openPopup('<div>Hello, I am a pop-up</div>', evt.latlng)      
+      map.openPopup('<div>START</div>', '<img src="images/ratwlogo2.png"/>', evt.latlng, popUpStyle)      
     }
   }  
 
