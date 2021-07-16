@@ -75,26 +75,24 @@ export const loadStations = () => {
   return {data: stationsWithId}
 }
 
-export const initialState = [];
+export const initialState = {};
 
 const stationReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.LOAD_STATIONS:
       return action.data;
     case actionTypes.MARK_START:
-      return state.features.map(station => {
+      return {...state, data: {...state.data, features: state.data.features.map(station => {
         if (station.properties && station.properties.id === action.startId) {
           return {...station, properties: {...station.properties, start: true}}
-        }
-        else return station
-      })
+      } else return station
+    })}}
     case actionTypes.MARK_END:
-      return state.features.map(station => {
+      return {...state, data: {...state.data, features: state.data.features.map(station => {
         if (station.properties && station.properties.id === action.endId) {
           return {...station, properties: {...station.properties, end: true}}
-        }
-        else return station
-      })
+      } else return station
+    })}}
     default:
       return state
   }
