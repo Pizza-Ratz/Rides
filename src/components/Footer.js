@@ -8,7 +8,7 @@ const Footer = () => {
   const { authorName, authorUrl } = useSiteMetadata();
 
   return (
-    <footer>
+    <footer className="footer">
       <Container>
         <p>
           &copy; {new Date().getFullYear()},{" "}

@@ -10,7 +10,7 @@ const Header = () => {
   const { companyName, companyUrl } = useSiteMetadata();
 
   return (
-    <header>
+    <header className="header">
       <Container type="content">
         <p>
           <Link to="/">{companyName}</Link>

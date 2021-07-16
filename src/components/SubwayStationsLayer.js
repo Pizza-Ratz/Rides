@@ -1,10 +1,10 @@
 import React from "react";
-import { GeoJSON, useMap } from 'react-leaflet'
 import SubwayStations from '../data/SubwayStations.geojson.json'
 import SubwayStops from '../data/SubwayStops.json'
-import SubwayRoutes from '../data/SubwayRoutes.json'
 import L from 'leaflet'
-
+import { GeoJSON, useMap } from 'react-leaflet'
+import { GlobalStationDispatchContext, GlobalStationStateContext } from "../context/GlobalContextProvider";
+import { loadStations, markStart, markEnd } from '../store/reducers/stations'
 
 // mapping from station name to station data
 const stationFromName = SubwayStops.reduce((accum, stop) => {
@@ -59,19 +59,35 @@ function stationToMarker(station, latlng) {
     riseOnHover: true,
     bubblingMouseEvents: true,
   }
+  if (typeof window === 'undefined') {
+    return null
+  }
   return new L.CircleMarker(latlng, markerStyle)
 }
 
+const startingStationId = 'A02'
+const endingStationId = 'E01'
+
 const SubwayStationsLayer = () => {
   const map = useMap()
+  const stationList = React.useContext(GlobalStationStateContext)
+  const stationDispatch = React.useContext(GlobalStationDispatchContext)
+
+  React.useEffect(() => loadStations(), [])
+  React.useEffect(() => {
+    if (stationList.length) {
+      stationDispatch(markStart(startingStationId))
+      stationDispatch(markEnd(endingStationId))
+    }
+  }, [stationList])
 
   const clickHandler = (evt) => {
     // if it's a station that got clicked
     if (evt.originalEvent.target.classList.contains('station') && evt.latlng) {
       console.log('event', evt)
-      map.openPopup('<div>Hello, I am a pop-up</div>', evt.latlng)      
+      map.openPopup('<div>Hello, I am a pop-up</div>', evt.latlng)
     }
-  }  
+  }
 
   React.useEffect(() => {
     if (map) {

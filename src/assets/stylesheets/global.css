@@ -20,13 +20,13 @@ body {
 .stars {
   background:#000 url(../images/stars.png) repeat;
   background-attachment: fixed;
-  z-index:-10;
+  z-index: 5;
 }
 
 .twinkling{
   background:transparent url(../images/twinkling.png) repeat;
   background-attachment: fixed;
-  z-index:-1;
+  z-index: 5;
   animation:move-twink-back 200s linear infinite;
 }
 
@@ -37,47 +37,6 @@ body {
   z-index: 2;
 }
 
-
-/* Train Map Details */
-
-/*  Sequencer */
-
-.sequencer-container {
-  position: absolute;
-  z-index: 4;
-  height: 11%;
-  width: 44%;
-  top: 2%;
-  right: 2%;
-}
-
-.sequencer {
-  display: flex;
-  height: 75%;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
-
-
-.beat {
-  width: 12%;
-  border-radius: 4px;
-  z-index: 5;
-  border: 1px solid white;
-}
-
-
-.transport {
-  padding: 3px;
-  border: 3px solid limegreen;
-  margin-left: 50%;
-  margin-top: 5%;
-}
-
-.active {
-  background-color: steelblue;
-}
-
-.current-beat {
-  border-bottom: 5px solid red;
+.header, .footer {
+  z-index: 6;
 }
