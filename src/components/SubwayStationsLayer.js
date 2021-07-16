@@ -1,10 +1,12 @@
 import React from "react";
 import SubwayStations from '../data/SubwayStations.geojson.json'
 import SubwayStops from '../data/SubwayStops.json'
+import logo from '../assets/images/ratwlogo2.png'
 import L from 'leaflet'
 import { GeoJSON, useMap } from 'react-leaflet'
 import { GlobalStationDispatchContext, GlobalStationStateContext } from "../context/GlobalContextProvider";
 import { loadStations, markStart, markEnd } from '../store/reducers/stations'
+
 
 // mapping from station name to station data
 const stationFromName = SubwayStops.reduce((accum, stop) => {
@@ -54,9 +56,11 @@ stationsWithId.features = SubwayStations.features.map(f => {
 function stationToMarker(station, latlng) {
   const markerStyle = {
     className: 'station',
-    fillColor: 'white',
-    radius: 10,
+    radius: 6,
+    color: "#BEC2CBB3",
+    border: "white",
     riseOnHover: true,
+    weight: 1,
     bubblingMouseEvents: true,
   }
   if (typeof window === 'undefined') {
@@ -81,11 +85,16 @@ const SubwayStationsLayer = () => {
     }
   }, [stationList])
 
+  const popUpStyle = {
+    className : 'popupCustom',
+    
+  }
+
+
   const clickHandler = (evt) => {
     // if it's a station that got clicked
     if (evt.originalEvent.target.classList.contains('station') && evt.latlng) {
-      console.log('event', evt)
-      map.openPopup('<div>Hello, I am a pop-up</div>', evt.latlng)
+      map.openPopup(`<img src=${logo} alt="logo" width="100%" height="100%" /><div>➤START</div>`, evt.latlng, popUpStyle)   
     }
   }
 

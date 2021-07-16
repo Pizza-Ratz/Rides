@@ -1,6 +1,7 @@
 body {
   background-color: #000;
-}
+  letter-spacing: 3px;
+}x
 
 /* starry background */
 @keyframes move-twink-back {
@@ -40,3 +41,53 @@ body {
 .header, .footer {
   z-index: 6;
 }
+
+/* Pop Up */
+
+.popupCustom {
+  text-align: center;
+}
+
+.leaflet-popup-tip,
+.leaflet-popup-content-wrapper {
+    color: #234c5e;
+    background-color: rgb(202, 202, 202);
+    
+}
+
+.leaflet-popup {
+	position: absolute;
+	text-align: center;
+	margin-bottom: 20px;
+	}
+
+.leaflet-popup-content {
+	margin: 13px 19px;
+	line-height: 1.4;
+	}
+.leaflet-popup-content p {
+	margin: 18px 
+	}
+.leaflet-popup-tip-container {
+	width: 20px;
+	height: 10px;
+	position: absolute;
+	left: 50%;
+	margin-left: -20px;
+	overflow: hidden;
+	pointer-events: none;
+	}
+
+.leaflet-container a.leaflet-popup-close-button {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 4px 4px 0 0;
+	border: none;
+	text-align: center;
+	width: 18px;
+	height: 14px;
+	font: 16px/14px, sans-serif;
+	text-decoration: none;
+	background: transparent;
+	}
