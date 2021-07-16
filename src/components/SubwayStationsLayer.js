@@ -2,7 +2,7 @@ import React from "react";
 import L from 'leaflet'
 import { GeoJSON, useMap } from 'react-leaflet'
 import { GlobalStationDispatchContext, GlobalStationStateContext } from "../context/GlobalContextProvider";
-import { loadStations, markStart, markEnd } from '../store/reducers/stations'
+import { loadStationsAction, loadStations, markStart, markEnd } from '../store/reducers/stations'
 
 function stationToMarker(station, latlng) {
   const markerStyle = {
@@ -27,7 +27,7 @@ const SubwayStationsLayer = () => {
   const stationList = React.useContext(GlobalStationStateContext)
   const stationDispatch = React.useContext(GlobalStationDispatchContext)
 
-  React.useEffect(() => loadStations(), [])
+  React.useEffect(() => stationDispatch(loadStationsAction(loadStations())), [])
   React.useEffect(() => {
     if (stationList.length) {
       stationDispatch(markStart(startingStationId))
@@ -50,7 +50,7 @@ const SubwayStationsLayer = () => {
   }, [map])
 
   return (
-    <GeoJSON data={stationList} pointToLayer={stationToMarker}/>
+    <GeoJSON key={stationList.data} data={stationList.data} pointToLayer={stationToMarker}/>
   )
 }
 
