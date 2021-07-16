@@ -54,8 +54,8 @@ stationsWithId.features = SubwayStations.features.map(f => {
 function stationToMarker(station, latlng) {
   const markerStyle = {
     className: 'station',
-    radius: 8,
-    color: "#BEC2CB8C",
+    radius: 6,
+    color: "#BEC2CBB3",
     border: "white",
     riseOnHover: true,
     weight: 1,

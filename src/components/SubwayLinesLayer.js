@@ -13,7 +13,7 @@ const lineColor = SubwayRoutes.reduce((accum, route) => {
 
 // uses GeoJSON data to give the subway line its associated color
 const styleLine = (line) => {
-  return { color: lineColor[line.properties.rt_symbol], weight: 10, border: '10px solid white'};
+  return { color: lineColor[line.properties.rt_symbol], weight: 4, border: '10px solid white'};
 }
 
 
