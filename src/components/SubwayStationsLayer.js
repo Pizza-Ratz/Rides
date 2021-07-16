@@ -7,9 +7,11 @@ import { loadStations, loadStationsAction, markStart, markEnd } from '../store/r
 function stationToMarker(station, latlng) {
   const markerStyle = {
     className: 'station',
-    fillColor: 'white',
-    radius: 10,
+    radius: 6,
+    color: "#BEC2CBB3",
+    border: "white",
     riseOnHover: true,
+    weight: 1,
     bubblingMouseEvents: true,
   }
   if (typeof window === 'undefined') {
@@ -35,10 +37,16 @@ const SubwayStationsLayer = () => {
     stationDispatch(markEnd(endingStationId))
   }, [])
 
+  const popUpStyle = {
+    className : 'popupCustom',
+    
+  }
+
+
   const clickHandler = (evt) => {
     // if it's a station that got clicked
     if (evt.originalEvent.target.classList.contains('station') && evt.latlng) {
-      map.openPopup('<div>Hello, I am a pop-up</div>', evt.latlng)
+      map.openPopup(`<img src=${logo} alt="logo" width="100%" height="100%" /><div>➤START</div>`, evt.latlng, popUpStyle)   
     }
   }
 

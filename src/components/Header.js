@@ -13,7 +13,7 @@ const Header = () => {
     <header className="header">
       <Container type="content">
         <p>
-          <Link to="/">{companyName}</Link>
+          <Link to="/">{companyName} : A sonic journey through the NYC subway</Link>
         </p>
         <ul>
           <li>

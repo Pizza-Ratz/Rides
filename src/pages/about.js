@@ -28,7 +28,6 @@ const SecondPage = () => {
         <p>
           <a href={companyUrl}>View on Github</a>
         </p>
-
         <h2>Created By</h2>
         <p>
           <a href={authorUrl}>{authorName}</a>
