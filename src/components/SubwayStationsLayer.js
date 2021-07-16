@@ -1,7 +1,6 @@
 import React from "react";
 import SubwayStations from '../data/SubwayStations.geojson.json'
 import SubwayStops from '../data/SubwayStops.json'
-import SubwayRoutes from '../data/SubwayRoutes.json'
 import logo from '../assets/images/ratwlogo2.png'
 import L from 'leaflet'
 import { GeoJSON, useMap } from 'react-leaflet'
