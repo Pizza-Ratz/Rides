@@ -10,8 +10,8 @@ const Header = () => {
   const { companyName, companyUrl } = useSiteMetadata();
 
   return (
-    <header>
-      <Container type="content" className="header">
+    <header className="header">
+      <Container type="content">
         <p>
           <Link to="/">{companyName} : A sonic journey through the NYC subway</Link>
         </p>

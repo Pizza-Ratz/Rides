@@ -43,15 +43,20 @@ module.exports = {
         path: `${__dirname}/src/data`
       }
     },
-    "gatsby-plugin-react-leaflet",
     {
       resolve: "gatsby-plugin-manifest",
       options: {
         name: siteMetadata.companyName,
         short_name: siteMetadata.companyName,
         start_url: "/",
-        icon: "src/assets/images/react-leaflet-icon.png",
+        icon: "src/assets/images/favicon.png",
       },
+    },
+    {
+      resolve: 'gatsby-plugin-react-leaflet',
+      options: {
+        linkStyles: true // (default: true) Enable/disable loading stylesheets via CDN
+      }
     },
   ],
 };
