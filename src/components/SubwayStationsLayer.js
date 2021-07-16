@@ -1,5 +1,6 @@
 import React from "react";
 import L from 'leaflet'
+import logo from '../../src/assets/images/ratwlogo2.png'
 import { GeoJSON, useMap } from 'react-leaflet'
 import { GlobalStationDispatchContext, GlobalStationStateContext } from "../context/GlobalContextProvider";
 import { loadStations, loadStationsAction, markStart, markEnd } from '../store/reducers/stations'
@@ -14,11 +15,18 @@ function stationToMarker(station, latlng) {
     weight: 1,
     bubblingMouseEvents: true,
   }
+
+  if (station.properties.start) markerStyle.className += " starting"
+  if (station.properties.end) markerStyle.className += " ending"
+
   if (typeof window === 'undefined') {
     return null
   }
-  return new L.CircleMarker(latlng, markerStyle)
+
+  const marker = new L.CircleMarker(latlng, markerStyle)
+  return marker
 }
+
 
 const startingStationId = 'A02'
 const endingStationId = 'E01'
@@ -27,6 +35,8 @@ const SubwayStationsLayer = () => {
   const map = useMap()
   const stationList = React.useContext(GlobalStationStateContext)
   const stationDispatch = React.useContext(GlobalStationDispatchContext)
+
+  
 
   React.useEffect(() => {
     stationDispatch(loadStationsAction(loadStations()))
@@ -39,14 +49,13 @@ const SubwayStationsLayer = () => {
 
   const popUpStyle = {
     className : 'popupCustom',
-    
   }
 
-
-  const clickHandler = (evt) => {
+  function clickHandler (evt) {
     // if it's a station that got clicked
+    console.log("eventdottarget", evt)
     if (evt.originalEvent.target.classList.contains('station') && evt.latlng) {
-      map.openPopup(`<img src=${logo} alt="logo" width="100%" height="100%" /><div>➤START</div>`, evt.latlng, popUpStyle)   
+      map.openPopup(`<img src=${logo} alt="logo" width="100%" height="100%" /><div>START</div>`, evt.latlng, popUpStyle)   
     }
   }
 
@@ -57,6 +66,8 @@ const SubwayStationsLayer = () => {
   }, [map])
 
   return (
+
+    
     <GeoJSON key={stationList.data} data={stationList.data} pointToLayer={stationToMarker}/>
   )
 }
