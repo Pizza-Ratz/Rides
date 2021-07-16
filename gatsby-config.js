@@ -43,7 +43,6 @@ module.exports = {
         path: `${__dirname}/src/data`
       }
     },
-    "gatsby-plugin-react-leaflet",
     {
       resolve: "gatsby-plugin-manifest",
       options: {
