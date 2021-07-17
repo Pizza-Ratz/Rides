@@ -1,7 +1,7 @@
 body {
   background-color: #000;
   letter-spacing: 3px;
-}x
+}
 
 /* starry background */
 @keyframes move-twink-back {
@@ -21,13 +21,13 @@ body {
 .stars {
   background:#000 url(../images/stars.png) repeat;
   background-attachment: fixed;
-  z-index: -10;
+  z-index: 3;
 }
 
 .twinkling{
   background:transparent url(../images/twinkling.png) repeat;
   background-attachment: fixed;
-  z-index: -5;
+  z-index: 4;
   animation:move-twink-back 200s linear infinite;
 }
 
@@ -52,7 +52,7 @@ body {
 .leaflet-popup-content-wrapper {
     color: #234c5e;
     background-color: rgb(202, 202, 202);
-    
+
 }
 
 .leaflet-popup {
@@ -66,7 +66,7 @@ body {
 	line-height: 1.4;
 	}
 .leaflet-popup-content p {
-	margin: 18px 
+	margin: 18px
 	}
 .leaflet-popup-tip-container {
 	width: 20px;
