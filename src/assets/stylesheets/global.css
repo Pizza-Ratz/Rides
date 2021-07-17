@@ -21,13 +21,13 @@ body {
 .stars {
   background:#000 url(../images/stars.png) repeat;
   background-attachment: fixed;
-  z-index: 5;
+  z-index: -10;
 }
 
 .twinkling{
   background:transparent url(../images/twinkling.png) repeat;
   background-attachment: fixed;
-  z-index: 5;
+  z-index: -5;
   animation:move-twink-back 200s linear infinite;
 }
 
