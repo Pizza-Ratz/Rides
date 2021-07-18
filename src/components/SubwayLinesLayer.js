@@ -13,9 +13,13 @@ const lineColor = SubwayRoutes.reduce((accum, route) => {
   return accum;
 }, {});
 
-const encoded =
+const encoded1 =
 "ypywFzppbMA?sl@i`@mc@sYwZeSac@kYyZgSe[sS_[oSuL}HKIKIMGKGKGKCMEMCKEMAMAKAM?M?M?uGPK?K?I?K?K?IAKAIAICICICGCICIEGEiCaBKIIGKIKIIGIKKGKIIIIIIKIIKKIKKKaEaEEGGGEEEGGEGGEEIEEGEEIEGEGEGEGEwFuDGEGCGEECGEGEGCGCGEGAECIEGAGCICgOqFgc@{OEEICGAGEICECGEGCGEGCEEECGEECEEgBkASKmEsCEEEEGAGEGCGCECICECGCGAICEAGCGAgXaI}M_DEAEAEAEAGAEAGACAGCEAGAECGAECEAuGyBICGCIAGCGAIAIAG?IAI?GAG?I@I?I@iBNuDXE@E?G@G?E?E@E?E?G?E?G?E?E?GAE?mJa@KAK?I?MAIAIAKAK?ICIAKAKAIAICIA}Bc@A?gCa@IAKCKAKAICM?IAMAKAK?KAKAM?KAK?qAKKAK?IAKAKAK?MCKAKAMCKAMCMAMEMAyBYO?K?M@MBM@MDMFMDKHMHKHMJIJMLINg@r@MJKJKLKFKFMFMDMBMBO?O@O?OAOAOCkDgA{YyIA?iTwEKCICMCICIEKCICIEGEKEICIEGEKEGGqRoM{YySGEGGIIGGIGGIGGGIIIGKEIIIGKGKEKiDgHy@mBEKEKEKGIAKGKEIEICKEICIEKCIEICICKEKEMEKCMEKEMCMEMEMCMEKEMCMCM}Iq]CICGAICGAIEIAGAICGAICGAICIAGAGk@_D@?";
-const firstTripLine = polyUtil.decode(encoded);
+const encoded2 =
+"stnwFb`vbMca@yYMGKIMGMEMGMEMCMCMCMCMAO?MAM?O@oIJG?{DJM@K?K?M?I?O?IAK?KAKCK?ICKAKCGCkUaHce@gSA?CCaEkCs]iUa\\eTui@g^A?c[iSwZgS}LeIWMUIUGSESAS@Q@QFSHOJONOPMTOVMZuB|GADkDtKKTMROPKNMJQHMHQDQ@Q@QAQASESISIwS_N@?"
+const firstTripPart1 = polyUtil.decode(encoded1);
+const firstTripPart2 = polyUtil.decode(encoded2);
+
 
 // uses GeoJSON data to give the subway line its associated color
 const styleLine = (line) => {
@@ -30,7 +34,7 @@ const SubwayLinesLayer = () => {
   const map = useMap()
 
   React.useEffect(() => {
-    const latlngs = firstTripLine
+    const latlngs = [firstTripPart1, firstTripPart2];
     const polyline = L.polyline(latlngs, {color: 'white', strokeWeight: 8}).addTo(map)
     return polyline;
   });
