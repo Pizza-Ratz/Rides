@@ -32,6 +32,9 @@ header {
   }
 
   p {
+    display: flex;
+    align-self: auto;
+    overflow: hidden;
     font-size: 1.2em;
     font-weight: bold;
     margin: 0;
