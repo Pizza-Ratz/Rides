@@ -31,6 +31,7 @@ body {
   animation:move-twink-back 200s linear infinite;
 }
 
+
 /* Train Map */
 
 .train-container{
@@ -40,6 +41,10 @@ body {
 
 .header, .footer {
   z-index: 6;
+}
+
+.leaflet-container {
+	background: unset !important;
 }
 
 /* Pop Up */

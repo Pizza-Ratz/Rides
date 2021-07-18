@@ -28,26 +28,20 @@ const SubwayStationsLayer = () => {
       weight: 1,
       bubblingMouseEvents: true,
     }
-  
+
     if (station.properties.start) markerStyle.className += " starting"
     if (station.properties.end) markerStyle.className += " ending"
-  
+
     if (typeof window === 'undefined') {
       return null
     }
-    
-    const marker = new L.CircleMarker(latlng, markerStyle)
 
-    map.on('zoomstart', function() {
-      var currentZoom = map.getZoom();
-      var myRadius = currentZoom*(1/4); 
-      marker.setStyle({radius: myRadius});
-  });
+    const marker = new L.CircleMarker(latlng, markerStyle)
 
     return marker
   }
 
-  
+
 
   React.useEffect(() => {
     stationDispatch(loadStationsAction(loadStations()))
