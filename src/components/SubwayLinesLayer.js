@@ -13,10 +13,13 @@ const lineColor = SubwayRoutes.reduce((accum, route) => {
   return accum;
 }, {});
 
+// two parts of the google api directions (it split into two for some reason) 
 const encoded1 =
 "ypywFzppbMA?sl@i`@mc@sYwZeSac@kYyZgSe[sS_[oSuL}HKIKIMGKGKGKCMEMCKEMAMAKAM?M?M?uGPK?K?I?K?K?IAKAIAICICICGCICIEGEiCaBKIIGKIKIIGIKKGKIIIIIIKIIKKIKKKaEaEEGGGEEEGGEGGEEIEEGEEIEGEGEGEGEwFuDGEGCGEECGEGEGCGCGEGAECIEGAGCICgOqFgc@{OEEICGAGEICECGEGCGEGCEEECGEECEEgBkASKmEsCEEEEGAGEGCGCECICECGCGAICEAGCGAgXaI}M_DEAEAEAEAGAEAGACAGCEAGAECGAECEAuGyBICGCIAGCGAIAIAG?IAI?GAG?I@I?I@iBNuDXE@E?G@G?E?E@E?E?G?E?G?E?E?GAE?mJa@KAK?I?MAIAIAKAK?ICIAKAKAIAICIA}Bc@A?gCa@IAKCKAKAICM?IAMAKAK?KAKAM?KAK?qAKKAK?IAKAKAK?MCKAKAMCKAMCMAMEMAyBYO?K?M@MBM@MDMFMDKHMHKHMJIJMLINg@r@MJKJKLKFKFMFMDMBMBO?O@O?OAOAOCkDgA{YyIA?iTwEKCICMCICIEKCICIEGEKEICIEGEKEGGqRoM{YySGEGGIIGGIGGIGGGIIIGKEIIIGKGKEKiDgHy@mBEKEKEKGIAKGKEIEICKEICIEKCIEICICKEKEMEKCMEKEMCMEMEMCMEKEMCMCM}Iq]CICGAICGAIEIAGAICGAICGAICIAGAGk@_D@?";
 const encoded2 =
 "stnwFb`vbMca@yYMGKIMGMEMGMEMCMCMCMCMAO?MAM?O@oIJG?{DJM@K?K?M?I?O?IAK?KAKCK?ICKAKCGCkUaHce@gSA?CCaEkCs]iUa\\eTui@g^A?c[iSwZgS}LeIWMUIUGSESAS@Q@QFSHOJONOPMTOVMZuB|GADkDtKKTMROPKNMJQHMHQDQ@Q@QAQASESISIwS_N@?"
+
+//these are the two parts decoded with polyUtil so the lat/longs of the whole trip can be used
 const firstTripPart1 = polyUtil.decode(encoded1);
 const firstTripPart2 = polyUtil.decode(encoded2);
 
@@ -32,6 +35,8 @@ const styleLine = (line) => {
 
 const SubwayLinesLayer = () => {
   const map = useMap()
+
+  //creates new polyline and adds to map
 
   React.useEffect(() => {
     const latlngs = [firstTripPart1, firstTripPart2];
