@@ -41,7 +41,6 @@ const SubwayStationsLayer = () => {
     map.on('zoomstart', function() {
       var currentZoom = map.getZoom();
       var myRadius = currentZoom*(1/4); 
-      
       marker.setStyle({radius: myRadius});
   });
 
