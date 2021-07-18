@@ -23,6 +23,7 @@
     "leaflet": "^1.7.1",
     "nouislider-react": "^3.4.0",
     "path": "^0.12.7",
+    "pizza-ratz-react-synth": "^0.0.2",
     "polyline-encoded": "^0.0.9",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
