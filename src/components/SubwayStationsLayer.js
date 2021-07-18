@@ -55,7 +55,7 @@ const SubwayStationsLayer = () => {
     // if it's a station that got clicked
     if (evt.originalEvent.target.classList.contains('station') && evt.latlng) {
       const targetClass = evt.originalEvent.target.className.baseVal;
-      const stationName = targetClass.replace(/station.*/, '')
+      const stationName = targetClass.replace(/station.*/, '').replace(' - ', '-')
       map.openPopup(`<img src=${logo} alt="logo" width="100%" height="100%" /><div>${stationName}</div>`, evt.latlng, popUpStyle)
     }
   }
