@@ -6,27 +6,8 @@ import { GlobalStationDispatchContext, GlobalStationStateContext } from "../cont
 import { loadStations, loadStationsAction, markStart, markEnd } from '../store/reducers/stations';
 import '../assets/stylesheets/components/_SubwayStationLayer.scss';
 
-function stationToMarker(station, latlng) {
-  const markerStyle = {
-    className: `${station.properties.name} station`,
-    radius: 6,
-    color: "#BEC2CBB3",
-    border: "white",
-    riseOnHover: true,
-    weight: 1,
-    bubblingMouseEvents: true,
-  }
 
-  if (station.properties.start) markerStyle.className += " starting"
-  if (station.properties.end) markerStyle.className += " ending"
 
-  if (typeof window === 'undefined') {
-    return null
-  }
-
-  const marker = new L.CircleMarker(latlng, markerStyle)
-  return marker
-}
 
 const startingStationId = 'E01'
 const endingStationId = 'A02'
@@ -37,6 +18,37 @@ const SubwayStationsLayer = () => {
   const stationList = React.useContext(GlobalStationStateContext)
   const stationDispatch = React.useContext(GlobalStationDispatchContext)
 
+  function stationToMarker(station, latlng) {
+
+    const markerStyle = {
+      className: `${station.properties.name} station`,
+      color: "#BEC2CBB3",
+      border: "white",
+      riseOnHover: true,
+      weight: 1,
+      bubblingMouseEvents: true,
+    }
+  
+    if (station.properties.start) markerStyle.className += " starting"
+    if (station.properties.end) markerStyle.className += " ending"
+  
+    if (typeof window === 'undefined') {
+      return null
+    }
+    
+    const marker = new L.CircleMarker(latlng, markerStyle)
+
+    map.on('zoomstart', function() {
+      var currentZoom = map.getZoom();
+      var myRadius = currentZoom*(1/4); 
+      
+      marker.setStyle({radius: myRadius});
+  });
+
+    return marker
+  }
+
+  
 
   React.useEffect(() => {
     stationDispatch(loadStationsAction(loadStations()))

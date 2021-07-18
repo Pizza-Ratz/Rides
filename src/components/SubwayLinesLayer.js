@@ -25,7 +25,7 @@ const firstTripPart2 = polyUtil.decode(encoded2);
 const styleLine = (line) => {
   return {
     color: lineColor[line.properties.rt_symbol],
-    weight: 4,
+    weight: 3.5,
     border: "10px solid white",
   };
 };
