@@ -60,7 +60,6 @@ const SubwayStationsLayer = () => {
 
   React.useEffect(() => {
     if (map) {
-      console.log(map)
       map.addEventListener('click', clickHandler);
     }
   }, [map])
