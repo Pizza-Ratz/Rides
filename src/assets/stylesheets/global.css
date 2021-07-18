@@ -1,7 +1,7 @@
 body {
   background-color: #000;
   letter-spacing: 3px;
-}x
+}
 
 /* starry background */
 @keyframes move-twink-back {
@@ -21,13 +21,13 @@ body {
 .stars {
   background:#000 url(../images/stars.png) repeat;
   background-attachment: fixed;
-  z-index: -10;
+  z-index: 3;
 }
 
 .twinkling{
   background:transparent url(../images/twinkling.png) repeat;
   background-attachment: fixed;
-  z-index: -5;
+  z-index: 4;
   animation:move-twink-back 200s linear infinite;
 }
 
@@ -50,9 +50,9 @@ body {
 
 .leaflet-popup-tip,
 .leaflet-popup-content-wrapper {
-    color: #234c5e;
-    background-color: rgb(202, 202, 202);
-    
+	color: #234c5e;
+	background-color: rgb(202, 202, 202);
+
 }
 
 .leaflet-popup {
@@ -64,10 +64,14 @@ body {
 .leaflet-popup-content {
 	margin: 13px 19px;
 	line-height: 1.4;
-	}
-.leaflet-popup-content p {
-	margin: 18px 
-	}
+	max-width: 7em;
+}
+
+.leaflet-popup-content div {
+	/* margin: 18px; */
+	text-align: center;
+}
+
 .leaflet-popup-tip-container {
 	width: 20px;
 	height: 10px;
@@ -76,7 +80,7 @@ body {
 	margin-left: -20px;
 	overflow: hidden;
 	pointer-events: none;
-	}
+}
 
 .leaflet-container a.leaflet-popup-close-button {
 	position: absolute;
@@ -90,4 +94,4 @@ body {
 	font: 16px/14px, sans-serif;
 	text-decoration: none;
 	background: transparent;
-	}
+}

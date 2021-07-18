@@ -8,7 +8,7 @@ import '../assets/stylesheets/components/_SubwayStationLayer.scss';
 
 function stationToMarker(station, latlng) {
   const markerStyle = {
-    className: 'station',
+    className: `${station.properties.name} station`,
     radius: 6,
     color: "#BEC2CBB3",
     border: "white",
@@ -54,7 +54,9 @@ const SubwayStationsLayer = () => {
   function clickHandler (evt) {
     // if it's a station that got clicked
     if (evt.originalEvent.target.classList.contains('station') && evt.latlng) {
-      map.openPopup(`<img src=${logo} alt="logo" width="100%" height="100%" /><div>STATION</div>`, evt.latlng, popUpStyle)   
+      const targetClass = evt.originalEvent.target.className.baseVal;
+      const stationName = targetClass.replace(/station.*/, '').replace(' - ', '-')
+      map.openPopup(`<img src=${logo} alt="logo" width="100%" height="100%" /><div>${stationName}</div>`, evt.latlng, popUpStyle)
     }
   }
 
@@ -66,7 +68,7 @@ const SubwayStationsLayer = () => {
   }, [map])
 
   return (
-   
+
     <GeoJSON key={stationList.data} data={stationList.data} pointToLayer={stationToMarker}/>
 
 

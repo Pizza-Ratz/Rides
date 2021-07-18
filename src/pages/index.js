@@ -21,9 +21,9 @@ const IndexPage = () => {
   const mapSettings = {
     center: CENTER,
     zoom: DEFAULT_ZOOM,
-    // Getting a webpack error when including L.latLngBounds, so including these as a 2d array
+    draggable: true,
     maxBounds: MAX_BOUNDS,
-    bounds: MAX_BOUNDS,
+    // bounds: MAX_BOUNDS,
     minZoom: MIN_ZOOM
   };
 
