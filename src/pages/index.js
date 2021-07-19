@@ -16,11 +16,12 @@ import {
 } from "../store/reducers/stations";
 import { GlobalTripStateContext } from "../context/GlobalContextProvider";
 import { getStepsFromRoute, scaleCoord } from "../lib/util";
+import AnimatedMarker from "../components/AnimatedMarker";
 
+import * as Tone from "tone";
 import Sizzle from "pizza-ratz-react-synth/src/instruments/engines/SynthPad1";
 import Eternity from "pizza-ratz-react-synth/src/instruments/engines/SynthPluck1";
 import Fantasy from "pizza-ratz-react-synth/src/instruments/engines/SynthPluck2";
-import * as Tone from "tone";
 
 let started = false;
 let REF_DISTANCE = 2;
@@ -60,14 +61,14 @@ document.getRootNode().addEventListener("click", () => {
   if (started) return;
   started = true;
 
+  Tone.getTransport().start();
+
   sizzle.start();
   eternity.start();
   fantasy.start();
   sizzlePanner.toDestination();
   eternityPanner.toDestination();
   fantasyPanner.toDestination();
-
-  Tone.getTransport().start();
 });
 
 const LOCATION = {
@@ -96,13 +97,14 @@ function moveListener(
   startTime = Tone.Context.now()
 ) {
   const [destX, destY, destZ = 0] = destination;
+  // set up the change in location
   listener.positionX.rampTo(destX, tripTime, startTime);
   listener.positionY.rampTo(destY, tripTime, startTime);
   listener.positionZ.rampTo(destZ, tripTime, startTime);
   // have the listener point in the direction it's moving
-  listener.forwardX.rampTo(destX, tripTime / 8, startTime);
-  listener.forwardY.rampTo(destY, tripTime / 8, startTime);
-  listener.forwardZ.rampTo(destZ, tripTime / 8, startTime);
+  listener.forwardX.rampTo(destX, tripTime / 2, startTime);
+  listener.forwardY.rampTo(destY, tripTime / 2, startTime);
+  listener.forwardZ.rampTo(destZ, tripTime / 2, startTime);
 }
 
 const IndexPage = () => {
@@ -149,20 +151,17 @@ const IndexPage = () => {
         listener.positionX.value = scaleCoord(s.geometry.coordinates[0]);
         listener.positionY.value = scaleCoord(s.geometry.coordinates[1]);
         listener.positionZ.value = 0;
-        console.log("listener", listener);
       });
 
     // get the list of steps in our route
-    const steps = getStepsFromRoute(routeData.results);
-
-    listener.debug = true;
+    const steps = getStepsFromRoute(routeData);
     // schedule the listener's moves, starting in 5 seconds
     const startingTime = Tone.now() + 5;
     // keep track of where we are along the timeline in terms of each step's duration
     let prevStepEndTime = startingTime;
     // currently going in a straight line from station to station
     steps.forEach((step) => {
-      const seconds = (step.duration.value % 7) + 3;
+      const seconds = step.duration.value / 100;
       const endX = scaleCoord(step.end_location.lng);
       const endY = scaleCoord(step.end_location.lat);
       moveListener(listener, [endX, endY, 0], seconds, prevStepEndTime + 1);
@@ -172,7 +171,6 @@ const IndexPage = () => {
 
   if (typeof window === "undefined") return null;
 
-  //
   return (
     <Layout pageName="home">
       <Helmet>
@@ -187,6 +185,7 @@ const IndexPage = () => {
       <Map {...mapSettings}>
         <SubwayLinesLayer />
         <SubwayStationsLayer />
+        <AnimatedMarker running={started} />
       </Map>
     </Layout>
   );

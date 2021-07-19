@@ -1,7 +1,7 @@
 import HoytToTheHeights from "../../data/HoytToTheHeights.directions.json";
 
-export const initialState = { results: HoytToTheHeights };
+export const initialState = HoytToTheHeights;
 
-export default function tripReducer(state = initialState) {
+export default function tripReducer(state) {
   return state;
 }

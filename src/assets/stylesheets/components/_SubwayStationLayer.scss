@@ -7,22 +7,22 @@ $station-pulse-stroke-width-end: 3rem;
     stroke: rgb(195, 192, 255);
     opacity: 100%;
   }
-  15% {
+  10% {
     stroke: rgb(102, 148, 254);
   }
-  30% {
-    stroke: rgb(53, 107, 255);
+  20% {
+    stroke: rgb(31, 0, 207);
   }
   50% {
     stroke: rgb(1, 5, 227);
   }
   85% {
-    stroke: rgb(91, 9, 244);
+    stroke: rgb(0, 44, 132);
   }
   100% {
     stroke-width: $station-pulse-stroke-width-end;
     stroke: rgb(0, 0, 0);
-    opacity: 5%;
+    opacity: 10%;
   }
 }
 
@@ -55,32 +55,32 @@ $station-pulse-stroke-width-end: 3rem;
 @keyframes noisy-station {
   0% {
     stroke-width: 0.2rem;
-    stroke: purple;
+    stroke: rgb(255, 255, 255);
     opacity: 0%;
   }
   50% {
     stroke-width: 0.8rem;
-    stroke: violet;
+    stroke: rgb(175, 175, 175);
     opacity: 80%;
   }
   100% {
     filter: blur(1rem);
-    stroke: magenta;
+    stroke: rgb(105, 105, 105);
     opacity: 100%;
   }
 }
 
 .station.starting {
-  animation: startstation 2s infinite;
+  animation: startstation 1s infinite;
   animation-timing-function: ease-out;
 }
 
 .station.ending {
-  animation: endstation 2s infinite;
+  animation: endstation 1s infinite;
   animation-timing-function: ease;
 }
 
 .station.noisy {
   animation: noisy-station 1s infinite;
-  // animation-timing-function: ease;
+  animation-timing-function: ease;
 }
