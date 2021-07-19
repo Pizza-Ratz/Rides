@@ -16,7 +16,7 @@ const popUpStyle = {
 
 const TriangleKnocker = L.icon({
   iconUrl: startOrEndLogo,
-  iconSize: [100, 100]
+  iconSize: [50, 50]
 })
 
 
@@ -32,31 +32,23 @@ function stationToMarker(station, latlng) {
     weight: 1,
     bubblingMouseEvents: true,
   };
-  
-  if (station.properties.start) {
-    
-  }
-  // if (station.properties.end) markerStyle.className += " ending";
 
   if (typeof window === "undefined") {
     return null;
   }
 
+  // if (station.properties.end) markerStyle.className += " ending";
+
+  const startOrEndMarker = new L.Marker(latlng, {icon: TriangleKnocker})
   const marker = new L.CircleMarker(latlng, markerStyle);
+
+  if (station.properties.start === true || station.properties.end) {
+    return startOrEndMarker   
+  }
 
   return marker
 }
 
-function startEndIcons(station) {
-
-  const startOrEndMarker = new L.marker((station.geometry.coordinates, {icon: TriangleKnocker}))
-
-if (station.properties.start){
-  
-}
-
-  return startOrEndMarker
-}
 
 const SubwayStationsLayer = () => {
   const map = useMap();
@@ -67,9 +59,11 @@ const SubwayStationsLayer = () => {
     // if it's a station that got clicked
     if (evt.originalEvent.target.classList.contains("station") && evt.latlng) {
       const targetClass = evt.originalEvent.target.className.baseVal;
+      console.log("evt original target", evt.originalEvent.target)
       const stationName = targetClass
         .replace(/station.*/, "")
         .replace(" - ", "-");
+      console.log("target", stationName);
       map.openPopup(
         `<img src=${logo} alt="logo" width="100%" height="100%" /><div>${stationName}</div>`,
         evt.latlng,
@@ -93,7 +87,6 @@ const SubwayStationsLayer = () => {
       key={stationList.data}
       data={stationList.data}
       pointToLayer={stationToMarker}
-      onEachFeature={startEndIcons}
     />
   );
 };

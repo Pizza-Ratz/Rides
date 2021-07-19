@@ -54,30 +54,21 @@ $station-pulse-stroke-width-end: 3rem;
 
 @keyframes noisy-station {
   0% {
-    stroke-width: 0.2rem;
-    stroke: rgb(255, 255, 255);
+    stroke-width: 0.4rem;
+    stroke: rgb(180, 237, 255);
     opacity: 0%;
   }
   50% {
     stroke-width: 0.8rem;
-    stroke: rgb(175, 175, 175);
+    stroke: rgb(120, 174, 255);
     opacity: 80%;
   }
   100% {
-    filter: blur(1rem);
-    stroke: rgb(105, 105, 105);
+    stroke-width: 1.6;
+    filter: blur(0.3rem);
+    stroke: rgb(50, 75, 112);
     opacity: 100%;
   }
-}
-
-.station.starting {
-  animation: startstation 1s infinite;
-  animation-timing-function: ease-out;
-}
-
-.station.ending {
-  animation: endstation 1s infinite;
-  animation-timing-function: ease;
 }
 
 .station.noisy {
