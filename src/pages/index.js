@@ -118,7 +118,6 @@ const IndexPage = () => {
   const stationState = React.useContext(GlobalStationStateContext);
   const stationDispatch = React.useContext(GlobalStationDispatchContext);
   const routeData = React.useContext(GlobalTripStateContext);
-  const [started, setStarted] = React.useState(true);
 
   React.useEffect(() => {
     stationDispatch(loadStations(stationDispatch));
@@ -162,7 +161,7 @@ const IndexPage = () => {
     let prevStepEndTime = startingTime;
     // currently going in a straight line from station to station
     steps.forEach((step) => {
-      const seconds = (step.duration.value % 7) + 3;
+      const seconds = step.duration.value / 100;
       const endX = scaleCoord(step.end_location.lng);
       const endY = scaleCoord(step.end_location.lat);
       moveListener(listener, [endX, endY, 0], seconds, prevStepEndTime + 1);
