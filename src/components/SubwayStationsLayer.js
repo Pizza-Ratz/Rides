@@ -1,6 +1,7 @@
 import React from "react";
 import L from "leaflet";
 import logo from "../../src/assets/images/logo.png";
+import startOrEndLogo from "../../src/assets/images/start-end-logo.png"
 import { GeoJSON, useMap } from "react-leaflet";
 import {
   GlobalStationDispatchContext,
@@ -12,6 +13,12 @@ import "../assets/stylesheets/components/_SubwayStationLayer.scss";
 const popUpStyle = {
   className: "popupCustom",
 };
+
+const TriangleKnocker = L.icon({
+  iconUrl: startOrEndLogo,
+  iconSize: [100, 100]
+})
+
 
 function stationToMarker(station, latlng) {
   let className = `station ${station.properties.name} `;
@@ -25,9 +32,11 @@ function stationToMarker(station, latlng) {
     weight: 1,
     bubblingMouseEvents: true,
   };
-
-  if (station.properties.start) markerStyle.className += " starting";
-  if (station.properties.end) markerStyle.className += " ending";
+  
+  if (station.properties.start) {
+    
+  }
+  // if (station.properties.end) markerStyle.className += " ending";
 
   if (typeof window === "undefined") {
     return null;
@@ -35,7 +44,18 @@ function stationToMarker(station, latlng) {
 
   const marker = new L.CircleMarker(latlng, markerStyle);
 
-  return marker;
+  return marker
+}
+
+function startEndIcons(station) {
+
+  const startOrEndMarker = new L.marker((station.geometry.coordinates, {icon: TriangleKnocker}))
+
+if (station.properties.start){
+  
+}
+
+  return startOrEndMarker
 }
 
 const SubwayStationsLayer = () => {
@@ -73,6 +93,7 @@ const SubwayStationsLayer = () => {
       key={stationList.data}
       data={stationList.data}
       pointToLayer={stationToMarker}
+      onEachFeature={startEndIcons}
     />
   );
 };
