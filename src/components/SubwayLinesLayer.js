@@ -28,7 +28,7 @@ const SubwayLinesLayer = () => {
   const map = useMap();
 
   // assemble the route line from the steps in the directions
-  const { results } = React.useContext(GlobalTripStateContext);
+  const results = React.useContext(GlobalTripStateContext);
 
   React.useEffect(() => {
     const steps = getStepsFromRoute(results);

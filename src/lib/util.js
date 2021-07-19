@@ -20,4 +20,17 @@ export function getStepsFromRoute(results) {
   return steps;
 }
 
+export function getStepsMetadata(results) {
+  // use the first set of directions provided
+  const selectedRoute = results.routes[0];
+  const leg = selectedRoute.legs[0];
+  const { arrival_time, departure_time, distance, duration } = leg;
+  return {
+    arrival_time,
+    departure_time,
+    distance,
+    duration,
+  };
+}
+
 export const scaleCoord = (coord) => (coord % 10) * 1000;
