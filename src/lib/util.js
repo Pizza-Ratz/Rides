@@ -11,3 +11,13 @@ export function isDomAvailable() {
     !!window.document.createElement
   );
 }
+
+export function getStepsFromRoute(results) {
+  // use the first set of directions provided
+  const selectedRoute = results.routes[0];
+  // there will only be one leg in our trip
+  const { steps } = selectedRoute.legs[0];
+  return steps;
+}
+
+export const scaleCoord = (coord) => (coord % 10) * 1000;
