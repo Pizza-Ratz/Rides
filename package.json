@@ -21,6 +21,7 @@
     "gatsby-source-graphql": "^3.5.0",
     "gatsby-transformer-json": "^3.9.0",
     "leaflet": "^1.7.1",
+    "lodash": "^4.17.21",
     "nouislider-react": "^3.4.0",
     "path": "^0.12.7",
     "pizza-ratz-react-synth": "^0.0.2",
