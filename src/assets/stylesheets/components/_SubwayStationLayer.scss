@@ -1,28 +1,25 @@
-
-
 @keyframes startstation {
   0% {
     stroke-width: 8;
     stroke: rgb(195, 192, 255);
-    opacity: 100%
+    opacity: 100%;
   }
   15% {
-    stroke:rgb(102, 148, 254); 
+    stroke: rgb(102, 148, 254);
   }
   30% {
     stroke: rgb(53, 107, 255);
   }
   50% {
     stroke: rgb(1, 5, 227);
-
   }
   85% {
-    stroke:rgb(91, 9, 244)
+    stroke: rgb(91, 9, 244);
   }
   100% {
     stroke-width: 60;
     stroke: rgb(0, 0, 0);
-    opacity: 5%
+    opacity: 5%;
   }
 }
 
@@ -30,25 +27,24 @@
   0% {
     stroke-width: 8;
     stroke: rgb(195, 192, 255);
-    opacity: 100%
+    opacity: 100%;
   }
   15% {
-    stroke:rgb(248, 143, 255); 
+    stroke: rgb(248, 143, 255);
   }
   30% {
     stroke: rgb(230, 43, 255);
   }
   50% {
     stroke: rgb(253, 2, 107);
-
   }
   85% {
-    stroke:rgb(108, 1, 1)
+    stroke: rgb(108, 1, 1);
   }
   100% {
     stroke-width: 60;
     stroke: rgb(40, 1, 1);
-    opacity: 5%
+    opacity: 5%;
   }
 }
 .station.starting {
@@ -60,5 +56,3 @@
   animation: endstation 2s infinite;
   animation-timing-function: ease;
 }
-
-
