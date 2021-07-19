@@ -8,9 +8,14 @@ import {
   GlobalStationDispatchContext,
   GlobalStationStateContext,
 } from "../context/GlobalContextProvider";
-import { loadStations, loadStationsAction } from "../store/reducers/stations";
+import {
+  loadStations,
+  markEnd,
+  markStart,
+  addClass,
+} from "../store/reducers/stations";
 import { GlobalTripStateContext } from "../context/GlobalContextProvider";
-import { getStepsFromRoute } from "../lib/util";
+import { getStepsFromRoute, scaleCoord } from "../lib/util";
 
 import Sizzle from "pizza-ratz-react-synth/src/instruments/engines/SynthPad1";
 import Eternity from "pizza-ratz-react-synth/src/instruments/engines/SynthPluck1";
@@ -18,8 +23,8 @@ import Fantasy from "pizza-ratz-react-synth/src/instruments/engines/SynthPluck2"
 import * as Tone from "tone";
 
 let started = false;
-let REF_DISTANCE = 10;
-let MAX_DISTANCE = 100;
+let REF_DISTANCE = 2;
+let MAX_DISTANCE = 12;
 
 const sizzle = new Sizzle();
 const sizzlePanner = new Tone.Panner3D({
@@ -78,12 +83,11 @@ const MAX_BOUNDS = [bound1, bound2];
 // mapping of station ID id to instrument at that station
 const NOISY_STATIONS = {
   377: { instrument: eternity, panner: eternityPanner }, // Jay St NR
-  358: { instrument: sizzle, panner: sizzlePanner }, // Penn Station
-  453: { instrument: fantasy, panner: fantasyPanner }, // High St
+  178: { instrument: sizzle, panner: sizzlePanner }, // Penn Station
+  470: { instrument: fantasy, panner: fantasyPanner }, // Hudson Yards
 };
 const STARTING_STATION = 405;
-
-const scaleCoord = (coord) => (coord % 10) * 1000;
+const ENDING_STATION = 396;
 
 function moveListener(
   listener,
@@ -114,7 +118,7 @@ const IndexPage = () => {
   const routeData = React.useContext(GlobalTripStateContext);
 
   React.useEffect(() => {
-    stationDispatch(loadStationsAction(loadStations()));
+    stationDispatch(loadStations(stationDispatch));
 
     // move instruments to their stations
     const listener = Tone.getListener();
@@ -122,17 +126,26 @@ const IndexPage = () => {
     stationState.data.features
       .filter((s) => stationIds.includes(s.properties.objectid)) // select stations that have an entry in NOISY_STATIONS
       .forEach((s) => {
+        stationDispatch(addClass(s.properties.objectid, "noisy"));
         const { panner } = NOISY_STATIONS[s.properties.objectid];
         panner.positionX.value = scaleCoord(s.geometry.coordinates[0]);
         panner.positionY.value = scaleCoord(s.geometry.coordinates[1]);
         panner.positionZ.value = 0;
-        console.log(s.properties.objectid, panner);
       });
 
     // place listener at starting station
     stationState.data.features
-      .filter((s) => s.properties.objectid == STARTING_STATION)
+      .filter(
+        (s) =>
+          +s.properties.objectid === STARTING_STATION ||
+          +s.properties.objectid === ENDING_STATION
+      )
       .forEach((s) => {
+        if (+s.properties.objectid === STARTING_STATION) {
+          stationDispatch(markStart(s.properties.objectid));
+        } else {
+          stationDispatch(markEnd(s.properties.objectid));
+        }
         listener.positionX.value = scaleCoord(s.geometry.coordinates[0]);
         listener.positionY.value = scaleCoord(s.geometry.coordinates[1]);
         listener.positionZ.value = 0;
@@ -149,10 +162,10 @@ const IndexPage = () => {
     let prevStepEndTime = startingTime;
     // currently going in a straight line from station to station
     steps.forEach((step) => {
-      const seconds = step.duration.value;
-      const endX = step.end_location.lng;
-      const endY = step.end_location.lat;
-      moveListener(listener, [endX, endY, 0], seconds, prevStepEndTime);
+      const seconds = (step.duration.value % 7) + 3;
+      const endX = scaleCoord(step.end_location.lng);
+      const endY = scaleCoord(step.end_location.lat);
+      moveListener(listener, [endX, endY, 0], seconds, prevStepEndTime + 1);
       prevStepEndTime += seconds;
     });
   }, []);

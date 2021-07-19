@@ -1,13 +1,19 @@
 import SubwayStations from "../../data/SubwayStations.geojson.json";
 import SubwayStops from "../../data/SubwayStops.json";
+import _ from "lodash";
 
 export const transiterNYCSubway =
   "https://transiter.mta-music.nyc/systems/us-ny-subway";
 
 export const actionTypes = {
   LOAD_STATIONS: "STATION_LOAD_ALL",
+  LOADING: "STATION_LOADING",
+  LOAD_COMPLETE: "STATION_LOAD_OK",
+  LOAD_FAILED: "STATION_LOAD_ERROR",
   MARK_START: "STATION_MARK_START",
   MARK_END: "STATION_MARK_END",
+  ADD_CLASS: "STATION_ADD_CLASS",
+  REMOVE_CLASS: "STATION_REMOVE_CLASS",
 };
 
 // mapping from station name to station data
@@ -51,15 +57,24 @@ stationsWithId.features = SubwayStations.features
       properties: {
         ...f.properties,
         id: station.id,
+        classList: {},
       },
       geometry: { ...f.geometry, coordinates: [...f.geometry.coordinates] },
     };
   })
   .filter((s) => s.properties && s.properties.id);
 
-export const loadStationsAction = (data) => ({
-  type: actionTypes.LOAD_STATIONS,
+const _fetchStarted = () => ({
+  type: actionTypes.LOADING,
+});
+
+const _fetchCompleted = (data) => ({
+  type: actionTypes.LOAD_COMPLETE,
   data,
+});
+
+const _fetchFailed = () => ({
+  type: actionTypes.LOAD_FAILED,
 });
 
 export const markStart = (startId) => ({
@@ -72,16 +87,46 @@ export const markEnd = (endId) => ({
   endId,
 });
 
-export const loadStations = () => {
-  return { data: stationsWithId };
+export const addClass = (objectid, cls) => ({
+  type: actionTypes.ADD_CLASS,
+  objectid,
+  cls,
+});
+
+export const removeClass = (objectid, cls) => ({
+  type: actionTypes.REMOVE_CLASS,
+  objectid,
+  cls,
+});
+
+// asynchronously loads station list; requires dispatch.
+export const loadStations = (dispatch) => {
+  console.warn("loadStations not implemented");
+  // if (typeof dispatch !== 'function') throw new Error('loadStations requires dispatch')
+  // // signal that we're loading
+  // dispatch(_fetchStarted())
+  // // schedule this to run in the background
+  // setTimeout(async () => {
+  //   const res = await fetch(`${transiterNYCSubway}/stops`)
+  //   if (res.status !== 200) {
+  //     dispatch(_fetchFailed(res.status))
+  //     return
+  //   }
+  //   const data = await res.json()
+  //   dispatch(_fetchCompleted(data))
+  // })
+  // because otherwise react complains
+  return { type: "STATIONS_LS_CALLED" };
 };
+
+const deepCopyStations = (stations) => _.cloneDeep(stations);
 
 export const initialState = { data: stationsWithId };
 
 const stationReducer = (state = initialState, action) => {
+  let freshState = deepCopyStations(state);
+  let updated;
   switch (action.type) {
-    case actionTypes.LOAD_STATIONS:
-      return action.data;
     case actionTypes.MARK_START:
       return {
         ...state,
@@ -90,7 +135,7 @@ const stationReducer = (state = initialState, action) => {
           features: state.data.features.map((station) => {
             if (
               station.properties &&
-              station.properties.id === action.startId
+              station.properties.objectid === action.startId
             ) {
               return {
                 ...station,
@@ -106,7 +151,10 @@ const stationReducer = (state = initialState, action) => {
         data: {
           ...state.data,
           features: state.data.features.map((station) => {
-            if (station.properties && station.properties.id === action.endId) {
+            if (
+              station.properties &&
+              station.properties.objectid === action.endId
+            ) {
               return {
                 ...station,
                 properties: { ...station.properties, end: true },
@@ -115,6 +163,26 @@ const stationReducer = (state = initialState, action) => {
           }),
         },
       };
+    case actionTypes.ADD_CLASS:
+      updated = freshState.data.features.filter(
+        (f) => f.properties.objectid === action.objectid
+      )[0];
+      updated.properties.classList[action.cls] = 1;
+      freshState.data.features = freshState.data.features.filter(
+        (f) => f.properties.objectid !== action.objectid
+      );
+      freshState.data.features.push(updated);
+      return freshState;
+    case actionTypes.REMOVE_CLASS:
+      updated = freshState.data.features.filter(
+        (f) => f.properties.objectid === action.objectid
+      )[0];
+      delete updated.properties.classList[action.cls];
+      freshState.data.features = freshState.data.features.filter(
+        (f) => f.properties.objectid !== action.objectid
+      );
+      freshState.data.features.push(updated);
+      return freshState;
     default:
       return state;
   }

@@ -19,3 +19,5 @@ export function getStepsFromRoute(results) {
   const { steps } = selectedRoute.legs[0];
   return steps;
 }
+
+export const scaleCoord = (coord) => (coord % 10) * 1000;

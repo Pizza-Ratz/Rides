@@ -7,6 +7,7 @@ import polyUtil from "polyline-encoded";
 import SubwayLines from "../data/SubwayLines.geojson.json";
 import SubwayRoutes from "../data/SubwayRoutes.json";
 import { GlobalTripStateContext } from "../context/GlobalContextProvider";
+import { getStepsFromRoute } from "../lib/util";
 
 // transforms route ID into CSS color for route
 const lineColor = SubwayRoutes.reduce((accum, route) => {
@@ -30,10 +31,7 @@ const SubwayLinesLayer = () => {
   const { results } = React.useContext(GlobalTripStateContext);
 
   React.useEffect(() => {
-    // take the first route
-    const selectedRoute = results.routes[0];
-    // there will only be one leg in our trip
-    const { steps } = selectedRoute.legs[0];
+    const steps = getStepsFromRoute(results);
     const segments = steps.map((s) => polyUtil.decode(s.polyline.points));
     L.polyline(segments, {
       color: "white",
