@@ -24,11 +24,11 @@ const stationFromName = SubwayStops.reduce((accum, stop) => {
   for (const match of stopName.matchAll(/(\d+) /g)) {
     let [orig, number] = match;
     const lastDigit = number % 10;
-    if (lastDigit == 1) {
+    if (lastDigit === 1) {
       number = number + "st";
-    } else if (lastDigit == 2) {
+    } else if (lastDigit === 2) {
       number = number + "nd";
-    } else if (lastDigit == 3) {
+    } else if (lastDigit === 3) {
       number = number + "rd";
     } else {
       number = number + "th";
@@ -41,41 +41,50 @@ const stationFromName = SubwayStops.reduce((accum, stop) => {
     .replaceAll("-", " - ")
     .replaceAll("Ft ", "Fort ");
 
+  // keep track of stations that are named differently in different places
+  if (stopName !== stop.name) {
+    stop.altName = stop.name;
+  }
   accum[stopName] = stop;
   return accum;
 }, {});
 
-// injects MTA station ID into each station feature
+// inject MTA station ID into each station feature
 const stationsWithId = { ...SubwayStations };
-stationsWithId.features = SubwayStations.features
-  .map((f) => {
-    const station = stationFromName[f.properties.name];
-    // console.log(station ? station : f.properties.name)
-    if (!station) return { wtf: true };
-    return {
-      ...f,
-      properties: {
-        ...f.properties,
-        id: station.id,
-        classList: {},
-      },
-      geometry: { ...f.geometry, coordinates: [...f.geometry.coordinates] },
-    };
-  })
-  .filter((s) => s.properties && s.properties.id);
-
-const _fetchStarted = () => ({
-  type: actionTypes.LOADING,
+stationsWithId.features = SubwayStations.features.map((f) => {
+  const station = stationFromName[f.properties.name];
+  if (!station) return f;
+  return {
+    ...f,
+    properties: {
+      ...f.properties,
+      id: station.id,
+      altName: station.altName,
+      classList: {},
+    },
+    geometry: { ...f.geometry, coordinates: [...f.geometry.coordinates] },
+  };
 });
+// .filter((s) => s.properties && s.properties.id);
 
-const _fetchCompleted = (data) => ({
-  type: actionTypes.LOAD_COMPLETE,
-  data,
-});
+export const findStationsWithName = (name) => {
+  return this.features.filter(
+    (s) => s.properties.name === name || s.properties.altName === name
+  );
+};
 
-const _fetchFailed = () => ({
-  type: actionTypes.LOAD_FAILED,
-});
+// const _fetchStarted = () => ({
+//   type: actionTypes.LOADING,
+// });
+
+// const _fetchCompleted = (data) => ({
+//   type: actionTypes.LOAD_COMPLETE,
+//   data,
+// });
+
+// const _fetchFailed = () => ({
+//   type: actionTypes.LOAD_FAILED,
+// });
 
 export const markStart = (startId) => ({
   type: actionTypes.MARK_START,
