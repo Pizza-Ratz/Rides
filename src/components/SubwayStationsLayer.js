@@ -18,7 +18,7 @@ const popUpStyle = {
 
 const TriangleKnocker = L.icon({
   iconUrl: startOrEndLogo,
-  iconSize: [50, 50],
+  iconSize: [35, 35],
 });
 
 function stationToMarker(station, latlng) {
@@ -44,11 +44,10 @@ function stationToMarker(station, latlng) {
   if (station.properties.start) markerStyle.className += " starting";
   if (station.properties.end) markerStyle.className += " ending";
 
-  const startOrEndMarker = new L.Marker(latlng, { icon: TriangleKnocker });
   const marker = new L.CircleMarker(latlng, markerStyle);
 
   if (station.properties.start === true || station.properties.end === true) {
-    return startOrEndMarker;
+    return new L.Marker(latlng, { icon: TriangleKnocker }, markerStyle);
   }
 
   return marker;
