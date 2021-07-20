@@ -102,3 +102,21 @@ body {
 	text-decoration: none;
 	background: transparent;
 }
+
+
+/* button on pop up */
+
+.buttonpop {
+	display: flex;
+	flex-direction: column;
+	align-self: center;
+}
+
+.button-name {
+	display: flex;
+}
+
+.lower-button {
+	display: flex;
+	text-align: center;
+}
