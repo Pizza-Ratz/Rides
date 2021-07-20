@@ -25,15 +25,24 @@ main {
 
 @keyframes rotate-color {
   0% {
-    top: 51%;
-    filter: hue-rotate(0deg);
+    color: purple;
+    top: 55%;
+    font-size: small;
+    filter: blur(10px);
   }
   50% {
-    top: 49%;
+    filter: blur(1px) brightness(300%) drop-shadow(0 0 0.5em violet);
+    top: 46%;
+  }
+  80% {
+    filter: blur(0) brightness(200%) drop-shadow(none);
+    opacity: 90%;
   }
   to {
-    top: 51%;
-    filter: hue-rotate(360deg);
+    top: 53%;
+    filter: blur(20px);
+    font-size: 6em;
+    opacity: 100%;
   }
 }
 
@@ -50,8 +59,7 @@ main {
   width: 100%;
   height: 100%;
   position: absolute;
-  color: lightblue;
   text-align: center;
-  animation: rotate-color 2s linear 0s infinite;
+  animation: rotate-color 3s ease-in-out 0s infinite;
   top: 50%;
 }
