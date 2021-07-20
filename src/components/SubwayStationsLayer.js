@@ -9,9 +9,6 @@ import {
 } from "../context/GlobalContextProvider";
 import { loadStations, markStart, markEnd } from "../store/reducers/stations";
 import "../assets/stylesheets/components/_SubwayStationLayer.scss";
-export var markStartStation = stationDispatch(markStart) in window;
-export var markEndStation = stationDispatch(markEnd) in window;
-
 
 // const meow = new Event("meow")
 
@@ -72,10 +69,12 @@ const SubwayStationsLayer = () => {
       stationName = stationName.replaceAll("*", " ");
 
       map.openPopup(
-        `<img src=${logo} alt="logo" width="100%" height="100%" />
-        <div>${stationName}</div>
-        <button>🅢🅡🅣</button> 
-        <button>🅔🅝🅓</button>`,
+        `<div class="buttonpop">
+        <img src=${logo} alt="logo" width="100%" height="100%" />
+        <div class="button-name">${stationName}</div>
+        <button class="lower-button">🅢🅡🅣</button> 
+        <button class="lower-button">🅔🅝🅓</button>
+        <div>`,
         evt.latlng,
         popUpStyle,
       );
