@@ -1,7 +1,7 @@
 import React from "react";
 import L from "leaflet";
 import logo from "../../src/assets/images/logo.png";
-import startOrEndLogo from "../../src/assets/images/start-end-logo.png"
+import startOrEndLogo from "../../src/assets/images/start-end-logo.png";
 import { GeoJSON, useMap } from "react-leaflet";
 import {
   GlobalStationDispatchContext,
@@ -16,16 +16,18 @@ const popUpStyle = {
 
 const TriangleKnocker = L.icon({
   iconUrl: startOrEndLogo,
-  iconSize: [50, 50]
-})
-
+  iconSize: [50, 50],
+});
 
 function stationToMarker(station, latlng) {
-  let className = `station ${station.properties.name} `;
+  let stationName = station.properties.name.replaceAll(" ", "*");
+  let objectId = station.properties.objectid;
+  let className = `station meow${stationName} ${objectId}`;
   className += Object.keys(station.properties.classList).join(" ");
 
   const markerStyle = {
     className,
+    stationName,
     color: "#BEC2CBB3",
     border: "white",
     riseOnHover: true,
@@ -37,37 +39,57 @@ function stationToMarker(station, latlng) {
     return null;
   }
 
-  // if (station.properties.end) markerStyle.className += " ending";
+  if (station.properties.start) markerStyle.className += " starting";
+  if (station.properties.end) markerStyle.className += " ending";
 
-  const startOrEndMarker = new L.Marker(latlng, {icon: TriangleKnocker})
+  const startOrEndMarker = new L.Marker(latlng, { icon: TriangleKnocker });
   const marker = new L.CircleMarker(latlng, markerStyle);
 
-  if (station.properties.start === true || station.properties.end) {
-    return startOrEndMarker   
+  if (station.properties.start === true || station.properties.end === true) {
+    return startOrEndMarker;
   }
 
-  return marker
+  return marker;
 }
-
 
 const SubwayStationsLayer = () => {
   const map = useMap();
   const stationList = React.useContext(GlobalStationStateContext);
   const stationDispatch = React.useContext(GlobalStationDispatchContext);
 
+  window.markStartStation = stationDispatch(markStart);
+  window.markEndStation = stationDispatch(markEnd);
+
   function clickHandler(evt) {
     // if it's a station that got clicked
     if (evt.originalEvent.target.classList.contains("station") && evt.latlng) {
       const targetClass = evt.originalEvent.target.className.baseVal;
-      console.log("evt original target", evt.originalEvent.target)
-      const stationName = targetClass
-        .replace(/station.*/, "")
-        .replace(" - ", "-");
-      console.log("target", stationName);
+      let stationName = targetClass.match(/meow([^\s]+)/)[1];
+      stationName = stationName.replaceAll("*", " ");
+
+      // function startStation (evt) {
+      //   //remove previous start marker
+      //    stationList.data.features.properties.filter((s) => {
+      //       if (s.start === true) delete s.start
+      //     });
+      //     // assign start marker to clicked station
+      //     let selectedStation = stationList.data.features.properties.filter((s) => {
+      //       if (s.objectid === evt.originalEvent.target.classList.match(/(\d+)/)){
+      //         return s
+      //       }})
+      //     //if the digits contained in the classlist match stationList.data.features.properties.objectid
+      //     Object.assign(selectedStation.properties.start, {
+      //           start: true,
+      //     })
+      //   }
+
       map.openPopup(
-        `<img src=${logo} alt="logo" width="100%" height="100%" /><div>${stationName}</div>`,
+        `<img src=${logo} alt="logo" width="100%" height="100%" />
+        <div>${stationName}</div>
+        <button onClick="window.markStartStation(${stationName})">🅢🅡🅣</button> 
+        <button onClick="window.markEndStation(${stationName})">🅔🅝🅓</button>`,
         evt.latlng,
-        popUpStyle
+        popUpStyle,
       );
     }
   }
