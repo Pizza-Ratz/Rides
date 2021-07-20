@@ -7,13 +7,17 @@ import {
   getStepsFromRoute,
   getStepsMetadata,
 } from "../lib/util";
-import { useMap } from "react-leaflet";
-import { GlobalTripStateContext } from "../context/GlobalContextProvider";
 
-// copied from https://raw.githubusercontent.com/openplans/Leaflet.AnimatedMarker/master/src/AnimatedMarker.js
-const setup = () => {
-  console.log("setup");
-  return window.L.Marker.extend({
+let ExtendedMarker;
+
+// mostly taken from https://raw.githubusercontent.com/openplans/Leaflet.AnimatedMarker/master/src/AnimatedMarker.js
+export const getAnimatedMarker = (options) => {
+  console.debug("getAnimatedMarker");
+  if (ExtendedMarker) return ExtendedMarker;
+
+  if (!isDomAvailable) return {};
+
+  ExtendedMarker = window.L.Marker.extend({
     options: {
       // meters
       distance: 200,
@@ -23,6 +27,9 @@ const setup = () => {
       autoStart: true,
       // callback onend
       onEnd: function () {},
+      // per-loop callback gets destination coords and the amount of time to get there
+      listener: (dest = [0, 0, 0], time) => {},
+      // marker isn't clickable
       clickable: false,
     },
 
@@ -68,6 +75,9 @@ const setup = () => {
       console.debug("animate: @" + this._latlngs[this._i]);
       // Move to the next vertex
       this.setLatLng(this._latlngs[this._i]);
+      // call the listener
+      this.options.listener(this._latlngs[this._i], speed);
+
       this._i++;
 
       // Queue up the animation to the next next vertex
@@ -81,11 +91,12 @@ const setup = () => {
     },
 
     // Start the animation
-    start: function () {
+    start: function (fn) {
       console.debug("start", {
         totalDistance: this.options.distance,
         totalTime: this.options.interval,
       });
+      this.options.listener = fn;
       this.animate();
     },
 
@@ -102,25 +113,12 @@ const setup = () => {
       this._i = 0;
     },
   });
-};
 
-const AnimatedMarker = ({ running = false }) => {
-  const map = useMap();
-  const trip = React.useContext(GlobalTripStateContext);
-  const [started, setStarted] = React.useState(false);
-
-  console.log("running:" + running, ", started:" + started);
-
-  // set up a new trip whenever we get new directions
-  React.useEffect(() => {
-    console.log("useEffect");
-    // don't do anything if not in the browser
+  // factory function that produces an AnimatedMarker from the given trip information
+  ExtendedMarker.fromTrip = function (trip) {
     if (!isDomAvailable()) return;
     // if we don't have good data, don't do anything
-    if (!trip.status === "OK") {
-      console.debug("no trip data -- skipping marker render");
-      return;
-    }
+    if (trip.status !== "OK") throw new Error("trip has no data");
 
     const steps = getStepsFromRoute(trip);
     const vertices = flattenDepth(
@@ -134,28 +132,10 @@ const AnimatedMarker = ({ running = false }) => {
     // calculate interval in ms
     const interval = metadata.duration.value * 10;
     const polyLine = window.L.polyline(vertices);
-    // only set up animation mixin once
-    const AnimatedMarkerClass = setup();
-    const animatedMarker = new AnimatedMarkerClass(polyLine.getLatLngs(), {
+    return new ExtendedMarker(polyLine.getLatLngs(), {
       distance,
       interval,
       autostart: false,
     });
-
-    animatedMarker.start();
-    map.addLayer(animatedMarker);
-
-    return () => {
-      console.log("useEffect marker teardown");
-      if (animatedMarker) {
-        map.removeLayer(animatedMarker);
-        animatedMarker.stop();
-      }
-      setStarted(false);
-    };
-  }, []);
-
-  return <></>;
+  };
 };
-
-export default AnimatedMarker;
