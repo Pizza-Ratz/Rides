@@ -11,10 +11,13 @@ import { useMap } from "react-leaflet";
 const ItsHappeningBxtch = ({ stations, route, stationDispatch, running }) => {
   const [loaded, setLoaded] = React.useState(false);
   const [animSync, setAnimSync] = React.useState(null);
+  const [stationsMarked, setStationsMarked] = React.useState(false);
   const map = useMap();
 
+  console.log(`IHB: `, { stations, route, running, loaded });
   React.useEffect(() => {
     if (!!!stations.data.features) return;
+    if (stationsMarked) return;
 
     const transitSteps = getStepsFromRoute(route).filter(
       (step) => step.travel_mode === "TRANSIT"
@@ -26,46 +29,42 @@ const ItsHappeningBxtch = ({ stations, route, stationDispatch, running }) => {
     const endingStationName =
       transitSteps[transitSteps.length - 1].transit_details.arrival_stop.name;
 
-    const [startingStation] = findStationsWithName(startingStationName);
-    const [endingStation] = findStationsWithName(endingStationName);
+    const [startingStation] = findStationsWithName(
+      stations,
+      startingStationName
+    );
+    const [endingStation] = findStationsWithName(stations, endingStationName);
 
-    console.debug({
-      startingStationName,
-      endingStationName,
-    });
-    console.debug({
-      startingStation,
-      endingStation,
-    });
-    // let startingStation, endingStation;
-    // if (sta1.properties.name === startingStationName) {
-    //   startingStation = sta1;
-    //   endingStation = sta2;
-    // } else {
-    //   endingStation = sta1;
-    //   startingStation = sta2;
-    // }
+    // perhaps the trip reducer ought to fire these whenever the trip changes?
     stationDispatch(markStart(startingStation.properties.objectid));
     stationDispatch(markEnd(endingStation.properties.objectid));
-  }, [stations, route]);
+    setStationsMarked(true);
+    return () => {
+      // clearStart?
+      // clearEnd?
+    };
+  }, [stationsMarked, stations, route, stationDispatch]);
 
-  React.useEffect(() => {
+  // if route changes, we need to re-mark stations
+  React.useEffect(() => setStationsMarked(false), [route]);
+
+  React.useEffect(async () => {
     async function dynamicImportModule() {
-      import("../lib/animSync").then((as) =>
+      import("../lib/animSync").then((anim) => {
         // dynamic import returns a promise so we need to handle it
-        as.then((as2) => {
-          setAnimSync(as2);
+        anim.default.then((sync) => {
+          setAnimSync(sync);
           setLoaded(true);
-        })
-      );
+        });
+      });
     }
-    if (!loaded && isDomAvailable()) dynamicImportModule();
+    if (!loaded && isDomAvailable()) await dynamicImportModule();
   }, [loaded]);
 
   React.useEffect(() => {
-    if (!loaded) return;
+    if (!(loaded && route && route.status === "OK" && stations)) return;
     animSync.prepare(map, route, stations, stationDispatch);
-  }, [loaded]);
+  }, [loaded, stations]);
 
   React.useEffect(() => {
     if (loaded) {
@@ -76,7 +75,7 @@ const ItsHappeningBxtch = ({ stations, route, stationDispatch, running }) => {
       }
     }
     return () => loaded && animSync && animSync.stop();
-  }, [running]);
+  }, [running, loaded]);
 
   return <></>;
 };

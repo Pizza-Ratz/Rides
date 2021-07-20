@@ -11,9 +11,9 @@ import {
 let ExtendedMarker;
 
 // mostly taken from https://raw.githubusercontent.com/openplans/Leaflet.AnimatedMarker/master/src/AnimatedMarker.js
-export const getAnimatedMarker = (options) => {
+const getAnimatedMarker = (options) => {
   console.debug("getAnimatedMarker");
-  if (ExtendedMarker) return ExtendedMarker;
+  if (typeof ExtendedMarker === "object") return ExtendedMarker;
 
   if (!isDomAvailable) return {};
 
@@ -96,7 +96,7 @@ export const getAnimatedMarker = (options) => {
         totalDistance: this.options.distance,
         totalTime: this.options.interval,
       });
-      this.options.listener = fn;
+      if (typeof fn === "function") this.options.listener = fn;
       this.animate();
     },
 
@@ -115,7 +115,7 @@ export const getAnimatedMarker = (options) => {
   });
 
   // factory function that produces an AnimatedMarker from the given trip information
-  ExtendedMarker.fromTrip = function (trip) {
+  ExtendedMarker.fromTrip = function (trip, options) {
     if (!isDomAvailable()) return;
     // if we don't have good data, don't do anything
     if (trip.status !== "OK") throw new Error("trip has no data");
@@ -133,9 +133,14 @@ export const getAnimatedMarker = (options) => {
     const interval = metadata.duration.value * 10;
     const polyLine = window.L.polyline(vertices);
     return new ExtendedMarker(polyLine.getLatLngs(), {
+      ...options,
       distance,
       interval,
-      autostart: false,
+      autoStart: false,
     });
   };
+
+  return ExtendedMarker;
 };
+
+export default getAnimatedMarker;

@@ -13,6 +13,7 @@ export function isDomAvailable() {
 }
 
 export function getStepsFromRoute(results) {
+  if (results.status !== "OK") throw new Error("unusable directions");
   // use the first set of directions provided
   const selectedRoute = results.routes[0];
   // there will only be one leg in our trip
@@ -21,6 +22,7 @@ export function getStepsFromRoute(results) {
 }
 
 export function getStepsMetadata(results) {
+  if (results.status !== "OK") return;
   // use the first set of directions provided
   const selectedRoute = results.routes[0];
   const leg = selectedRoute.legs[0];

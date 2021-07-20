@@ -52,23 +52,23 @@ const stationFromName = SubwayStops.reduce((accum, stop) => {
 // inject MTA station ID into each station feature
 const stationsWithId = { ...SubwayStations };
 stationsWithId.features = SubwayStations.features.map((f) => {
-  const station = stationFromName[f.properties.name];
-  if (!station) return f;
+  const station = stationFromName[f.properties.name] || {};
+  const id = !!station.id ? station.id : -1;
+  const altName = !!station.altName ? station.altName : "";
   return {
     ...f,
     properties: {
       ...f.properties,
-      id: station.id,
-      altName: station.altName,
+      id,
+      altName,
       classList: {},
     },
     geometry: { ...f.geometry, coordinates: [...f.geometry.coordinates] },
   };
 });
-// .filter((s) => s.properties && s.properties.id);
 
-export const findStationsWithName = (name) => {
-  return this.features.filter(
+export const findStationsWithName = (stations, name) => {
+  return stations.data.features.filter(
     (s) => s.properties.name === name || s.properties.altName === name
   );
 };

@@ -10,7 +10,7 @@ import {
 } from "../context/GlobalContextProvider";
 import { loadStations } from "../store/reducers/stations";
 import { GlobalTripStateContext } from "../context/GlobalContextProvider";
-import LightsCameraActionaa from "../components/ItsReallyHappening";
+import LightsCameraAction from "../components/ItsReallyHappening";
 
 const LOCATION = {
   lat: 40.7481878,
@@ -68,12 +68,12 @@ const IndexPage = () => {
             route={routeData}
             stations={stationState}
             stationDispatch={stationDispatch}
-            running={false}
+            running={true}
           />
         </Map>
       ) : (
         <div className="clicker" onClick={handleClick}>
-          Click here to start
+          Click anywhere to start
         </div>
       )}
     </Layout>

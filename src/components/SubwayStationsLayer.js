@@ -15,8 +15,9 @@ const popUpStyle = {
 
 function stationToMarker(station, latlng) {
   let className = `station ${station.properties.name} `;
-  className += Object.keys(station.properties.classList).join(" ");
-
+  if (typeof station.properties.classList === "object") {
+    className += Object.keys(station.properties.classList).join(" ");
+  }
   const markerStyle = {
     className,
     color: "#BEC2CBB3",

@@ -18,13 +18,7 @@ const audioCtx = new AudioContext();
 if (!audioCtx.state === "running") throw new Error("audio context not running");
 
 const AnimatedMarker = getAnimatedMarker();
-
-// mapping of station ID id to instrument at that station
-const NOISY_STATIONS = {
-  377: { instrument: eternity, panner: eternityPanner }, // Jay St NR
-  178: { instrument: sizzle, panner: sizzlePanner }, // Penn Station
-  470: { instrument: fantasy, panner: fantasyPanner }, // Hudson Yards
-};
+console.log(AnimatedMarker);
 const REF_DISTANCE = 2;
 const MAX_DISTANCE = 12;
 
@@ -64,8 +58,9 @@ fantasyPanner.toDestination();
 function moveListener(
   destination = [0, 0, 0],
   tripTimeMs,
-  startTime = Tone.Context.now()
+  startTime = Tone.now()
 ) {
+  console.debug(`moveListener: ${destination} @ ${tripTimeMs}-${startTime}`);
   const [destX, destY, destZ = 0] = destination;
   const listener = Tone.getListener();
   const tripTime = tripTimeMs / 1000;
@@ -79,6 +74,13 @@ function moveListener(
   listener.forwardZ.rampTo(scaleCoord(destZ), tripTime / 2, startTime);
 }
 
+// mapping of station ID id to instrument at that station
+const NOISY_STATIONS = {
+  377: { instrument: eternity, panner: eternityPanner }, // Jay St NR
+  178: { instrument: sizzle, panner: sizzlePanner }, // Penn Station
+  470: { instrument: fantasy, panner: fantasyPanner }, // Hudson Yards
+};
+
 // there can be only one
 let animatedMarker;
 
@@ -88,7 +90,9 @@ export default Tone.start().then(() => ({
     sizzle.start();
     eternity.start();
     fantasy.start();
-    animatedMarker.start(moveListener);
+    animatedMarker.start((latlng, timeMs) =>
+      moveListener([latlng.lng, latlng.lat], timeMs)
+    );
   },
 
   stop() {
@@ -100,8 +104,8 @@ export default Tone.start().then(() => ({
   },
 
   prepare(map, tripState, stationState, stationDispatch) {
+    if (this._prepared) return;
     // move instruments to their stations
-    const listener = Tone.getListener();
     const stationIds = Object.keys(NOISY_STATIONS);
     stationState.data.features
       // select stations that have an entry in NOISY_STATIONS
@@ -115,22 +119,16 @@ export default Tone.start().then(() => ({
       });
 
     // get the list of steps in our route
-    const steps = getStepsFromRoute(stationState);
-    // schedule the listener's moves, starting in 5 seconds
-    const startingTime = Tone.now() + 5;
-    // keep track of where we are along the timeline in terms of each step's duration
-    let prevStepEndTime = startingTime;
-    // currently going in a straight line from station to station
-    steps.forEach((step) => {
-      const seconds = step.duration.value / 100;
-      const endX = scaleCoord(step.end_location.lng);
-      const endY = scaleCoord(step.end_location.lat);
-      moveListener(listener, [endX, endY, 0], seconds, prevStepEndTime + 1);
-      prevStepEndTime += seconds;
-    });
+    const steps = getStepsFromRoute(tripState);
+    // move listener to start position
+    console.debug(steps);
+    const endX = scaleCoord(steps[0].start_location.lng);
+    const endY = scaleCoord(steps[0].start_location.lat);
+    moveListener([endX, endY, 0], 0, Tone.now());
 
     // set up the animated marker and hook moveListener to it
-    animatedMarker = AnimatedMarker.fromTrip(tripState);
+    animatedMarker = AnimatedMarker.fromTrip(tripState, {});
     map.addLayer(animatedMarker);
+    this._prepared = true;
   },
 }));
