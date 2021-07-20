@@ -3,48 +3,57 @@ body {
   letter-spacing: 3px;
 }
 
-/* starry background */
-@keyframes move-twink-back {
-  from {background-position:0 0;}
-  to {background-position:-10000px 5000px;}
+.wrapper {
+  position: relative;
 }
 
-.stars, .twinkling {
-  position:fixed;
-  top:0;
-  left:0;
-  right:0;
-  bottom:0;
-  display:block;
+/* starry background */
+@keyframes move-twink-back {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -10000px 5000px;
+  }
+}
+
+.stars,
+.twinkling {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
 }
 
 .stars {
-  background:#000 url(../images/stars.png) repeat;
+  background: #000 url(../images/stars.png) repeat;
   background-attachment: fixed;
   z-index: -10;
 }
 
-.twinkling{
-  background:transparent url(../images/twinkling.png) repeat;
+.twinkling {
+  background: transparent url(../images/twinkling.png) repeat;
   background-attachment: fixed;
   z-index: -5;
-  animation:move-twink-back 200s linear infinite;
+  animation: move-twink-back 200s linear infinite;
 }
-
 
 /* Train Map */
 
-.train-container{
+.train-container {
   position: relative;
   z-index: 2;
 }
 
-.header, .footer {
+.header,
+.footer {
   z-index: 6;
 }
 
 .leaflet-container {
-	background: unset !important;
+  background: unset !important;
 }
 
 /* Pop Up */
@@ -55,48 +64,47 @@ body {
 
 .leaflet-popup-tip,
 .leaflet-popup-content-wrapper {
-	color: #234c5e;
-	background-color: rgb(202, 202, 202);
-
+  color: #234c5e;
+  background-color: rgb(202, 202, 202);
 }
 
 .leaflet-popup {
-	position: absolute;
-	text-align: center;
-	margin-bottom: 20px;
-	}
+  position: absolute;
+  text-align: center;
+  margin-bottom: 20px;
+}
 
 .leaflet-popup-content {
-	margin: 13px 19px;
-	line-height: 1.4;
-	max-width: 7em;
+  margin: 13px 19px;
+  line-height: 1.4;
+  max-width: 7em;
 }
 
 .leaflet-popup-content div {
-	/* margin: 18px; */
-	text-align: center;
+  /* margin: 18px; */
+  text-align: center;
 }
 
 .leaflet-popup-tip-container {
-	width: 20px;
-	height: 10px;
-	position: absolute;
-	left: 50%;
-	margin-left: -20px;
-	overflow: hidden;
-	pointer-events: none;
+  width: 20px;
+  height: 10px;
+  position: absolute;
+  left: 50%;
+  margin-left: -20px;
+  overflow: hidden;
+  pointer-events: none;
 }
 
 .leaflet-container a.leaflet-popup-close-button {
-	position: absolute;
-	top: 0;
-	right: 0;
-	padding: 4px 4px 0 0;
-	border: none;
-	text-align: center;
-	width: 18px;
-	height: 14px;
-	font: 16px/14px, sans-serif;
-	text-decoration: none;
-	background: transparent;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 4px 4px 0 0;
+  border: none;
+  text-align: center;
+  width: 18px;
+  height: 14px;
+  font: 16px/14px, sans-serif;
+  text-decoration: none;
+  background: transparent;
 }
