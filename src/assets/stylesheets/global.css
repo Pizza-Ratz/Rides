@@ -53,11 +53,13 @@ body {
   text-align: center;
 }
 
-.leaflet-popup-tip,
+.leaflet-popup-tip {
+	color: white;
+}
+
 .leaflet-popup-content-wrapper {
 	color: #234c5e;
 	background-color: rgb(202, 202, 202);
-
 }
 
 .leaflet-popup {
@@ -80,9 +82,9 @@ body {
 .leaflet-popup-tip-container {
 	width: 20px;
 	height: 10px;
-	position: absolute;
+	position: absolute !important;
 	left: 50%;
-	margin-left: -20px;
+	/* margin-left: -20px; */
 	overflow: hidden;
 	pointer-events: none;
 }
@@ -99,4 +101,22 @@ body {
 	font: 16px/14px, sans-serif;
 	text-decoration: none;
 	background: transparent;
+}
+
+
+/* button on pop up */
+
+.buttonpop {
+	display: flex;
+	flex-direction: column;
+	align-self: center;
+}
+
+.button-name {
+	display: flex;
+}
+
+.lower-button {
+	display: flex;
+	text-align: center;
 }
