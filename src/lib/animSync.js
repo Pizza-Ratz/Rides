@@ -10,7 +10,7 @@ import * as Tone from "tone";
 import Sizzle from "pizza-ratz-react-synth/src/instruments/engines/SynthPad1";
 import Eternity from "pizza-ratz-react-synth/src/instruments/engines/SynthPluck1";
 import Fantasy from "pizza-ratz-react-synth/src/instruments/engines/SynthPluck2";
-import { isDomAvailable, getStepsFromRoute, scaleCoord } from "./util";
+import { getStepsFromRoute, scaleCoord } from "./util";
 import getAnimatedMarker from "./animatedMarker";
 import { addClass } from "../store/reducers/stations";
 
@@ -20,7 +20,7 @@ if (!audioCtx.state === "running") throw new Error("audio context not running");
 const AnimatedMarker = getAnimatedMarker();
 console.log(AnimatedMarker);
 const REF_DISTANCE = 2;
-const MAX_DISTANCE = 12;
+const MAX_DISTANCE = 15;
 
 const sizzle = new Sizzle();
 const sizzlePanner = new Tone.Panner3D({
@@ -30,6 +30,7 @@ const sizzlePanner = new Tone.Panner3D({
 sizzle.postInit();
 sizzle.connect(sizzlePanner);
 sizzlePanner.toDestination();
+sizzlePanner.panningModel = "HRTF";
 
 const eternity = new Eternity();
 const eternityPanner = new Tone.Panner3D({
@@ -45,6 +46,7 @@ eternity.chain(
   eternity.efx.reverb,
   eternityPanner
 );
+eternityPanner.panningModel = "HRTF";
 
 const fantasy = new Fantasy();
 const fantasyPanner = new Tone.Panner3D({
@@ -54,6 +56,7 @@ const fantasyPanner = new Tone.Panner3D({
 fantasy.postInit();
 fantasy.connect(fantasyPanner);
 fantasyPanner.toDestination();
+fantasyPanner.panningModel = "HRTF";
 
 function moveListener(
   destination = [0, 0, 0],
@@ -76,8 +79,8 @@ function moveListener(
 
 // mapping of station ID id to instrument at that station
 const NOISY_STATIONS = {
-  377: { instrument: eternity, panner: eternityPanner }, // Jay St NR
-  178: { instrument: sizzle, panner: sizzlePanner }, // Penn Station
+  405: { instrument: eternity, panner: eternityPanner }, // Hoyt 2-3
+  397: { instrument: sizzle, panner: sizzlePanner }, // 190th A
   470: { instrument: fantasy, panner: fantasyPanner }, // Hudson Yards
 };
 
@@ -124,7 +127,11 @@ export default Tone.start().then(() => ({
     console.debug(steps);
     const endX = scaleCoord(steps[0].start_location.lng);
     const endY = scaleCoord(steps[0].start_location.lat);
-    moveListener([endX, endY, 0], 0, Tone.now());
+    // move it immediately instead of ramping
+    Tone.Listener.positionX.value = endX;
+    Tone.Listener.positionY.value = endY;
+
+    // moveListener([endX, endY, 0], 0, Tone.now());
 
     // set up the animated marker and hook moveListener to it
     animatedMarker = AnimatedMarker.fromTrip(tripState, {});
