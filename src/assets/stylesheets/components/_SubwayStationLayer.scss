@@ -1,56 +1,56 @@
 $station-pulse-stroke-width-start: 0.1rem;
 $station-pulse-stroke-width-end: 3rem;
 
-@keyframes startstation {
-  0% {
-    stroke-width: $station-pulse-stroke-width-start;
-    stroke: rgb(195, 192, 255);
-    opacity: 100%;
-  }
-  10% {
-    stroke: rgb(102, 148, 254);
-  }
-  20% {
-    stroke: rgb(31, 0, 207);
-  }
-  50% {
-    stroke: rgb(1, 5, 227);
-  }
-  85% {
-    stroke: rgb(0, 44, 132);
-  }
-  100% {
-    stroke-width: $station-pulse-stroke-width-end;
-    stroke: rgb(0, 0, 0);
-    opacity: 10%;
-  }
-}
+// @keyframes startstation {
+//   0% {
+//     stroke-width: $station-pulse-stroke-width-start;
+//     stroke: rgb(195, 192, 255);
+//     opacity: 100%;
+//   }
+//   10% {
+//     stroke: rgb(102, 148, 254);
+//   }
+//   20% {
+//     stroke: rgb(31, 0, 207);
+//   }
+//   50% {
+//     stroke: rgb(1, 5, 227);
+//   }
+//   85% {
+//     stroke: rgb(0, 44, 132);
+//   }
+//   100% {
+//     stroke-width: $station-pulse-stroke-width-end;
+//     stroke: rgb(0, 0, 0);
+//     opacity: 10%;
+//   }
+// }
 
-@keyframes endstation {
-  0% {
-    stroke-width: $station-pulse-stroke-width-start;
-    stroke: rgb(195, 192, 255);
-    opacity: 0%;
-  }
-  15% {
-    stroke: rgb(248, 143, 255);
-  }
-  30% {
-    stroke: rgb(230, 43, 255);
-  }
-  50% {
-    opacity: 100%;
-    stroke: rgb(253, 2, 107);
-  }
-  85% {
-    stroke: rgb(108, 1, 1);
-  }
-  100% {
-    stroke-width: $station-pulse-stroke-width-end;
-    stroke: rgb(40, 1, 1);
-    opacity: 5%;
-  }
-}
+// @keyframes endstation {
+//   0% {
+//     stroke-width: $station-pulse-stroke-width-start;
+//     stroke: rgb(195, 192, 255);
+//     opacity: 0%;
+//   }
+//   15% {
+//     stroke: rgb(248, 143, 255);
+//   }
+//   30% {
+//     stroke: rgb(230, 43, 255);
+//   }
+//   50% {
+//     opacity: 100%;
+//     stroke: rgb(253, 2, 107);
+//   }
+//   85% {
+//     stroke: rgb(108, 1, 1);
+//   }
+//   100% {
+//     stroke-width: $station-pulse-stroke-width-end;
+//     stroke: rgb(40, 1, 1);
+//     opacity: 5%;
+//   }
+// }
 
 @keyframes noisy-station {
   0% {

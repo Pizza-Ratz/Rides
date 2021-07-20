@@ -7,14 +7,23 @@ import {
   getStepsFromRoute,
   getStepsMetadata,
 } from "../lib/util";
+import trainback from "../assets/images/train-back.png"
 import { useMap } from "react-leaflet";
 import { GlobalTripStateContext } from "../context/GlobalContextProvider";
 
 // copied from https://raw.githubusercontent.com/openplans/Leaflet.AnimatedMarker/master/src/AnimatedMarker.js
 const setup = () => {
   console.log("setup");
+
+   const animatedTrain = window.L.icon({
+    iconUrl: trainback,
+    iconSize: [50, 50],
+   })
+
   return window.L.Marker.extend({
     options: {
+      icon: animatedTrain,
+      iconSize: [50, 50],
       // meters
       distance: 200,
       // ms
