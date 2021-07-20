@@ -7,6 +7,7 @@ import {
   getStepsFromRoute,
   getStepsMetadata,
 } from "../lib/util";
+import trainback from "../assets/images/train-back.png";
 
 let ExtendedMarker;
 
@@ -17,8 +18,15 @@ const getAnimatedMarker = (options) => {
 
   if (!isDomAvailable) return {};
 
+  const animatedTrain = window.L.icon({
+    iconUrl: trainback,
+    iconSize: [50, 50],
+  });
+
   ExtendedMarker = window.L.Marker.extend({
     options: {
+      icon: animatedTrain,
+      iconSize: [50, 50],
       // meters
       distance: 200,
       // ms
@@ -72,7 +80,7 @@ const getAnimatedMarker = (options) => {
         }
       }
 
-      console.debug("animate: @" + this._latlngs[this._i]);
+      // console.debug("animate: @" + this._latlngs[this._i]);
       // Move to the next vertex
       this.setLatLng(this._latlngs[this._i]);
       // call the listener
