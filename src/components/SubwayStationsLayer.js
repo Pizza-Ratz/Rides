@@ -9,6 +9,11 @@ import {
 } from "../context/GlobalContextProvider";
 import { loadStations, markStart, markEnd } from "../store/reducers/stations";
 import "../assets/stylesheets/components/_SubwayStationLayer.scss";
+export var markStartStation = stationDispatch(markStart) in window;
+export var markEndStation = stationDispatch(markEnd) in window;
+
+
+// const meow = new Event("meow")
 
 const popUpStyle = {
   className: "popupCustom",
@@ -57,37 +62,20 @@ const SubwayStationsLayer = () => {
   const stationList = React.useContext(GlobalStationStateContext);
   const stationDispatch = React.useContext(GlobalStationDispatchContext);
 
-  window.markStartStation = stationDispatch(markStart);
-  window.markEndStation = stationDispatch(markEnd);
-
   function clickHandler(evt) {
     // if it's a station that got clicked
     if (evt.originalEvent.target.classList.contains("station") && evt.latlng) {
       const targetClass = evt.originalEvent.target.className.baseVal;
       let stationName = targetClass.match(/meow([^\s]+)/)[1];
-      stationName = stationName.replaceAll("*", " ");
+      // let stationId = evt.originalEvent.target.classList[2]
 
-      // function startStation (evt) {
-      //   //remove previous start marker
-      //    stationList.data.features.properties.filter((s) => {
-      //       if (s.start === true) delete s.start
-      //     });
-      //     // assign start marker to clicked station
-      //     let selectedStation = stationList.data.features.properties.filter((s) => {
-      //       if (s.objectid === evt.originalEvent.target.classList.match(/(\d+)/)){
-      //         return s
-      //       }})
-      //     //if the digits contained in the classlist match stationList.data.features.properties.objectid
-      //     Object.assign(selectedStation.properties.start, {
-      //           start: true,
-      //     })
-      //   }
+      stationName = stationName.replaceAll("*", " ");
 
       map.openPopup(
         `<img src=${logo} alt="logo" width="100%" height="100%" />
         <div>${stationName}</div>
-        <button onClick="window.markStartStation(${stationName})">🅢🅡🅣</button> 
-        <button onClick="window.markEndStation(${stationName})">🅔🅝🅓</button>`,
+        <button>🅢🅡🅣</button> 
+        <button>🅔🅝🅓</button>`,
         evt.latlng,
         popUpStyle,
       );
