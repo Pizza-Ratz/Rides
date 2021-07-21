@@ -14,7 +14,7 @@ import "../assets/stylesheets/components/_SubwayStationLayer.scss";
 
 let TriangleKnocker = {};
 
-if (typeof window !== 'undefined') {
+if (typeof window !== "undefined") {
   TriangleKnocker = new L.Icon({
     iconUrl: startOrEndLogo,
     iconRetinaUrl: startOrEndLogo,
@@ -52,21 +52,25 @@ function stationWithStyle(station) {
 // represents the content of the thing that pops up when a station is selected
 const StationPopup = ({ station, dispatch }) => {
   return (
-    <Popup className="buttonpop">
+    <Popup className="station-popup">
       <img src={logo} className="logo" alt="Pizza Ratz logo" />
-      <h3>{station.name}</h3>
-      <button
-        className="lower-button"
-        onClick={() => dispatch(markStart(station.objectid))}
-      >
-        🅢🅡🅣
-      </button>
-      <button
-        className="lower-button"
-        onClick={() => dispatch(markEnd(station.objectid))}
-      >
-        🅔🅝🅓
-      </button>
+      <div className="text">
+        <h3>{station.name}</h3>
+      </div>
+      <div class="buttons">
+        <button
+          className="lower-button"
+          onClick={() => dispatch(markStart(station.objectid))}
+        >
+          🅢🅡🅣
+        </button>
+        <button
+          className="lower-button"
+          onClick={() => dispatch(markEnd(station.objectid))}
+        >
+          🅔🅝🅓
+        </button>
+      </div>
     </Popup>
   );
 };
