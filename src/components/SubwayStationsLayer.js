@@ -11,15 +11,18 @@ import {
 } from "react-leaflet";
 import { loadStations, markEnd, markStart } from "../store/reducers/stations";
 import "../assets/stylesheets/components/_SubwayStationLayer.scss";
-let TriangleKnocker;
+
+let TriangleKnocker = {};
+
 if (typeof window !== 'undefined') {
-TriangleKnocker = new L.Icon({
-  iconUrl: startOrEndLogo,
-  iconRetinaUrl: startOrEndLogo,
-  iconSize: [35, 35],
-  className: "icon-terminus",
-});
-} else TriangleKnocker = {};
+  TriangleKnocker = new L.Icon({
+    iconUrl: startOrEndLogo,
+    iconRetinaUrl: startOrEndLogo,
+    iconSize: [35, 35],
+    className: "icon-terminus",
+  });
+}
+
 function stationWithStyle(station) {
   // if (typeof station.properties.classList !== "object") {
   //   station.properties.classList = {};
