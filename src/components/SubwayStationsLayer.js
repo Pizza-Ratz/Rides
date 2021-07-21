@@ -1,97 +1,114 @@
 import React from "react";
-import L from "leaflet";
+import L, { marker } from "leaflet";
 import logo from "../assets/images/logo.png";
 import startOrEndLogo from "../assets/images/start-end-logo.png";
-import { GeoJSON, useMap } from "react-leaflet";
 import {
-  GlobalStationDispatchContext,
-  GlobalStationStateContext,
-} from "../context/GlobalContextProvider";
-import { loadStations, markStart, markEnd } from "../store/reducers/stations";
+  FeatureGroup,
+  Marker,
+  CircleMarker,
+  Popup,
+  MapConsumer,
+} from "react-leaflet";
+import { loadStations, markEnd, markStart } from "../store/reducers/stations";
 import "../assets/stylesheets/components/_SubwayStationLayer.scss";
 
-// const meow = new Event("meow")
-
-const popUpStyle = {
-  className: "popupCustom",
-};
-
-const TriangleKnocker = L.icon({
+const TriangleKnocker = new L.Icon({
   iconUrl: startOrEndLogo,
+  iconRetinaUrl: startOrEndLogo,
   iconSize: [35, 35],
+  className: "icon-terminus",
 });
 
-function stationToMarker(station, latlng) {
-  let stationName = station.properties.name.replaceAll(" ", "*");
-  let objectId = station.properties.objectid;
-  let className = `station meow${stationName} ${objectId}`;
-  if (typeof station.properties.classList === "object") {
-    className += Object.keys(station.properties.classList).join(" ");
-  }
+function stationWithStyle(station) {
+  // if (typeof station.properties.classList !== "object") {
+  //   station.properties.classList = {};
+  // }
+  // delete station.properties.classList.station;
+  // station.properties.classList.station = 1;
+  // if (station.properties.isStart) station.properties.classList.starting = 1;
+  // if (station.properties.isEnd) station.properties.classList.ending = 1;
 
-  const markerStyle = {
-    className,
-    stationName,
-    color: "#BEC2CBB3",
-    border: "white",
-    riseOnHover: true,
-    weight: 1,
-    bubblingMouseEvents: true,
+  return {
+    markerStyle: {
+      color: "#BEC2CBB3",
+      border: "white",
+      riseOnHover: true,
+      weight: 1,
+      bubblingMouseEvents: true,
+    },
+    classList: station.properties.classList,
+    name: station.properties.name,
+    latlng: [station.geometry.coordinates[1], station.geometry.coordinates[0]],
+    objectid: station.properties.objectid,
+    isStart: station.properties.start,
+    isEnd: station.properties.end,
   };
-
-  if (typeof window === "undefined") {
-    return null;
-  }
-
-  if (station.properties.start) markerStyle.className += " starting";
-  if (station.properties.end) markerStyle.className += " ending";
-
-  if (station.properties.start === true || station.properties.end === true) {
-    console.debug(`stationToMarker: terminus: ${station.properties.name}`);
-    return new L.Marker(latlng, { ...markerStyle, icon: TriangleKnocker });
-  }
-
-  return new L.CircleMarker(latlng, markerStyle);
 }
 
-const SubwayStationsLayer = () => {
-  const map = useMap();
-  const stationList = React.useContext(GlobalStationStateContext);
-  const stationDispatch = React.useContext(GlobalStationDispatchContext);
+// represents the content of the thing that pops up when a station is selected
+const StationPopup = ({ station, dispatch }) => {
+  return (
+    <Popup className="buttonpop">
+      <img src={logo} className="logo" alt="Pizza Ratz logo" />
+      <h3>{station.name}</h3>
+      <button
+        className="lower-button"
+        onClick={() => dispatch(markStart(station.objectid))}
+      >
+        🅢🅡🅣
+      </button>
+      <button
+        className="lower-button"
+        onClick={() => dispatch(markEnd(station.objectid))}
+      >
+        🅔🅝🅓
+      </button>
+    </Popup>
+  );
+};
 
-  function clickHandler(evt) {
-    // if it's a station that got clicked
-    if (evt.originalEvent.target.classList.contains("station") && evt.latlng) {
-      const targetClass = evt.originalEvent.target.className.baseVal;
-      let stationName = targetClass.match(/meow([^\s]+)/)[1];
-      // let stationId = evt.originalEvent.target.classList[2]
-
-      stationName = stationName.replaceAll("*", " ");
-
-      map.openPopup(
-        `<div class="buttonpop">
-        <img src=${logo} alt="logo" width="100%" height="100%" />
-        <div class="button-name">${stationName}</div>
-        <button class="lower-button">🅢🅡🅣</button> 
-        <button class="lower-button">🅔🅝🅓</button>
-        <div>`,
-        evt.latlng,
-        popUpStyle
-      );
-    }
+const SubwayStationsLayer = ({ stations, stationDispatch }) => {
+  if (!stations.data.features.length) {
+    return <></>;
   }
 
-  React.useEffect(() => {
-    stationDispatch(loadStations(stationDispatch));
-  }, []);
+  const CENTER = [40.7481878, -73.9040184];
 
-  React.useEffect(() => {
-    if (map) {
-      map.addEventListener("click", clickHandler);
-    }
-  }, [map]);
-
-  return <GeoJSON data={stationList.data} pointToLayer={stationToMarker} />;
+  return (
+    <FeatureGroup className="stations">
+      {stations.data.features
+        .map((s) => stationWithStyle(s))
+        .map((station) => {
+          let marker;
+          if (station.isStart || station.isEnd) {
+            console.log(station.classList);
+            marker = (
+              <Marker
+                key={station.objectid}
+                icon={TriangleKnocker}
+                position={station.latlng}
+              >
+                <StationPopup station={station} dispatch={stationDispatch} />
+              </Marker>
+            );
+          } else {
+            marker = (
+              <CircleMarker
+                key={station.objectid}
+                center={station.latlng}
+                pathOptions={{
+                  ...station.markerStyle,
+                  className: Object.keys(station.classList).join(" "),
+                }}
+              >
+                <StationPopup station={station} dispatch={stationDispatch} />
+              </CircleMarker>
+            );
+          }
+          return marker;
+        })}
+    </FeatureGroup>
+  );
 };
 
 export default SubwayStationsLayer;

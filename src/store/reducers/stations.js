@@ -61,7 +61,7 @@ stationsWithId.features = SubwayStations.features.map((f) => {
       ...f.properties,
       id,
       altName,
-      classList: {},
+      classList: { station: 1 },
     },
     geometry: { ...f.geometry, coordinates: [...f.geometry.coordinates] },
   };
@@ -173,6 +173,7 @@ const stationReducer = (state = initialState, action) => {
         },
       };
     case actionTypes.ADD_CLASS:
+      console.log(`adding class ${action.cls} to oid ${action.objectid}`);
       updated = freshState.data.features.filter(
         (f) => f.properties.objectid === action.objectid
       )[0];

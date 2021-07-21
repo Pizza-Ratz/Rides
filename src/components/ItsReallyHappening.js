@@ -14,7 +14,6 @@ const ItsHappeningBxtch = ({ stations, route, stationDispatch, running }) => {
   const [stationsMarked, setStationsMarked] = React.useState(false);
   const map = useMap();
 
-  console.log(`IHB: `, { stations, route, running, loaded });
   React.useEffect(() => {
     if (!!!stations.data.features) return;
     if (stationsMarked) return;
@@ -48,7 +47,7 @@ const ItsHappeningBxtch = ({ stations, route, stationDispatch, running }) => {
   // if route changes, we need to re-mark stations
   React.useEffect(() => setStationsMarked(false), [route]);
 
-  React.useEffect(async () => {
+  React.useEffect(() => {
     async function dynamicImportModule() {
       import("../lib/animSync").then((anim) => {
         // dynamic import returns a promise so we need to handle it
@@ -58,13 +57,13 @@ const ItsHappeningBxtch = ({ stations, route, stationDispatch, running }) => {
         });
       });
     }
-    if (!loaded && isDomAvailable()) await dynamicImportModule();
+    if (!loaded && isDomAvailable()) dynamicImportModule();
   }, [loaded]);
 
   React.useEffect(() => {
     if (!(loaded && route && route.status === "OK" && stations)) return;
     animSync.prepare(map, route, stations, stationDispatch);
-  }, [loaded, stations]);
+  }, [loaded, animSync, route, stations, stationDispatch]);
 
   React.useEffect(() => {
     if (loaded) {
