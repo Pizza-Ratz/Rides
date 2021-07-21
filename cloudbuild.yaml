@@ -1,0 +1,14 @@
+steps:
+  - name: docker
+    id: Build
+    args: ["build", ".", "-t", "gcr.io/mta-music-318515/rides:latest"]
+  - name: "docker"
+    id: Push
+    args: ["push", "gcr.io/mta-music-318515/rides:latest"]
+  - name: "gcr.io/cloud-builders/kubectl"
+    id: Deploy
+    dir: .kube
+    args: ["apply", "--filename=staging.yaml"]
+    env:
+      - "CLOUDSDK_COMPUTE_ZONE=us-central1-c"
+      - "CLOUDSDK_CONTAINER_CLUSTER=production-1"
