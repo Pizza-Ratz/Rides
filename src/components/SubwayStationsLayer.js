@@ -1,5 +1,5 @@
 import React from "react";
-import L, { marker } from "leaflet";
+import L from "leaflet";
 import logo from "../assets/images/logo.png";
 import startOrEndLogo from "../assets/images/start-end-logo.png";
 import {
@@ -7,9 +7,8 @@ import {
   Marker,
   CircleMarker,
   Popup,
-  MapConsumer,
 } from "react-leaflet";
-import { loadStations, markEnd, markStart } from "../store/reducers/stations";
+import { /* loadStations, */ markEnd, markStart } from "../store/reducers/stations";
 import "../assets/stylesheets/components/_SubwayStationLayer.scss";
 
 let TriangleKnocker = {};
@@ -57,7 +56,7 @@ const StationPopup = ({ station, dispatch }) => {
       <div className="text">
         <h3>{station.name}</h3>
       </div>
-      <div class="buttons">
+      <div className="buttons">
         <button
           className="lower-button"
           onClick={() => dispatch(markStart(station.objectid))}
@@ -80,7 +79,7 @@ const SubwayStationsLayer = ({ stations, stationDispatch }) => {
     return <></>;
   }
 
-  const CENTER = [40.7481878, -73.9040184];
+  // const CENTER = [40.7481878, -73.9040184];
 
   return (
     <FeatureGroup className="stations">

@@ -25,14 +25,9 @@ export const loadStation = (id) => async (dispatch) => {
   let stationData;
 
   dispatch(_startLoad());
-  try {
-    const response = await fetch(`${transiterNYCSubway}/stops/${id}`);
-    const stationData = await response.json();
-  } catch (err) {
-    throw err;
-  } finally {
-    dispatch(_endLoad());
-  }
+  const response = fetch(`${transiterNYCSubway}/stops/${id}`).then()
+  stationData = await response.json();
+  dispatch(_endLoad());
 
   // error responses have codes
   if (stationData.code) {

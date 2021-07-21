@@ -37,7 +37,7 @@ const SubwayLinesLayer = () => {
       color: "white",
       strokeWeight: 8,
     }).addTo(map);
-  }, [results]);
+  }, [results, map]);
 
   return <GeoJSON data={SubwayLines} style={styleLine} />;
 };
