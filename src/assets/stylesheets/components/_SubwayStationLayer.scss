@@ -75,3 +75,35 @@ $station-pulse-stroke-width-end: 3rem;
   animation: noisy-station 1s infinite;
   animation-timing-function: ease;
 }
+
+.station-popup {
+  .leaflet-popup-content-wrapper {
+    width: 100%;
+    .leaflet-popup-content {
+      img {
+        width: 85px;
+        opacity: 10%;
+      }
+      .text {
+        position: absolute;
+        width: 85px;
+        top: 0px;
+
+        h3 {
+          font-size: small;
+          filter: drop-shadow(0 0 4px grey) brightness(-50%);
+        }
+      }
+      .buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        button {
+          margin-left: 1px;
+          margin-right: 1px;
+        }
+      }
+    }
+  }
+}
