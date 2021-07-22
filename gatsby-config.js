@@ -19,29 +19,52 @@ module.exports = {
       resolve: "gatsby-plugin-sass",
       options: {
         implementation: require("sass"),
+        sassOptions: {
+          includePaths: ["assets/stylesheets", "assets/images"],
+        },
       },
     },
     "gatsby-plugin-react-helmet",
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     name: `images`,
+    //     path: `${__dirname}/src/assets/images`,
+    //   },
+    // },
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     name: `data`,
+    //     path: `${__dirname}/src/data`,
+    //   },
+    // },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `images`,
-        path: `${__dirname}/src/assets/images`,
+        name: `blog-posts`,
+        path: `./src/pages/blog`,
       },
+      __key: "blog-posts",
     },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `data`,
-        path: `${__dirname}/src/data`,
-      },
-    },
+    `gatsby-transformer-remark`,
     {
       resolve: `gatsby-transformer-json`,
       options: {
-        name: 'data',
-        path: `${__dirname}/src/data`
-      }
+        name: "data",
+        path: `${__dirname}/src/data`,
+      },
+      plugins: [
+        {
+          resolve: `gatsby-remark-images`,
+          options: {
+            // It's important to specify the maxWidth (in pixels) of
+            // the content container as this plugin uses this as the
+            // base for generating different widths of each image.
+            maxWidth: 590,
+          },
+        },
+      ],
     },
     {
       resolve: "gatsby-plugin-manifest",
@@ -53,10 +76,10 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-react-leaflet',
+      resolve: "gatsby-plugin-react-leaflet",
       options: {
-        linkStyles: true // (default: true) Enable/disable loading stylesheets via CDN
-      }
+        linkStyles: true, // (default: true) Enable/disable loading stylesheets via CDN
+      },
     },
   ],
 };

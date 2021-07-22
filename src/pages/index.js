@@ -51,13 +51,12 @@ const IndexPage = () => {
   return (
     <Layout pageName="home">
       <Helmet>
-        <title>Home Page</title>
+        <title>Rides</title>
         <link
           href="https://fonts.googleapis.com/css2?family=Assistant:wght@290;400&display=swap"
           rel="stylesheet"
         ></link>
       </Helmet>
-      <div className="stars"></div>
       <div className="twinkling"></div>
       {clicked ? (
         <Map {...mapSettings}>
