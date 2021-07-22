@@ -1,0 +1,24 @@
+/* starry background */
+@mixin stars {
+  color: #b9cad4; // lunar white?
+  background: black url(../images/stars.png) repeat;
+  z-index: -10;
+}
+
+@mixin twinkling {
+  @keyframes move-twink-back {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: -10000px 5000px;
+    }
+  }
+
+  background: fixed transparent url(../images/twinkling.png) repeat;
+  z-index: -5;
+  animation: move-twink-back 200s linear infinite;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}

@@ -1,0 +1,39 @@
+.background-blurrer {
+  position: fixed;
+  height: 100%;
+  background-attachment: sticky;
+  background-image: radial-gradient(
+    circle at center,
+    #14151f1c 30%,
+    #9198e52a 60%,
+    #e6646457
+  );
+}
+
+.blog-index-wrapper {
+  padding: 0 2em;
+
+  h2 {
+    width: 60%;
+    padding-left: 0.5em;
+    padding-bottom: 0.5em;
+    border-bottom: 2px ridge grey;
+    // filter: drop-shadow(0 0 2px grey);
+  }
+
+  p,
+  div {
+    padding-left: 0.5em;
+    font-size: medium;
+  }
+
+  .post-summary-container {
+    border: 2px ridge grey;
+    box-shadow: 0 0 2px grey;
+    cursor: pointer;
+  }
+
+  .post-summary-container:not(first-child) {
+    margin-top: 1em;
+  }
+}

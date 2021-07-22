@@ -1,0 +1,10 @@
+// @use 'components/stars';
+
+// .body {
+//   @include stars.stars;
+// }
+
+.blog-post-container {
+  padding: 2em;
+  filter: blur(2px);
+}
