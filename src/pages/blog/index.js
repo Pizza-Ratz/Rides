@@ -13,9 +13,10 @@ const BlogIndex = ({ data }) => {
       <div className="background-blurrer">
         <div className="blog-index-wrapper">
           <h1>Blog Entries</h1>
-          {data.allMarkdownRemark.edges.map((edge) => (
+          {data.allMarkdownRemark.edges.map((edge, i) => (
             <div
               className="post-summary-container"
+              key={i}
               onClick={() => navigate(edge.node.frontmatter.slug)}
             >
               <Link to={edge.node.frontmatter.slug}>
