@@ -47,25 +47,30 @@ module.exports = {
       },
       __key: "blog-posts",
     },
-    `gatsby-transformer-remark`,
+    `gatsby-plugin-sharp`,
     {
-      resolve: `gatsby-transformer-json`,
+      resolve: `gatsby-transformer-remark`,
       options: {
-        name: "data",
-        path: `${__dirname}/src/data`,
-      },
-      plugins: [
-        {
-          resolve: `gatsby-remark-images`,
-          options: {
-            // It's important to specify the maxWidth (in pixels) of
-            // the content container as this plugin uses this as the
-            // base for generating different widths of each image.
-            maxWidth: 590,
+        plugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              // It's important to specify the maxWidth (in pixels) of
+              // the content container as this plugin uses this as the
+              // base for generating different widths of each image.
+              maxWidth: 590,
+            },
           },
-        },
-      ],
+        ],
+      },
     },
+    // {
+    //   resolve: `gatsby-transformer-json`,
+    //   options: {
+    //     name: "data",
+    //     path: `${__dirname}/src/data`,
+    //   },
+    // },
     {
       resolve: "gatsby-plugin-manifest",
       options: {
