@@ -9,7 +9,7 @@ The proliferation of open source mapping technologies has made it easier than ev
 
 The data I’ll be mapping are particularly close to home for me. I will use a GEOJSON dataset of the regional watersheds in Philadelphia, supplied for free at the OpenDataPhilly website. For all the paywalled or otherwise subterranean data that is generated daily, there are also plenty of open data available that have probably never before been rendered visually. It’s waiting for you and your designs, dear reader, to breathe it out of its formlessness!
 
-![The site we'll be building](./completed.png)
+![The site we'll be building](./images/completed.png)
 
 ### Install
 
@@ -27,7 +27,7 @@ Now follow the installation instructions in [Leaflet](https://leafletjs.com/exam
 
 One slight detour: you will need to change the dependencies in your package.json once you’ve installed all the npm packages you’ll need. Change the “react-leaflet” dependency to the following string: `"react-leaflet": ">=3.1.0 <3.2.0 || ^3.2.1"`, and add the following line or replace if react-leaflet/core is already required: `"@react-leaflet/core": ">=1.0.0 <1.1.0 || ^1.1.1"`.
 
-![Your App.js file should look something like this upon completing install](./starting.png)
+![Your App.js file should look something like this upon completing install](./images/starting.png)
 
 ### Configure
 
@@ -45,11 +45,11 @@ This new `Watersheds` component renders a GeoJSON layer for the data on its `dat
 
 Our map is looking great, and is now rendering watersheds on a map... of streets. What if we want to see the relationship between nature-cultural elements of the land that can't be so easily visualized on the street grid? Let's add another tile layer to the map so that we can see a photographically accurate bird's eye view. [This page](http://leaflet-extras.github.io/leaflet-providers/preview/index.html) is a great resource for discovering some of the many Leaflet tile options available. We will also add an opacity slider to our site so that we can shift between these two views if we like.
 
-![Code for new tile layer](./new-tile.png)
+![Code for new tile layer](./images/new-tile.png)
 
 In the header we'll add an `input` element, which will turn into a range slider when its `type` property is set as such. We will make this a controlled component which updates an `opacity` state upon user input. This state will get fed into a new `TileLayer` child of our `MapContainer`, and if we give our original tiles an inverse opacity so that they are always summing to 1, we will now have a smooth fader between map views.
 
-![Code for range slider](./slider.png)
+![Code for range slider](./images/slider.png)
 
 ## Iterate
 
