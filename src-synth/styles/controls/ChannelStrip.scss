@@ -1,0 +1,27 @@
+@use "../materials";
+@use "../text";
+@use "../objects";
+
+.channel-strip {
+  @include materials.base-plate;
+  @include objects.console-panel;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  label {
+    @include text.label;
+  }
+
+  & > label {
+    font-weight: bolder;
+  }
+
+  .slider-container {
+    height: 15em;
+    width: 5em;
+    transform: rotate(90deg) translateY(5.6em) translateX(-5.6em);
+  }
+}

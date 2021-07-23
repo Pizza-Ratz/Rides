@@ -1,0 +1,24 @@
+@use '../materials';
+@use '../objects';
+@use '../text';
+
+.panner3d {
+  @include materials.base-plate;
+  @include objects.console-panel;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  label {
+    @include text.label;
+  }
+
+  & > label {
+    font-weight: bolder;
+  }
+
+  .control-group {
+    margin: 0.5em;
+  }
+}

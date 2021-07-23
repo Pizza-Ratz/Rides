@@ -1,0 +1,26 @@
+@mixin base-plate {
+  margin: 0;
+  padding: 2px;
+  border-radius: 7px;
+  background-color: rgb(19, 19, 19);
+  border: 2px inset black;
+  box-sizing: border-box;
+  box-shadow: 0 0 8px rgba(65, 64, 64, 0.55);
+}
+
+@mixin touch-surface {
+  z-index: 1;
+  background-image: linear-gradient(#333, #222);
+  border-radius: 2px;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+
+  &:hover {
+    z-index: 2;
+    background-image: linear-gradient(#373737, #262626);
+    box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.1), 0 4px 16px rgba(0, 0, 0, 0.5);
+  }
+}

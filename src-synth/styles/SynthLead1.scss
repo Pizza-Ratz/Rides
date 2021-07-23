@@ -1,0 +1,38 @@
+@use 'materials';
+@use 'text';
+@use 'objects';
+
+.synth-lead-1 {
+  @include materials.base-plate;
+  @include objects.console-panel;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+
+  .voices {
+    margin-top: 1em;
+  }
+
+  label {
+    @include text.label;
+  }
+
+  h3 {
+    @include text.label;
+  }
+
+  hr {
+    width: 80%;
+  }
+
+  .voices {
+    display: flex;
+  }
+
+  .control-group .control-group {
+    margin: 3px;
+  }
+}

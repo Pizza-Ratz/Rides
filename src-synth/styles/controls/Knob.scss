@@ -1,0 +1,26 @@
+@use '../text';
+
+.knob-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .knob {
+    align-content: center;
+    position: relative;
+    display: inline-block;
+    margin: 10px auto;
+    width: 100px;
+  }
+
+  label {
+    @include text.label;
+    // font-weight: 200;
+    // font-size: small;
+    // font-family: roboto;
+    // text-align: center;
+    // display: block;
+    // padding: 10px 0;
+    // color: white;
+  }
+}

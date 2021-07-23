@@ -1,0 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap");
+
+.digital-readout {
+  background-color: #121212;
+
+  .display {
+    font-family: "Major Mono Display", monospace;
+    color: #66ff99;
+    filter: drop-shadow(0 0 0.25rem #66ff9955);
+  }
+}

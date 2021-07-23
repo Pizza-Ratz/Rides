@@ -1,0 +1,14 @@
+@mixin console-panel {
+  margin: 3px;
+}
+
+@mixin LED-red {
+  background: black;
+  box-shadow: inset 0 0 0 0 black;
+  width: 3px;
+  transition: box-shadow 0.5s;
+
+  &.lit {
+    box-shadow: inset 0 0 5px 2px #ec5050, 0 0 0 1px rgb(153, 51, 51);
+  }
+}

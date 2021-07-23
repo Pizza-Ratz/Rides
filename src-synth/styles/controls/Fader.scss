@@ -1,0 +1,87 @@
+@use '../materials';
+@use '../text';
+
+.fader {
+  @include materials.base-plate;
+  height: 7em;
+  // margin: 2em;
+  padding: 20px 0px;
+  padding-left: 10px;
+  padding-right: 30px;
+  display: flex;
+
+  &.has-ticks {
+    padding-right: 4rem;
+  }
+
+  .noUi-target {
+    height: 100%;
+    width: 12px;
+    vertical-align: middle;
+    border-radius: 7px;
+    background-color: black;
+    border: 2px solid black;
+    box-shadow: inset 0 1px 6px rgba(0, 0, 0, 0.5),
+      0 10px 20px rgba(255, 255, 255, 0.06);
+  }
+
+  .noUi-handle {
+    @include materials.touch-surface;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.55);
+
+    &::before,
+    &::after {
+      background: #e8e7e6;
+      // border: none;
+    }
+  }
+
+  .noUi-vertical .noUi-handle::before,
+  .noUi-vertical .noUi-handle::after {
+    width: 14px;
+    height: 1px;
+    left: 6px;
+    top: 14px;
+  }
+
+  .noUi-base {
+    background-color: rgb(20, 21, 22);
+    box-shadow: inset 0 1px 6px rgba(0, 0, 0, 0.5),
+      0 10px 20px rgba(255, 255, 255, 0.06);
+    border-radius: 4px;
+  }
+
+  .noUi-handle {
+    right: -10px;
+  }
+
+  .noUi-tooltip {
+    display: none;
+  }
+
+  .noUi-active .noUi-tooltip {
+    display: block;
+  }
+
+  .noUi-vertical .noUi-handle-lower .noUi-tooltip {
+    font-family: Roboto;
+    font-weight: bold;
+    font-size: small;
+    top: 50%;
+    right: 130%;
+    box-sizing: border-box;
+    min-width: 40px;
+    color: rgb(110, 117, 160);
+    background-color: rgb(176, 188, 255);
+  }
+}
+
+.fader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .label {
+    @include text.label;
+  }
+}

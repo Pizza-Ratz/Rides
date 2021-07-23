@@ -1,0 +1,34 @@
+@use 'materials';
+@use 'text';
+@use 'objects';
+
+.synth-saw-1 {
+  @include materials.base-plate;
+  @include objects.console-panel;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+
+  .dial-container {
+    margin: 0 5px;
+  }
+
+  .control-group {
+    width: 100%;
+  }
+
+  label {
+    @include text.label;
+  }
+
+  h3 {
+    @include text.label;
+  }
+
+  hr {
+    width: 80%;
+  }
+}

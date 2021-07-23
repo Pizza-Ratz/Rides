@@ -1,0 +1,11 @@
+.switch {
+  align-content: center;
+	display: inline-block;
+  height: 50px;
+  margin: 1em;
+  margin-top: 2em;
+}
+
+.switch .slider-toggle.off .noUi-handle {
+	border-color: tomato;
+}
