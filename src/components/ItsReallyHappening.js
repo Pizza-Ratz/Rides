@@ -63,7 +63,7 @@ const ItsHappeningBxtch = ({ stations, route, stationDispatch, running }) => {
   React.useEffect(() => {
     if (!(loaded && route && route.status === "OK" && stations)) return;
     animSync.prepare(map, route, stations, stationDispatch);
-  }, [loaded, animSync, route, stations, stationDispatch]);
+  }, [map, loaded, animSync, route, stations, stationDispatch]);
 
   React.useEffect(() => {
     if (loaded) {
@@ -74,7 +74,7 @@ const ItsHappeningBxtch = ({ stations, route, stationDispatch, running }) => {
       }
     }
     return () => loaded && animSync && animSync.stop();
-  }, [running, loaded]);
+  }, [running, loaded, animSync]);
 
   return <></>;
 };
