@@ -14,21 +14,17 @@ import ZoomWow from "../components/ZoomWow";
 import { loadStations } from "../store/reducers/stations";
 
 const CENTER = [40.7481878, -73.9040184];
-const DEFAULT_ZOOM = 10.5;
-const MIN_ZOOM = 9;
-const bound1 = [40.93164311770619, -74.0281309739946];
-const bound2 = [40.535795875332695, -73.65917370133859];
-const MAX_BOUNDS = [bound1, bound2];
 const HOYT_SCHERMY = [40.68840847580642, -73.98503624034139];
 
 const IndexPage = () => {
   const mapSettings = {
     center: CENTER,
-    // zoom: DEFAULT_ZOOM,
     zoom: 5,
     draggable: true,
-    // maxBounds: MAX_BOUNDS,
-    // minZoom: MIN_ZOOM,
+    // zoom: 10.5,
+    // maxBounds: [[40.93164311770619, -74.0281309739946],
+    //             [40.535795875332695, -73.65917370133859]];
+    // minZoom:  9,
   };
   const stationState = React.useContext(GlobalStationStateContext);
   const stationDispatch = React.useContext(GlobalStationDispatchContext);
@@ -74,7 +70,10 @@ const IndexPage = () => {
           />
         </Map>
       ) : (
-        <div className="clicker" onClick={handleClick}>
+        <div className="clicker"
+        role="presentation"
+        onClick={handleClick}
+        onKeyDown={handleClick}>
           Click anywhere to start
         </div>
       )}
