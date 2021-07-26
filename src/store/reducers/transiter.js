@@ -25,7 +25,7 @@ export const loadStation = (id) => async (dispatch) => {
   let stationData;
 
   dispatch(_startLoad());
-  const response = fetch(`${transiterNYCSubway}/stops/${id}`).then()
+  const response = await fetch(`${transiterNYCSubway}/stops/${id}`).then();
   stationData = await response.json();
   dispatch(_endLoad());
 
