@@ -1,5 +1,4 @@
 import SubwayStations from "../../data/SubwayStations.geojson.json";
-import SubwayStops from "../../data/SubwayStops.json";
 import _ from "lodash";
 
 export const transiterNYCSubway =
@@ -16,61 +15,76 @@ export const actionTypes = {
   REMOVE_CLASS: "STATION_REMOVE_CLASS",
 };
 
-// mapping from station name to station data
-const stationFromName = SubwayStops.reduce((accum, stop) => {
-  if (!stop.id.match(/\d+$/)) return accum;
-  let stopName = stop.name;
-  // put st/nd/rd/th after street numbers
-  for (const match of stopName.matchAll(/(\d+) /g)) {
-    let [orig, number] = match;
-    const lastDigit = number % 10;
-    if (lastDigit === 1) {
-      number = number + "st";
-    } else if (lastDigit === 2) {
-      number = number + "nd";
-    } else if (lastDigit === 3) {
-      number = number + "rd";
-    } else {
-      number = number + "th";
+export function flattenGeoJSON(ssgj = SubwayStations) {
+  return (
+    ssgj.features
+      .map((station) => ({
+        ...station.properties,
+        classList: { station: 1 },
+        start: false,
+        end: false,
+        latlng: [
+          station.geometry.coordinates[1],
+          station.geometry.coordinates[0],
+        ], // because lat/lng are given as X/Y in geoJSON
+      }))
+      // convert array to object with objectid as key
+      .reduce((obj, station) => {
+        obj[station.objectid] = station;
+        return obj;
+      }, {})
+  );
+}
+
+/**
+ * maps MTA GTFS station names and IDs from transiter data into stations object.
+ * Transiter stations for which we can't find a match in the stations list are dropped.
+ */
+const enrichStationsFromTransiterStopsList = (stations, transiterList) => {
+  transiterList.forEach((stop) => {
+    // skip the N/S/E/W directional stations
+    if (!stop.id.match(/\d+$/)) return;
+    // if unaltered name matches station name in list, we can skip mangling
+    if (stations[stop.name]) {
+      stations[stop.name].gtfsId = stop.id;
+      return;
     }
-    stopName = stopName.replaceAll(orig, `${number} `);
-  }
-  // convert Av -> Ave, Ft -> Fort
-  stopName = stopName
-    .replaceAll(" Av", " Ave")
-    .replaceAll("-", " - ")
-    .replaceAll("Ft ", "Fort ");
 
-  // keep track of stations that are named differently in different places
-  if (stopName !== stop.name) {
-    stop.altName = stop.name;
-  }
-  accum[stopName] = stop;
-  return accum;
-}, {});
+    let stopName = stop.name;
+    // put st/nd/rd/th after street numbers
+    for (const match of stopName.matchAll(/(\d+) /g)) {
+      let [orig, number] = match;
+      const lastDigit = number % 10;
+      if (lastDigit === 1) {
+        number = number + "st";
+      } else if (lastDigit === 2) {
+        number = number + "nd";
+      } else if (lastDigit === 3) {
+        number = number + "rd";
+      } else {
+        number = number + "th";
+      }
+      stopName = stopName.replaceAll(orig, `${number} `);
+    }
+    // convert Av -> Ave, Ft -> Fort
+    stopName = stopName
+      .replaceAll(" Av", " Ave")
+      .replaceAll("-", " - ")
+      .replaceAll("Ft ", "Fort ");
 
-// inject MTA station ID into each station feature
-const stationsWithId = { ...SubwayStations };
-stationsWithId.features = SubwayStations.features.map((f) => {
-  const station = stationFromName[f.properties.name] || {};
-  const id = !!station.id ? station.id : -1;
-  const altName = !!station.altName ? station.altName : "";
-  return {
-    ...f,
-    properties: {
-      ...f.properties,
-      id,
-      altName,
-      classList: { station: 1 },
-    },
-    geometry: { ...f.geometry, coordinates: [...f.geometry.coordinates] },
-  };
-});
+    // keep track of stations that are named differently in different places
+    if (stopName !== stop.name) {
+      stop.altName = stop.name;
+    }
+    if (stations[stop.altName]) {
+      stations[stop.altName].altName = stop.name;
+      stations[stop.altName].gtfsId = stop.id;
+    }
+  });
+};
 
 export const findStationsWithName = (stations, name) => {
-  return stations.data.features.filter(
-    (s) => s.properties.name === name || s.properties.altName === name
-  );
+  return stations.data.filter((s) => s.name === name || s.altName === name);
 };
 
 // const _fetchStarted = () => ({
@@ -128,50 +142,29 @@ export const loadStations = (dispatch) => {
   return { type: "STATIONS_LS_CALLED" };
 };
 
+/** uses lodash.cloneDeep to make a complete copy of state */
 const deepCopyStations = (stations) => _.cloneDeep(stations);
 
-export const initialState = { data: stationsWithId };
+/** initial state is the flattened, static SubwayStations.geojson.json */
+export const initialState = { data: flattenGeoJSON(SubwayStations) };
 
 const stationReducer = (state = initialState, action) => {
   let freshState = deepCopyStations(state);
   let updated;
   switch (action.type) {
     case actionTypes.MARK_START:
-      return {
-        ...state,
-        data: {
-          ...state.data,
-          features: state.data.features.map((station) => {
-            if (
-              station.properties &&
-              station.properties.objectid === action.startId
-            ) {
-              return {
-                ...station,
-                properties: { ...station.properties, start: true },
-              };
-            } else return station;
-          }),
-        },
-      };
+      // un/set start based on whether a station's objectid matches the one in the action
+      Object.keys(freshState).map(
+        (objectid) =>
+          (freshState[action.startId].start = objectid === action.startId)
+      );
+      return freshState;
     case actionTypes.MARK_END:
-      return {
-        ...state,
-        data: {
-          ...state.data,
-          features: state.data.features.map((station) => {
-            if (
-              station.properties &&
-              station.properties.objectid === action.endId
-            ) {
-              return {
-                ...station,
-                properties: { ...station.properties, end: true },
-              };
-            } else return station;
-          }),
-        },
-      };
+      Object.keys(freshState).map(
+        (objectid) =>
+          (freshState[action.startId].end = objectid === action.endId)
+      );
+      return freshState;
     case actionTypes.ADD_CLASS:
       console.log(`adding class ${action.cls} to oid ${action.objectid}`);
       updated = freshState.data.features.filter(

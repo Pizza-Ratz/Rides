@@ -2,13 +2,11 @@ import React from "react";
 import L from "leaflet";
 import logo from "../assets/images/logo.png";
 import startOrEndLogo from "../assets/images/start-end-logo.png";
+import { FeatureGroup, Marker, CircleMarker, Popup } from "react-leaflet";
 import {
-  FeatureGroup,
-  Marker,
-  CircleMarker,
-  Popup,
-} from "react-leaflet";
-import { /* loadStations, */ markEnd, markStart } from "../store/reducers/stations";
+  /* loadStations, */ markEnd,
+  markStart,
+} from "../store/reducers/stations";
 import "../assets/stylesheets/components/_SubwayStationLayer.scss";
 
 let TriangleKnocker = {};
@@ -39,12 +37,9 @@ function stationWithStyle(station) {
       weight: 1,
       bubblingMouseEvents: true,
     },
-    classList: station.properties.classList,
-    name: station.properties.name,
-    latlng: [station.geometry.coordinates[1], station.geometry.coordinates[0]],
-    objectid: station.properties.objectid,
-    isStart: station.properties.start,
-    isEnd: station.properties.end,
+    ...station,
+    isStart: station.start,
+    isEnd: station.end,
   };
 }
 
