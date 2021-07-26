@@ -1,4 +1,4 @@
-import { isDomAvailable } from "lib/util";
+import { isDomAvailable } from "../util";
 
 describe("lib::util", () => {
   describe("isDomAvailable", () => {

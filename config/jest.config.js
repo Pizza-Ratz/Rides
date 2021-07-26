@@ -12,7 +12,6 @@ module.exports = {
     "config",
     "node_modules",
     "public",
-    "src",
     "tests/integrations",
   ],
 

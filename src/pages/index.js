@@ -4,11 +4,7 @@ import Layout from "components/Layout";
 import Map from "components/Map";
 import SubwayStationsLayer from "../components/SubwayStationsLayer";
 import SubwayLinesLayer from "../components/SubwayLinesLayer";
-import {
-  GlobalStationDispatchContext,
-  GlobalStationStateContext,
-} from "../context/GlobalContextProvider";
-import { GlobalTripStateContext } from "../context/GlobalContextProvider";
+import StoreContext from "../store";
 import LightsCameraAction from "../components/ItsReallyHappening";
 import ZoomWow from "../components/ZoomWow";
 import { loadStations } from "../store/reducers/stations";
@@ -26,11 +22,11 @@ const IndexPage = () => {
     //             [40.535795875332695, -73.65917370133859]];
     // minZoom:  9,
   };
-  const stationState = React.useContext(GlobalStationStateContext);
-  const stationDispatch = React.useContext(GlobalStationDispatchContext);
-  const routeData = React.useContext(GlobalTripStateContext);
 
+  const [state, dispatch] = React.useContext(StoreContext);
   const [clicked, setClicked] = React.useState(false);
+
+  const { stations, trip } = state;
 
   const handleClick = () => {
     setClicked((already) => {
@@ -39,7 +35,7 @@ const IndexPage = () => {
   };
 
   React.useEffect(() => {
-    stationDispatch(loadStations(stationDispatch));
+    dispatch(loadStations(dispatch));
   }, []);
 
   if (typeof window === "undefined") return null;
@@ -58,22 +54,21 @@ const IndexPage = () => {
         <Map {...mapSettings}>
           <ZoomWow zoom={12} center={HOYT_SCHERMY} when={2000} />
           <SubwayLinesLayer />
-          <SubwayStationsLayer
-            stations={stationState}
-            stationDispatch={stationDispatch}
-          />
+          <SubwayStationsLayer stations={stations} stationDispatch={dispatch} />
           <LightsCameraAction
-            route={routeData}
-            stations={stationState}
-            stationDispatch={stationDispatch}
+            route={trip}
+            stations={stations}
+            stationDispatch={dispatch}
             running={true}
           />
         </Map>
       ) : (
-        <div className="clicker"
-        role="presentation"
-        onClick={handleClick}
-        onKeyDown={handleClick}>
+        <div
+          className="clicker"
+          role="presentation"
+          onClick={handleClick}
+          onKeyDown={handleClick}
+        >
           Click anywhere to start
         </div>
       )}
